@@ -1,1 +1,1 @@
-export { default as AdminModel } from './adminModel.js';
+//placeholder

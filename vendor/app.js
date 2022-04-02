@@ -16,101 +16,40 @@ class App {
         this.router = new Router()
     }
 
-    isRestAPI = (url) => String(url).startsWith(`/api`)
+    isStatic = (url) => String(url).startsWith(`/public`)
+
     listen() {
-        http.createServer(function (req, res) {
-            res.setHeader('Access-Control-Allow-Origin', 'origin');
-            res.setHeader('Access-Control-Allow-Credentials', true);
-            res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH');
-            res.setHeader('Access-Control-Allow-Headers', 'Accept,Content-Type,platform,appVersion');
-            // res.setHeader('Content-Security-Policy', `default-src 'self';font-src fonts.gstatic.com;style-src 'self' fonts.googleapis.com; object-src 'self'`);
-            res.setHeader('Access-Control-Max-Age', 2592000);
-            res = this.addResponseFunctionalities(res)
-            req = this.addRequestFunctionalities(req)
-            if (!this.isRestAPI(req.url)) {
-                res = this.handleStatic(req, res)
+        http.createServer(function (request, response) {
 
-                return
+            let zen = {}
+            zen = this.addZenFunctionalities(zen);
+            response = this.addResponseFunctionalities(response);
+            response = this.addResponseFunctionalities(response);
+            request = this.addRequestFunctionalities(request);
+
+            if (this.isStatic(request.url)) {
+                response = this.handleStatic(request, response);
+                return;
             }
-            console.log(`${req.method} on ${req.url}`)
+
+            console.log(`${request.method} on ${request.url}`)
 
 
-            if (!req.headers['content-type']) {
-                res = this.router.handleRoute(req, res)
+            if (!request.headers['content-type']) {
+                response = this.router.handleRoute(zen, request, response)
                 return
-            }
-            if (req.headers['content-type'] == "application/octet-stream") {
-
-                let filename = req.headers[`content-disposition`].split('=')[1]
-                const writeStream = fs.createWriteStream(`./uploadedFiles/${filename}`)
-                req.on('data', chunk => {
-                    writeStream.write(chunk)
-                })
-                req.on('end', function () {
-                    writeStream.end()
-                    req.filename = filename;
-                    req.filePath = `./uploadedFiles/${filename}`;
-                    this.router.handleRoute(req, res)
-                }.bind(this))
-                req.on('error', function (err) {
-                    writeStream.end()
-                    fs.unlink(`./uploadedFiles/${filename}`)
-                    res.status(StatusCodes.EXPECTATION_FAILED).json({
-                        error: err.message
-                    })
-                }.bind(this))
-
-            } else if (req.headers['content-type'] == "application/json") {
-                let data = '';
-                req.on('data', chunk => {
-                    data += chunk
-                    if (data.length > 1e6) {
-                        req.connection.destroy()
-                        res.status(413).json({
-                            error: `Payload too large`
-                        })
-                        return
-                    }
-                })
-                req.on('end', function () {
-                    let finalData = {}
-                    if (data)
-                        try {
-                            finalData = JSON.parse(data)
-                            req.body = finalData
-                        } catch (err) {
-                            //daca nu reusim sa parsam body ul de la client, ii spunem eroarea si inchidem conexiunea
-                            console.error(`error parsing json from client: `)
-                            console.error(err)
-                            res.status(400).json({
-                                success: false,
-                                error: err.message
-                            })
-                            return
-                        }
-                    req = this.authFunction(req);
-                    res = this.router.handleRoute(req, res)
-
-                }.bind(this))
-                req.on('error', function (err) {
-                    console.error(err.message)
-                    req.status(StatusCodes.EXPECTATION_FAILED).json({
-                        success: false,
-                        message: `body data transfer error`,
-                        ...sendDebugInResponse && { error: err.message }
-                    });
-                }.bind(this))
-            } else {
-                res.status(415).json({
+            } 
+            else {
+                response.status(415).json({
                     error: `Invalid Content Type Header`
                 })
-                req.connection.destroy()
+                request.connection.destroy()
             }
+
         }.bind(this)).listen(this.port)
 
 
         console.log(`app running on PORT: ${this.port}`)
-
 
     }
     useWebRoute(router) {
@@ -121,61 +60,34 @@ class App {
         this.router.patchRoutes = { ...this.router.patchRoutes, ...router.patchRoutes }
     }
 
-    addResponseFunctionalities(res) {
+    setResponseHeaders(response) {
+        response.setHeader('Access-Control-Allow-Origin', 'origin');
+        response.setHeader('Access-Control-Allow-Credentials', true);
+        response.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH');
+        response.setHeader('Access-Control-Allow-Headers', 'Accept,Content-Type,platform,appVersion');
+        response.setHeader('Access-Control-Max-Age', 2592000);
 
+        return response;
+    }
 
-        res.status = function (newStatusCode) {
-            res.statusCode = newStatusCode
-            return res
+    addResponseFunctionalities(response) {
+
+        response.status = (newStatusCode) => {
+            response.statusCode = newStatusCode
+            return response
         }
 
+        response.json = (newJson) => {
+            response.setHeader('Content-Type', 'application/json');
+            response.write(JSON.stringify(newJson))
+            response.end()
+            return response
 
-        res.json = function (newJson) {
-            res.setHeader('Content-Type', 'application/json');
-            res.write(JSON.stringify(newJson))
-            res.end()
-            return res
         }
-        res.sendFile = async function (filePath) {
 
-            try {
+        response.sendFile = async (filePath) => {
 
-                // based on the URL path, extract the file extention. e.g. .js, .doc, ...
-                const extension = path.parse(filePath).ext;
-                console.log(extension)
-                var stat = await fs.promises.stat(filePath)
-                if (!stat.isFile) {
-                    return res.status(StatusCodes.BAD_REQUEST).json({
-                        error: `bad request. not a file`
-                    })
-                } else {
-                    res.statusCode = StatusCodes.OK;
-                    res.setHeader('Content-type', 'text/csv');
-                    res.setHeader('Content-length', stat.size);
-                    var data = fs.createReadStream(filePath).pipe(res)
-
-
-                }
-            } catch (err) {
-                console.error(err)
-                if (err.code == 'ENOENT') //ENOENT = ERROR NO ENTITY
-                    return res.status(StatusCodes.NOT_FOUND).json({
-                        error: err.message,
-                        path: filePath
-                    })
-
-                //altfel e alta eraore. fie de la stat, fie de la readFile
-                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-                    ...sendDebugInResponse && { error: err.message },
-                    path: filePath
-                })
-            }
-            // res.endNow = false
-            return res
-        }
-        res.sendStaticFile = async function (filePath) {
-
-            const map = {
+            const extensionToResponse = {
                 '.ico': 'image/x-icon',
                 '.html': 'text/html',
                 '.js': 'text/javascript',
@@ -189,78 +101,72 @@ class App {
                 '.pdf': 'application/pdf',
                 '.doc': 'application/msword'
             };
-            try {
 
-                // based on the URL path, extract the file extention. e.g. .js, .doc, ...
+            try {
                 const extension = path.parse(filePath).ext;
-                var stat = await fs.promises.stat(filePath)
+
+                const stat = await fs.promises.stat(filePath);
+
                 if (!stat.isFile) {
-                    return res.status(StatusCodes.BAD_REQUEST).json({
+                    return response.status(StatusCodes.BAD_REQUEST).json({
                         error: `bad request. not a file`
                     })
-                } else {
-                    var data = await fs.promises.readFile(filePath)
-                    res.setHeader('Content-type', map[extension] || 'text/plain');
-                    res.setHeader('Content-length', stat.size);
-                    res.write(data)
-                    res.end()
+                } 
+                else {
+                    const data = await fs.promises.readFile(filePath)
+                    response.setHeader('Content-type', extensionToResponse[extension] || 'text/plain');
+                    response.setHeader('Content-length', stat.size);
+                    response.write(data)
+                    response.end()
                 }
-            } catch (err) {
+            } 
+            catch (err) {
                 console.error(err)
-                if (err.code == 'ENOENT') //ENOENT = ERROR NO ENTITY
-                    return res.status(StatusCodes.NOT_FOUND).json({
+
+                if (err.code == 'ENOENT') {
+                    return response.status(StatusCodes.NOT_FOUND).json({
                         error: err.message,
                         path: filePath
                     })
+                }
 
-                //altfel e alta eraore. fie de la stat, fie de la readFile
-                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                return response.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                     ...sendDebugInResponse && { error: err.message },
                     path: filePath
                 })
             }
-            // res.endNow = false
-            return res
+
+            return response
         }
 
-        //end of functionalities
-        return res
+        return response
     }
 
-    addRequestFunctionalities(req) {
-        req.parameters = url.parse(req.url, true).query
-        // console.log(`request params: ${JSON.stringify(req.parameters)}`)
-        if (this.db)
-            req.db = this.db
-        return req
+    addRequestFunctionalities(request) {
+        request.parameters = url.parse(request.url, true).query;
+        return request;
     }
 
-    //deprecated -- or not
-    handleStatic(req, res) {
-        // parse URL
-        const parsedUrl = url.parse(req.url)
-        // extract URL path
+    addZenFunctionalities(zen) {
+        if (this.db) {
+            zen.db = this.db;
+        }
+        return zen;
+    }
+
+    handleStatic(request, response) {
+
+        const parsedUrl = url.parse(request.url)
 
         let pathname = `${parsedUrl.pathname}`
-        let joinedpath = path.join(`public`, pathname);
-        // console.log(`joined path`, joinedpath); //joined path public
-        if (!joinedpath.startsWith("public"))
-            return res.status(StatusCodes.FORBIDDEN).json({
+        let realPath = path.resolve(pathname);
+        
+        if (!realPath.startsWith("/public/"))
+            return response.status(StatusCodes.FORBIDDEN).json({
                 success: false,
             })
 
-        if (pathname == `/`) {
-            if (!req._staticRedirect)
-                return res.sendStaticFile(`public/landingPage.html`)
-            return res.sendStaticFile(`public/dashboard-${req._staticRedirect}.html`)
-        } else
-            if (pathname == `/landingPage.html`) {
-                if (!req._staticRedirect)
-                    return res.sendStaticFile(`public/landingPage.html`)
-                return res.sendStaticFile(`public/dashboard-${req._staticRedirect}.html`)
-            } else
-                return res.sendStaticFile(`public` + pathname)
-
+        return response.sendFile("public/" + realPath.replace(/^.+?[/]/, ''))  
     }
 }
 

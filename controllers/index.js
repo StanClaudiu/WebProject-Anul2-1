@@ -1,1 +1,1 @@
-export { default as AdminController } from './adminController.js';
+export { default as PagesController } from './pagesController.js';

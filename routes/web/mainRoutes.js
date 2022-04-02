@@ -1,10 +1,8 @@
-import { Router } from "../../vendor/router.js";
-import { AdminController } from "../../controllers/adminController.js";
+import { Router } from "../../vendor/index.js";
+import { PagesController } from "../../controllers/index.js";
 
 const mainRoutes = new Router();
 
-mainRoutes.post(`/api/logout`, AdminController.addNotification);
-mainRoutes.delete(`/api/logout`, AdminController.deleteNotification);
-mainRoutes.patch(`/api/logout`, AdminController.modifyCar);
+mainRoutes.get(`/main`, PagesController.landingPage);
 
 export default mainRoutes

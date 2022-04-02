@@ -6,15 +6,13 @@ class Router {
     patchRoutes
 
     constructor() {
-        this.postRoutes = {} //new Map(string, functie)
+        this.postRoutes = {}
         this.getRoutes = {}
         this.deleteRoutes = {}
         this.putRoutes = {}
         this.patchRoutes = {}
     }
 
-
-    //controller ul este o functie (lambda, cu nume, nu conteaza)
     post(url, controller) {
         if (this.postRoutes[url])
             console.error(`route ${url} was already added as POST route`)
@@ -42,41 +40,36 @@ class Router {
         this.patchRoutes[url] = controller
     }
 
-    handleRoute(req, res) {
-        if (req.error) {
+    handleRoute(zen, request, response) {
+        if (request.error) {
             console.log(error)
-            //trimite si ceva la client...
-            return res.status(500).json({
+            return response.status(500).json({
                 success: false,
                 message: "Data transfer error!"
             });
         }
 
-        var reqUrl = req.url.split(`?`)[0]
+        const requestUrl = request.url.split(`?`)[0];
+
         try {
-            switch (req.method) {
+            switch (request.method) {
                 case "POST":
-                    return this.postRoutes[reqUrl](req, res)
-                    break;
+                    return this.postRoutes[requestUrl](zen, request, response)
                 case "GET":
-                    return this.getRoutes[reqUrl](req, res)
-                    break;
+                    return this.getRoutes[requestUrl](zen, request, response)
                 case "DELETE":
-                    return this.deleteRoutes[reqUrl](req, res)
-                    break;
+                    return this.deleteRoutes[requestUrl](zen, request, response)
                 case "PUT":
-                    return this.putRoutes[reqUrl](req, res)
-                    break;
+                    return this.putRoutes[requestUrl](zen, request, response)
                 case "PATCH":
-                    return this.patchRoutes[reqUrl](req, res)
-                    break;
+                    return this.patchRoutes[requestUrl](zen, request, response)
                 default:
-                    throw new Error(`no route with such http verb: ${req.method}`)
-                    break;
+                    throw new Error(`no route with such http verb: ${request.method}`)
             }
-        } catch (error) {
+        } 
+        catch (error) {
             console.error(error)
-            return res.status(400).json({
+            return response.status(400).json({
                 success: false,
                 error: error.message,
             });

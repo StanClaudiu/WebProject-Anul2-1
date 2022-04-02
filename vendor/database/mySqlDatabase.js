@@ -11,28 +11,6 @@ const pool = createPool({
 
 
 const mySqlDatabase = {
-    insertIntoTable(tablename, data, callBack) {
-        var sqlString = `INSERT INTO ?? VALUES(`;
-
-        for (let index = 0; index < data.length; index++) {
-            if (index == data.length - 1) {
-                sqlString += '?';
-                break;
-            }
-            sqlString += '?,';
-        }
-        sqlString += ')';
-        data.unshift(tablename)
-        console.log(data)
-        pool.query(
-            sqlString, data,
-            (error, results, fields) => {
-                if (error)
-                    return callBack(error)
-                return callBack(null, results)
-            }
-        )
-    },
     getDataFromTable: (table, callBack) => {
         pool.query(
             `SELECT * FROM ??`, [
