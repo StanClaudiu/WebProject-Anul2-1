@@ -1,0 +1,38 @@
+.button-plain {
+    font-size: 20px;
+    padding: 5px;
+    transition-duration: 0.5s;
+    display: inline-block;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.button-plain:hover {
+    background-color: rgba(0, 0, 0, 0.295);
+}
+
+.button-plain-wheat {
+    color: wheat;
+}
+
+.button-box {
+    font-size: 20px;
+    padding: 5px;
+    transition-duration: 0.5s;
+    border-radius: 14px;
+    border: solid 2px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.button-box-wheat {
+    color: wheat;
+}
+
+.button-box-wheat:hover {
+    color: blue;
+}
+
+.button-box:hover {
+    background-color: rgba(0, 0, 0, 0.295);
+}

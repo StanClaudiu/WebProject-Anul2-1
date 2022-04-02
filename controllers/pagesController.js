@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes"
 
 const PagesController = {
     landingPage: (zen, request, response) => {
-        response.sendFile("public/landing_page.html")
+        response.sendFile("public/frontend/pages/index.html")
     }
 }
 
