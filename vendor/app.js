@@ -159,7 +159,7 @@ class App {
         const parsedUrl = url.parse(request.url)
 
         let pathname = `${parsedUrl.pathname}`
-        let realPath = path.resolve(pathname);
+        let realPath = path.join(pathname).replace(/\\/g, '/');;
         
         if (!realPath.startsWith("/public/"))
             return response.status(StatusCodes.FORBIDDEN).json({
