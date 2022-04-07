@@ -1,1 +1,67 @@
-s
+.head-component {
+    background: rgb(175,255,50);
+    background: linear-gradient(90deg, rgba(175,255,50,1) 0%, rgba(118,255,48,1) 50%, rgba(70,255,70,1) 100%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.head-component-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1000px;
+    padding: 40px 0px 40px 0px;
+}
+
+.head-component-text {
+    display: flex;
+    margin-top: 10%;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 2;
+}
+
+.head-component-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1.5;
+}
+
+.head-component-image > * {
+    max-width: 100%;
+}
+
+.head-component-text-title {
+    color: rgb(140, 72, 29);
+    max-width: 450px;
+    font-size: 34px;
+}
+
+.head-component-text-description {
+    margin-top: 15px;
+    max-width: 500px;
+    color: rgb(1, 49, 2);
+}
+
+.head-component-text-buttons {
+}
+
+@media only screen and (max-width: 600px) {
+    .head-component-container {
+        flex-direction: column;
+    }
+
+    .head-component-image {
+        align-items: center;
+    }
+
+    .head-component-text {
+        align-items: center;
+        text-align: center;
+    }
+}

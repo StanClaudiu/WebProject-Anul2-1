@@ -1,6 +1,6 @@
 .button-plain {
     font-size: 20px;
-    padding: 5px;
+    padding: 5px 8px 5px 8px;
     margin: 5px 10px 5px 10px;
     transition-duration: 0.5s;
     display: inline-block;
@@ -18,9 +18,9 @@
 
 .button-box {
     font-size: 20px;
-    padding: 5px;
+    padding: 5px 8px 5px 8px;
     transition-duration: 0.5s;
-    border-radius: 14px;
+    border-radius: 18px;
     border: solid 2px;
     display: inline-block;
     cursor: pointer;

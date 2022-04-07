@@ -1,3 +1,9 @@
+@font-face {
+    font-family: raleway-medium;
+    src: url(/public/frontend/resources/fonts/raleway/Raleway-Medium.ttf);
+} 
+
 * {
+    font-family: raleway-medium;
     margin: 0;
 }
