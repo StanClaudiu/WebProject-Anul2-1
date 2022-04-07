@@ -1,6 +1,7 @@
 .button-plain {
     font-size: 20px;
     padding: 5px;
+    margin: 5px 10px 5px 10px;
     transition-duration: 0.5s;
     display: inline-block;
     border-radius: 7px;
