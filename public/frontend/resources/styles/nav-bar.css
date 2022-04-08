@@ -7,6 +7,10 @@
     box-shadow: 1px 1px 10px rgba(77, 77, 77, 0.322);
 }
 
+.nav-bar-button {
+    margin: 5px 10px 5px 10px;
+}
+
 .nav-bar-content {
     display: flex;
     width: 100%;

@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="public/frontend/resources/styles/components.css">
         <link rel="stylesheet" href="public/frontend/resources/styles/frontpage.css">
         <link rel="stylesheet" href="public/frontend/resources/styles/nav-bar.css">
+        <link rel="stylesheet" href="public/frontend/resources/styles/image-carousel.css">
     </head>
     <body>
         <div class="nav-bar">
@@ -17,8 +18,8 @@
                     </div>
                 </div>
                 <div class="nav-bar-field">
-                    <a class="button-plain button-plain-wheat">Sign up</a>
-                    <a class="button-box button-box-wheat">Login</a>
+                    <a class="button-plain button-plain-wheat nav-bar-button">Sign up</a>
+                    <a class="button-box button-box-wheat nav-bar-button">Login</a>
                 </div>
             </div>
         </div>
@@ -33,18 +34,57 @@
                             Learn the art of gardening from easy to follow courses,
                             monitor your progress and become the best with Gardening tutor
                         </div>
-                        <!--
+                        
                         <div class="head-component-text-buttons">
-                            <a class="button-box button-plain-wheat">Sign up</a>
-                            <a class="button-plain button-plain-wheat">Sign up</a>
+                            <a class="button-filled button-filled-dark-green">Images</a>
+                            <a class="button-box button-box-dark-green">About courses</a>
                         </div>
-                        -->
+                        
                     </div>
                     <div class="head-component-image">
                         <img src="public/frontend/resources/images/logo.png" />
                     </div>
                 </div>
             </div>
+            <div class="carousel-component">
+                <div class="carousel-component-container">
+
+                    <div class="image-slider-panel">
+            
+                        <div class="image-slider-arrow" onclick="plusSlides(-1)"><a>&#10094;</a></div>
+            
+                        <div class="image-slider-slide image-slider-active-slide">
+                            <img class="image-slider-img" src="assets/images/IT.png" height="180" />
+                            <div class="image-slider-title"><p>IT</p></div>
+                        </div>
+            
+                        <div class="image-slider-slide">
+                            <img class="image-slider-img" src="assets/images/Evalu2ari.png" height="180" />
+                            <div class="image-slider-title"><p>Evaluari</p></div>
+                        </div>
+            
+                        <div class="image-slider-slide">
+                            <img class="image-slider-img" src="assets/images/PR&Media.png" height="180" />
+                            <div class="image-slider-title"><p>PR&Media</p></div>
+                        </div>
+            
+                        <div class="image-slider-arrow" onclick="plusSlides(1)"><a>&#10095;</a></div>
+            
+                    </div>
+            
+                    <div class="image-slider-dots">
+            
+                        <span class="image-slider-dot" onclick="currentSlide(1)"></span>
+                        <span class="image-slider-dot" onclick="currentSlide(2)"></span>
+                        <span class="image-slider-dot" onclick="currentSlide(3)"></span>
+            
+                    </div>
+
+                </div>
+            </div>
         </div>
+
+        <script src="public/frontend/resources/scripts/imageCarousel.js"></script>
+
     </body>
 </html>

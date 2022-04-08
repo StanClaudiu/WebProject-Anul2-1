@@ -1,7 +1,6 @@
 .button-plain {
     font-size: 20px;
     padding: 5px 8px 5px 8px;
-    margin: 5px 10px 5px 10px;
     transition-duration: 0.5s;
     display: inline-block;
     border-radius: 7px;
@@ -36,4 +35,26 @@
 
 .button-box:hover {
     background-color: rgba(0, 0, 0, 0.295);
+}
+
+.button-box-dark-green {
+    color: rgb(0, 80, 0);;
+}
+
+.button-filled {
+    font-size: 20px;
+    padding: 5px 8px 5px 8px;
+    transition-duration: 0.5s;
+    border-radius: 18px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.button-filled-dark-green {
+    background-color: rgb(0, 80, 0);
+    color: wheat;
+}
+
+.button-filled-dark-green:hover {
+    background-color: rgb(0, 38, 0);
 }
