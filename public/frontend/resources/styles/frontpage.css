@@ -7,6 +7,8 @@
     background: rgb(175,255,50);
     background: linear-gradient(90deg, rgba(175,255,50,1) 0%, rgba(118,255,48,1) 50%, rgba(70,255,70,1) 100%);
 
+    padding-top: 60px;
+
     display: flex;
     justify-content: center;
     align-items: center;
