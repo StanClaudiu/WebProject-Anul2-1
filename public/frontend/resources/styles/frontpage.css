@@ -1,3 +1,8 @@
+.frontpage-components {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246/var(--tw-bg-opacity));
+}
+
 .head-component {
     background: rgb(175,255,50);
     background: linear-gradient(90deg, rgba(175,255,50,1) 0%, rgba(118,255,48,1) 50%, rgba(70,255,70,1) 100%);
@@ -85,7 +90,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
     max-width: 1000px;
-    padding: 40px 15px 40px 15px;
+    margin-top: 40px;
 }
