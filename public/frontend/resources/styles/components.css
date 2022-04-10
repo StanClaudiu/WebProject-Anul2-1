@@ -56,6 +56,8 @@
     border-radius: 18px;
     display: inline-block;
     cursor: pointer;
+    border: none;
+    outline: inherit;
 }
 
 .button-filled-dark-green {
@@ -103,6 +105,8 @@
     justify-content: center;
     align-items: center;
     background-color: wheat;
+    max-width: 350px;
+    width: 100%;
     padding: 20px;
     border-radius: 20px;
 }
@@ -110,6 +114,7 @@
 .modal-action-buttons {
     display: flex;
     flex-direction: row;
+    margin-top: 20px;
 }
 
 .modal-action-buttons > * {
@@ -118,4 +123,27 @@
 
 .modal-hide-body-overflow {
     overflow-y: hidden;
+}
+
+.auth-form-container {
+    width: 100%;
+}
+
+.pretty_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.pretty_form > label {
+    font-weight: bold;
+    color: rgb(0, 92, 0);
+}
+
+.pretty_form > input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }

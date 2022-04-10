@@ -99,25 +99,111 @@
             </div>
             <div class="garden-devider-component"></div>
             <div class="description-component">
-
+                <div class="description-component-container">
+                    <div class="description-bloks-row" id="description-bloks-first-row">
+                        <div class="card description-block" id="description-block-first">
+                            <div class="description-block-title">
+                                Text block 1
+                            </div>
+                            <div class="description-block-text">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type 
+                                specimen book. It has survived not only five centuries, but also the leap into 
+                                electronic typesetting, remaining essentially unchanged. It was popularised in the
+                                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                                recently with desktop publishing software like Aldus PageMaker including versions 
+                                of Lorem Ipsum.
+                            </div>
+                        </div>
+                        <div class="card description-block" id="description-block-second">
+                            <div class="description-block-title">
+                                Text block 2
+                            </div>
+                            <div class="description-block-text">
+                                It is a long established fact that a reader will be distracted by the readable content of a page
+                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                                distribution of letters, as opposed to using 'Content here, content here', making it look like 
+                                readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
+                                their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
+                                infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose 
+                                (injected humour and the like).
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description-component-center-decoration-container">
+                        <div class="description-component-center-decoration">
+                            
+                        </div>
+                    </div>
+                    <div class="description-bloks-row" id="description-bloks-second-row">
+                        <div class="card description-block" id="description-block-third">
+                            <div class="description-block-title">
+                                Text block 3
+                            </div>
+                            <div class="description-block-text">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type 
+                                specimen book. It has survived not only five centuries, but also the leap into 
+                                electronic typesetting, remaining essentially unchanged. It was popularised in the
+                                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                                recently with desktop publishing software like Aldus PageMaker including versions 
+                                of Lorem Ipsum.
+                            </div>
+                        </div>
+                        <div class="card description-block" id="description-block-forth">
+                            <div class="description-block-title">
+                                Text block 4
+                            </div>
+                            <div class="description-block-text">
+                                It is a long established fact that a reader will be distracted by the readable content of a page
+                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                                distribution of letters, as opposed to using 'Content here, content here', making it look like 
+                                readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
+                                their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
+                                infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose 
+                                (injected humour and the like).
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="modals_heap">
             <div class="modal_container" id="signup_modal">
                 <div class="modal">
-                    <p>This modal contains some text</p>
+                    <div class="auth-form-container">
+                        <form class="pretty_form" id="signup_form" action="/">
+                            <label for="signup_name">Name</label>
+                            <input type="text" id="signup_name" name="name" required>
+                            <label for="signup_email">Email</label>
+                            <input type="email" id="signup_email" name="email" required>
+                            <label for="signup_password">Password</label>
+                            <input type="password" id="signup_password" name="password" required>
+                            <label for="signup_confirm_password">Confirm Password</label>
+                            <input type="password" id="signup_confirm_password" name="confirm_password" required>
+                        </form>
+                    </div>
                     <div class="modal-action-buttons">
-                        <div class="button-filled button-filled-dark-green">Sign up</div>
+                        <button type="submit" form="signup_form" class="button-filled button-filled-dark-green">Sign up</button>
                         <div class="button-box button-box-red" onclick="closeModal('signup_modal')">Cancel</div>
                     </div>
                 </div>
             </div>
             <div class="modal_container" id="login_modal">
                 <div class="modal">
-                    <p>This modal contains some text</p>
+                    <div class="auth-form-container">
+                        <form class="pretty_form" id="login_form" action="/">
+                            <label for="login_email">Email</label>
+                            <input type="email" id="login_email" name="email" required>
+                            <label for="login_password">Password</label>
+                            <input type="password" id="login_password" name="password" required>
+                        </form>
+                    </div>
                     <div class="modal-action-buttons">
-                        <div class="button-filled button-filled-dark-green">Login</div>
+                        <button type="submit" form="login_form" class="button-filled button-filled-dark-green">Login</button>
                         <div class="button-box button-box-red" onclick="closeModal('login_modal')">Cancel</div>
                     </div>
                 </div>

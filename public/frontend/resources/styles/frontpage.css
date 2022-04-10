@@ -104,5 +104,108 @@
 
 .description-component {
     background-color: rgb(15,100,52);
-    padding: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px 40px 10px;
+}
+
+.description-component-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.description-bloks-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0px 25px 0px;
+}
+
+.description-block {
+    flex: 1;
+    height: 100%;
+    margin: 0px 25px 0px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#description-bloks-first-row > .description-block {
+    padding: 20px 30px 60px 30px;
+}
+
+#description-bloks-second-row > .description-block {
+    padding: 60px 30px 20px 30px;
+}
+
+.description-block-title {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.description-block-text {
+    color: white;
+}
+
+#description-block-first {
+    background-color: rgba(126, 223, 30, 0.2);
+}
+
+#description-block-second {
+    background-color: rgba(255, 218, 8, 0.2);
+}
+
+#description-block-third {
+    background-color: rgba(0, 228, 156, 0.1);
+}
+
+#description-block-forth {
+    background-color: rgba(23, 84, 15, 0.2);
+}
+
+.description-component-center-decoration-container {
+    width: 0px;
+}
+
+.description-component-center-decoration {
+    position: absolute;
+    z-index: 10;
+    width: 160px;
+    height: 160px;
+    background-image: url(/public/frontend/resources/images/decorations/leafcircle.png);
+    background-size: 160px 160px;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+}
+
+@media only screen and (max-width: 1000px) {
+    .description-component-center-decoration {
+        display: none;
+    }
+    .description-bloks-row {
+        flex-direction: column;
+    }
+    #description-bloks-first-row > .description-block {
+        padding: 30px;
+    }
+    #description-bloks-second-row > .description-block {
+        padding: 30px;
+    }
+    .description-bloks-row {
+        margin: 0px;
+    }
+    .description-block {
+        margin: 15px 10px 15px 10px;
+    }
 }
