@@ -23,6 +23,7 @@
     border: solid 2px;
     display: inline-block;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .button-box-wheat {
@@ -58,6 +59,7 @@
     cursor: pointer;
     border: none;
     outline: inherit;
+    text-decoration: none;
 }
 
 .button-filled-dark-green {
