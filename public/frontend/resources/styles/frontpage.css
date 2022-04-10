@@ -94,3 +94,15 @@
     max-width: 1000px;
     margin-top: 40px;
 }
+
+.garden-devider-component {
+    height: 400px;
+    background-image: url(/public/frontend/resources/images/deviders/garden_devider.png);
+    background-repeat: repeat-x;
+    background-size: 1200px 400px;
+}
+
+.description-component {
+    background-color: rgb(15,100,52);
+    padding: 400px;
+}
