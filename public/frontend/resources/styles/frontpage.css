@@ -109,6 +109,7 @@
     justify-content: center;
     align-items: center;
     padding: 40px 10px 40px 10px;
+    box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.322);
 }
 
 .description-component-container {
@@ -208,4 +209,56 @@
     .description-block {
         margin: 15px 10px 15px 10px;
     }
+}
+
+.platform-stats-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.platform-stats-component-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 50px;
+}
+
+.platform-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.platform-stats-name {
+    color: rgb(0, 71, 0);
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.platform-stats-value {
+    color: rgb(0, 134, 0);
+    font-size: 26px;
+}
+
+@media only screen and (max-width: 600px) {
+    .platform-stats-component-container {
+        flex-direction: column;
+    } 
+}
+
+.courses-preview-component-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
 }

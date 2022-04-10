@@ -133,7 +133,7 @@
                     </div>
                     <div class="description-component-center-decoration-container">
                         <div class="description-component-center-decoration">
-                            
+
                         </div>
                     </div>
                     <div class="description-bloks-row" id="description-bloks-second-row">
@@ -167,6 +167,39 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="platform-stats-component">
+                <div class="platform-stats-component-container">
+                    <div class="platform-stats">
+                        <div class="platform-stats-name">
+                            Courses
+                        </div>
+                        <div class="platform-stats-value" id="courses-stats">
+                            100
+                        </div>
+                    </div>
+                    <div class="platform-stats">
+                        <div class="platform-stats-name">
+                            Videos
+                        </div>
+                        <div class="platform-stats-value" id="videos-stats">
+                            70
+                        </div>
+                    </div>
+                    <div class="platform-stats">
+                        <div class="platform-stats-name">                        
+                            Users
+                        </div>
+                        <div class="platform-stats-value" id="users-stats">
+                            20
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="courses-preview-component">
+                <div class="courses-preview-component-container">
+
                 </div>
             </div>
         </div>
@@ -212,6 +245,11 @@
 
         <script src="public/frontend/resources/scripts/imageCarousel.js"></script>
         <script src="public/frontend/resources/scripts/modal.js"></script>
-
+        <script src="public/frontend/resources/scripts/countingNumbers.js"></script>
+        <script>
+            addWhatchedNumberCounter('courses-stats', 0, 100, 5000)
+            addWhatchedNumberCounter('videos-stats', 0, 70, 5000)
+            addWhatchedNumberCounter('users-stats', 0, 20, 5000)
+        </script>
     </body>
 </html>
