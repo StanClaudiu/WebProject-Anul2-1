@@ -5,6 +5,14 @@
     padding: 8px 15px 8px 15px;
     background-color: green;
     box-shadow: 1px 1px 10px rgba(77, 77, 77, 0.322);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav-bar-button {
+    margin: 5px 10px 5px 10px;
 }
 
 .nav-bar-content {
