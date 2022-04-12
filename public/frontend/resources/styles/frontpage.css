@@ -334,5 +334,53 @@
 }
 
 .feedback-component {
-   
+    background: rgb(0,115,26);
+    background: linear-gradient(180deg, rgba(0,115,26,1) 0%, rgba(0,24,12,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback-component-container {
+    padding: 30px 0px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.feedback_form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.feedback_form > label {
+    color: wheat;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.feedback_form > input {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: wheat;
+    padding: 10px;
+    font-weight: bold;
+    box-shadow: none;
+    border: 2px solid wheat;
+}
+
+.feedback_form > textarea {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: wheat;
+    padding: 10px;
+    font-weight: bold;
+    border: 2px solid wheat;
+}
+
+.feedback_form > button {
+    background-color: transparent;
 }

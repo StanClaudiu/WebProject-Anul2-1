@@ -287,7 +287,13 @@
             </div>
             <div class="feedback-component">
                 <div class="feedback-component-container">
-
+                    <form class="feedback_form" id="feedback_form" action="/">
+                        <label for="feedback_email">Email</label>
+                        <input type="email" id="feedback_email" name="email" required>
+                        <label for="feedback_body">Feedback</label>
+                        <textarea id="feedback_body" name="body"></textarea>
+                        <button type="submit" form="feedback_form" class="button-box button-box-wheat">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
