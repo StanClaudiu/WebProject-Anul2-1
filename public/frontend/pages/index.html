@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Gardening tutor</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="public/frontend/resources/styles/main.css">
         <link rel="stylesheet" href="public/frontend/resources/styles/components.css">
         <link rel="stylesheet" href="public/frontend/resources/styles/frontpage.css">
         <link rel="stylesheet" href="public/frontend/resources/styles/nav-bar.css">
         <link rel="stylesheet" href="public/frontend/resources/styles/image-carousel.css">
+        <link rel="stylesheet" href="public/frontend/resources/font_awesome/css/all.min.css">
     </head>
     <body id="body_root">
         <div class="nav-bar">
             <div class="nav-bar-content">
                 <div class="nav-bar-field">
                     <div class="nav-bar-logo">
-                        <img src="public/frontend/resources/images/logo_wheat.png" />
+                        <img alt="image of tree" src="public/frontend/resources/images/logo_wheat.png" />
                         <div class="nav-bar-text">Gardening tutor</div>
                     </div>
                 </div>
-                <div class="nav-bar-field">
+                <div class="nav-bar-field nav-bar-buttons" id="nav-bar-hamburger-element">
                     <a class="button-plain button-plain-wheat nav-bar-button" onclick="openModal('signup_modal')">Sign up</a>
                     <a class="button-box button-box-wheat nav-bar-button" onclick="openModal('login_modal')">Login</a>
+                    <div class="nav-bar-close-hamburger" onclick="closeHamburgerNavbar()"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+                <div class="nav-bar-field nav-bar-toggle-hamburger" onclick="openHamburgerNavbar()">
+                    <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
         </div>
@@ -46,7 +53,7 @@
                         
                     </div>
                     <div class="head-component-image">
-                        <img src="public/frontend/resources/images/logo.png" />
+                        <img alt="image of tree" src="public/frontend/resources/images/logo.png" />
                     </div>
                 </div>
             </div>
@@ -59,7 +66,7 @@
             
                         <div class="image-slider-slide image-slider-active-slide card">
                             <div class="image-slider-img">
-                                <img src="public/frontend/resources/images/carousel/carousel1.jpg" />
+                                <img alt="image of gardening tools" src="public/frontend/resources/images/carousel/carousel1.jpg" />
                             </div>
                             <div class="image-slider-text">
                                 <p class="image-slider-title">Garden tools</p>
@@ -69,7 +76,7 @@
             
                         <div class="image-slider-slide card">
                             <div class="image-slider-img">
-                                <img src="public/frontend/resources/images/carousel/carousel2.jpg" />
+                                <img alt="image of flowers" src="public/frontend/resources/images/carousel/carousel2.jpg" />
                             </div>
                             <div class="image-slider-text">
                                 <p class="image-slider-title">Beautiful flowers</p>
@@ -79,7 +86,7 @@
             
                         <div class="image-slider-slide card">
                             <div class="image-slider-img">
-                                <img src="public/frontend/resources/images/carousel/carousel3.jpg" />
+                                <img alt="image of vegetables" src="public/frontend/resources/images/carousel/carousel3.jpg" />
                             </div>
                             <div class="image-slider-text">
                                 <p class="image-slider-title">Eat healthy</p>
@@ -203,7 +210,101 @@
             </div>
             <div class="courses-preview-component" id="about-courses">
                 <div class="courses-preview-component-container">
-
+                    <div class="courses-preview-row">
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Garden tools
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn all about garden tools
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="public/frontend/resources/images/carousel/carousel1.jpg" />
+                            </div>
+                        </div>
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Growing flowers
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn about how to grow beautiful flowers
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="public/frontend/resources/images/carousel/carousel2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="courses-preview-row">
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Garden tools
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn all about garden tools
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="public/frontend/resources/images/carousel/carousel1.jpg" />
+                            </div>
+                        </div>
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Growing flowers
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn about how to grow beautiful flowers
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="public/frontend/resources/images/carousel/carousel2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="courses-preview-row">
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Garden tools
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn all about garden tools
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="public/frontend/resources/images/carousel/carousel1.jpg" />
+                            </div>
+                        </div>
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Growing flowers
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn about how to grow beautiful flowers
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="public/frontend/resources/images/carousel/carousel2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-component">
+                <div class="feedback-component-container">
+                    <form class="feedback_form" id="feedback_form" action="/">
+                        <label for="feedback_email">Email</label>
+                        <input type="email" id="feedback_email" name="email" required>
+                        <label for="feedback_body">Feedback</label>
+                        <textarea id="feedback_body" name="body"></textarea>
+                        <button type="submit" form="feedback_form" class="button-box button-box-wheat">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -247,6 +348,7 @@
             </div>
         </div>
 
+        <script src="public/frontend/resources/scripts/navBar.js"></script>
         <script src="public/frontend/resources/scripts/imageCarousel.js"></script>
         <script src="public/frontend/resources/scripts/modal.js"></script>
         <script src="public/frontend/resources/scripts/countingNumbers.js"></script>
