@@ -1,30 +1,146 @@
-.dashboard-container {
+
+/* cum refacem toolbarul */
+/* body-ul are scrollbar*/
+body::-webkit-scrollbar{
+    width:0.25rem;
+}
+body::-webkit-scrollbar-track{ 
+    background-color: darkgreen;
+}
+body::-webkit-scrollbar-thumb
+{
+    background-color: #bcd2b6;
+}
+:root{
+    font-size:16px;
+    font-family: 'Courier New', Courier, monospace;
+    --text-primary:#221122;
+    --text-secondary:#ffffff;
+    --bg-primary:#42d810; /* variabile definite de mine*/
+    --bg-secondary:#195b2e;
+    --transition-speed:600ms;
+}
+
+main {
+    margin-left: 5rem;/* relative la root*/
+    padding: 1rem;
+
+}/* un fel de tag definit de mine*/
+
+.navbar{
+    width:5rem;
+    height:100vh;
+    position:fixed;
+    background-color:var(--bg-secondary);
+    transition: width 200ms ease;
+    z-index: 100;
+}
+.navbar-nav{
+    list-style: none;/* sa dispara bulinele */
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    height: 1px;
-}
-
-.top-item-wireframe {
-    width: 100%;
-    height: 80px;
-    background-color: green;
-}
-
-.dashboard-hotizontal-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
     height: 100%;
 }
-
-.dashboard-menu {
-    width: 200px;
-    background-color: rgb(0, 54, 0);
-}
-
-.dashboard-content-container {
+.nav-item{
     width: 100%;
-    padding: 20px;
-    display: flex;
+    transition-duration: var(--transition-speed);
 }
+.nav-item:last-child{
+    margin-top:auto;/*automatic cat de jos poate,se departeaza maxim de top*/
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;/* ramane fixat aici*/
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    
+    
+}
+.link-text{
+    color:rgb(242, 225, 231);
+    display: none;
+    margin-right: 10rem;
+}
+.nav-link i{
+    min-width: 2rem;
+    margin:0 1.5rem ;
+}
+.navbar:hover{
+    width: 16rem;
+}/*cand punem click peste */
+.navbar:hover .link-text{
+    display: block;
+}
+
+.navbar:hover li .nav-link i{
+    transition-duration:300ms;/*how can I make it so it runs back with same delay*/
+}
+.navbar:hover li:nth-child(1) .nav-link i{
+    color:rgb(29, 158, 222);
+}/* aici pot schimba culorile*/
+.navbar:hover li:nth-child(2) .nav-link i{
+    color:rgb(39, 177, 17);
+}
+.navbar:hover li:nth-child(3) .nav-link i{
+    color:rgb(187, 115, 8);
+}
+.navbar:hover li:nth-child(4) .nav-link i{
+    color:rgb(186, 246, 8);
+}
+.nav-item:hover{
+    background-color: rgb(4, 71, 109);
+    transition-duration: var(--transition-speed);
+}
+/*
+.logo .link-text{
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    font-size: 1.5rem;
+    width: 100%;
+}
+Maybe we can put the logo here...maybe
+*/
+
+/*For responsive behavior*/
+/*at least*/
+@media only screen and (max-width:400px) {
+    .nav-link i{
+        margin : 0 10px;/* in plus fara de ce aveam la 700px*/
+    }
+    
+}
+@media only screen and (max-width:700px)
+{
+    .navbar{
+        bottom: 0;
+        width:100vw;
+        height:5rem;
+    }
+    .navbar-nav{
+        flex-direction: row;
+    }
+    .nav-link{
+        justify-content:center;
+    }
+    main{
+        margin:0;
+    }
+    .navbar:hover .link-text{
+        display: none;
+    }
+    .navbar:hover{
+        width: 100%;
+        height: fit-content;
+    }
+}
+
+

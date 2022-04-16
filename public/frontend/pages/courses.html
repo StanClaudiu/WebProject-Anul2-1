@@ -11,35 +11,71 @@
         <link rel="stylesheet" href="public/frontend/resources/font_awesome/css/all.min.css">
     </head>
     <body id="body_root">
-        <div class="dashboard-container">
-            <div class="top-item-wireframe"></div>
-            <div class="dashboard-hotizontal-container">
-                <div class="dashboard-menu"></div>
-                <div class="dashboard-content-container">
-                    <div class="courses-container">
-                        <div class="course-name">
-                            Courses
-                        </div>
-                        <div class="courses-display">
-                            <div class="search-box">
-                                <input type="text" placeholder="Search for" />
-                                <div><i class="fa-solid fa-magnifying-glass"></i></div>
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-user-astronaut fa-2xl"></i>
+                        <span class="link-text"> Utilizator</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-seedling fa-2xl"></i>
+                        <span class="link-text"> Gradina</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-book-bookmark fa-2xl"></i>
+                        <span class="link-text"> Cursuri</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-ranking-star fa-2xl"></i>
+                        <span class="link-text"> Clasamente</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-person-walking-arrow-right fa-2xl"></i>
+                        <span class="link-text"> Deconectare</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <div class="dashboard-container">
+                <div class="top-item-wireframe"></div>
+                <div class="dashboard-hotizontal-container">
+                    <div class="dashboard-menu"></div>
+                    <div class="dashboard-content-container">
+                        <div class="courses-container">
+                            <div class="course-name">
+                                Courses
                             </div>
-                            <div class="available-courses">
-                                <div class="course-summary">
-                                    <div class="course-summary-row course-summary-image-and-text-container">
-                                        <div class="course-summary-image">
-                                            <img src="/public/frontend/resources/images/carousel/carousel1.jpg" />
+                            <div class="courses-display">
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search for" />
+                                    <div><i class="fa-solid fa-magnifying-glass"></i></div>
+                                </div>
+                                <div class="available-courses">
+                                    <div class="course-summary">
+                                        <div class="course-summary-row course-summary-image-and-text-container">
+                                            <div class="course-summary-image">
+                                                <img src="/public/frontend/resources/images/carousel/carousel1.jpg" />
+                                            </div>
+                                            <div class="course-summary-text">
+                                                <div>How to use Garden tools</div>
+                                                <div>Begginer</div>
+                                            </div>
                                         </div>
-                                        <div class="course-summary-text">
-                                            <div>How to use Garden tools</div>
-                                            <div>Begginer</div>
-                                        </div>
-                                    </div>
-                                    <div class="course-summary-row course-summary-progress-container">
-                                        <div>Progress</div>
-                                        <div class="progress-bar">
-                                            <div style="width: 75%;"></div>
+                                        <div class="course-summary-row course-summary-progress-container">
+                                            <div>Progress</div>
+                                            <div class="progress-bar">
+                                                <div style="width: 75%;"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +84,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <script></script>
+        </main>
     </body>
 </html>
