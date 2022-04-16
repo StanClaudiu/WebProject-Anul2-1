@@ -4,6 +4,8 @@ import { PagesController } from "../../controllers/index.js";
 const mainRoutes = new Router();
 
 mainRoutes.get(`/main`, PagesController.landingPage);
+mainRoutes.get(`/course`, PagesController.coursePage);
+mainRoutes.get(`/courses`, PagesController.coursesPage);
 mainRoutes.get(`/favicon.ico`, PagesController.favicon);
 
 
