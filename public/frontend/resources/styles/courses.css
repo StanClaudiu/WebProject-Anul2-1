@@ -27,6 +27,8 @@
     justify-content: space-between;
     border: solid 1px green;
     border-radius: 4px;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .course-summary-image-and-text-container {
@@ -65,5 +67,63 @@
 @media only screen and (max-width:700px) {
     .course-summary {
         flex-direction: column;
+    }
+    .course-summary-image {
+        order: 2;
+        clip-path: none;
+        border-bottom-left-radius: 10px;
+    }
+
+    .course-summary-image  > *{
+        border-bottom-left-radius: 10px;
+    }
+
+    .course-summary-progress-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .course-summary-progress-container .progress-bar {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .course-summary-progress-container .progress-bar > * {
+        border-radius: 0;
+    }
+
+    .course-summary-progress-container > div:nth-child(1) {
+        margin-left: 10px;
+        margin-bottom: 4px;
+    }
+
+    .course-summary-image-and-text-container {
+        justify-content: space-between;
+        padding-left: 10px;
+    }
+
+}
+
+@media only screen and (max-width:500px) { 
+    .course-summary-image-and-text-container {
+        flex-direction: column;
+        padding: 0;
+    }
+    .course-summary-image {
+        order: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    .course-summary-image > * {
+        width: 100%;
+        object-fit: cover;
+    }
+    .course-summary-progress-container > div:nth-child(1) {
+        margin: 10px 0px 10px 0px;
+        align-self: center;
+    }
+    .course-summary-text {
+        margin-top: 10px;
     }
 }

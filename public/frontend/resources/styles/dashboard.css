@@ -24,6 +24,7 @@ body::-webkit-scrollbar-thumb
 main {
     margin-left: 5rem;/* relative la root*/
     padding: 1rem;
+    padding-bottom: 5rem;
 
 }/* un fel de tag definit de mine*/
 
