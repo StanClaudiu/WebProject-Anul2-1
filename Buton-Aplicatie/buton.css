@@ -1,0 +1,71 @@
+body {
+    background-color: greenyellow;
+}
+div.aranjare {
+    /* afecteaza si copii,aici setam height pentru ul,container a li */
+    height: 300vh ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;/* astea se seteaza doar aici totusi,deci doar pe pui!*/
+}
+/*pentru ul direct*/
+ul.buton-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style-type: none;
+}
+/* comun pentru toate butoanele*/
+ul.buton-menu li {
+    margin-bottom: min(10%,20px);
+    text-align: center;
+}
+ul.buton-menu li a{
+    text-decoration: none;
+}
+/*pot pune content in fata lor,ma refer la rest!*/
+ul.buton-menu li:not(:first-child)::before{
+    content: '';
+}
+
+/*pentru un buton normal*/
+.butonDes {
+    width: min(200px,20vw);
+    padding: 10% 0%;
+    border-radius: 50px;
+    background-color: darkgreen;
+    color:white;
+    border: 1px solid green;
+}
+.butonDes a{
+    color:white;
+    font-size: larger;
+}
+.butonDes:hover{
+   
+    display: block;
+    background-color: white;
+    color:darkgreen;
+}
+.butonDes:hover a{
+    color:darkgreen;
+}
+.butonDes:active {
+    background-color: green;
+}
+.butonDes:active a{
+    color:white;
+}
+
+
+/*pentru profil*/
+.butProf a img{
+    width: min(200px,20vw);
+
+}
+
+
+
+
