@@ -13,6 +13,10 @@ const PagesController = {
         response.sendFile("public/frontend/pages/courses.html")
     },
 
+    leaderboardPage: (zen, request, response) => {
+        response.sendFile("public/frontend/pages/leaderboard.html")
+    },
+
     favicon: (zen, request, response) => {
         response.sendFile("public/frontend/resources/favicon.ico")
     }
