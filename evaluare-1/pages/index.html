@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Gardening tutor</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/components.css">
+        <link rel="stylesheet" href="css/frontpage.css">
+        <link rel="stylesheet" href="css/nav-bar.css">
+        <link rel="stylesheet" href="css/image-carousel.css">
+        <link rel="stylesheet" href="font_awesome/css/all.min.css">
+    </head>
+    <body id="body_root">
+        <div class="nav-bar">
+            <div class="nav-bar-content">
+                <div class="nav-bar-field">
+                    <div class="nav-bar-logo">
+                        <img alt="image of tree" src="images/logo_wheat.png" />
+                        <div class="nav-bar-text">Gardening tutor</div>
+                    </div>
+                </div>
+                <div class="nav-bar-field nav-bar-buttons" id="nav-bar-hamburger-element">
+                    <a class="button-plain button-plain-wheat nav-bar-button" onclick="openModal('signup_modal')">Sign up</a>
+                    <a class="button-box button-box-wheat nav-bar-button" onclick="openModal('login_modal')">Login</a>
+                    <div class="nav-bar-close-hamburger" onclick="closeHamburgerNavbar()"><i class="fa-solid fa-circle-xmark"></i></div>
+                </div>
+                <div class="nav-bar-field nav-bar-toggle-hamburger" onclick="openHamburgerNavbar()">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+        <div class="frontpage-components">
+            <div class="head-component">
+                <div class="head-component-container">
+                    <div class="head-component-text">
+                        <div class="head-component-text-title">
+                            Make your garden look the best in your neighbourhood
+                        </div>
+                        <div class="head-component-text-description">
+                            Learn the art of gardening from easy to follow courses,
+                            monitor your progress and become the best with Gardening tutor
+                        </div>
+                        
+                        <div class="head-component-text-buttons">
+                            <a class="button-filled button-filled-dark-green" href="#image-slider">Images</a>
+                            <a class="button-box button-box-dark-green" href="#about-courses">About courses</a>
+                        </div>
+                        
+                    </div>
+                    <div class="head-component-image">
+                        <img alt="image of tree" src="images/logo.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-component" id="image-slider">
+                <div class="carousel-component-container">
+
+                    <div class="image-slider-panel">
+            
+                        <div class="image-slider-arrow" onclick="plusSlides(-1)"><a>&#10094;</a></div>
+            
+                        <div class="image-slider-slide image-slider-active-slide card">
+                            <div class="image-slider-img">
+                                <img alt="image of gardening tools" src="images/carousel/carousel1.jpg" />
+                            </div>
+                            <div class="image-slider-text">
+                                <p class="image-slider-title">Garden tools</p>
+                                <p class="image-slider-description">Learn to use them and enjoy the fruits of your work</p>
+                            </div>
+                        </div>
+            
+                        <div class="image-slider-slide card">
+                            <div class="image-slider-img">
+                                <img alt="image of flowers" src="images/carousel/carousel2.jpg" />
+                            </div>
+                            <div class="image-slider-text">
+                                <p class="image-slider-title">Beautiful flowers</p>
+                                <p class="image-slider-description">Learn to take care of flowers, have a beautiful garden and life</p>
+                            </div>
+                        </div>
+            
+                        <div class="image-slider-slide card">
+                            <div class="image-slider-img">
+                                <img alt="image of vegetables" src="images/carousel/carousel3.jpg" />
+                            </div>
+                            <div class="image-slider-text">
+                                <p class="image-slider-title">Eat healthy</p>
+                                <p class="image-slider-description">Grow your own vegetables and cook wanderful dishes</p>
+                            </div>
+                        </div>
+            
+                        <div class="image-slider-arrow" onclick="plusSlides(1)"><a>&#10095;</a></div>
+            
+                    </div>
+            
+                    <div class="image-slider-dots">
+            
+                        <span class="image-slider-dot" onclick="currentSlide(1)"></span>
+                        <span class="image-slider-dot" onclick="currentSlide(2)"></span>
+                        <span class="image-slider-dot" onclick="currentSlide(3)"></span>
+            
+                    </div>
+
+                </div>
+            </div>
+            <div class="garden-devider-component"></div>
+            <div class="description-component">
+                <div class="description-component-container">
+                    <div class="description-bloks-row" id="description-bloks-first-row">
+                        <div class="card description-block" id="description-block-first">
+                            <div class="description-block-title">
+                                Text block 1
+                            </div>
+                            <div class="description-block-text">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type 
+                                specimen book. It has survived not only five centuries, but also the leap into 
+                                electronic typesetting, remaining essentially unchanged. It was popularised in the
+                                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                                recently with desktop publishing software like Aldus PageMaker including versions 
+                                of Lorem Ipsum.
+                            </div>
+                        </div>
+                        <div class="card description-block" id="description-block-second">
+                            <div class="description-block-title">
+                                Text block 2
+                            </div>
+                            <div class="description-block-text">
+                                It is a long established fact that a reader will be distracted by the readable content of a page
+                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                                distribution of letters, as opposed to using 'Content here, content here', making it look like 
+                                readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
+                                their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
+                                infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose 
+                                (injected humour and the like).
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description-component-center-decoration-container">
+                        <div class="description-component-center-decoration">
+
+                        </div>
+                    </div>
+                    <div class="description-bloks-row" id="description-bloks-second-row">
+                        <div class="card description-block" id="description-block-third">
+                            <div class="description-block-title">
+                                Text block 3
+                            </div>
+                            <div class="description-block-text">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type 
+                                specimen book. It has survived not only five centuries, but also the leap into 
+                                electronic typesetting, remaining essentially unchanged. It was popularised in the
+                                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                                recently with desktop publishing software like Aldus PageMaker including versions 
+                                of Lorem Ipsum.
+                            </div>
+                        </div>
+                        <div class="card description-block" id="description-block-forth">
+                            <div class="description-block-title">
+                                Text block 4
+                            </div>
+                            <div class="description-block-text">
+                                It is a long established fact that a reader will be distracted by the readable content of a page
+                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                                distribution of letters, as opposed to using 'Content here, content here', making it look like 
+                                readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
+                                their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
+                                infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose 
+                                (injected humour and the like).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="platform-stats-component">
+                <div class="platform-stats-component-container">
+                    <div class="platform-stats">
+                        <div class="platform-stats-name">
+                            Courses
+                        </div>
+                        <div class="platform-stats-value" id="courses-stats">
+                            100
+                        </div>
+                    </div>
+                    <div class="platform-stats">
+                        <div class="platform-stats-name">
+                            Videos
+                        </div>
+                        <div class="platform-stats-value" id="videos-stats">
+                            70
+                        </div>
+                    </div>
+                    <div class="platform-stats">
+                        <div class="platform-stats-name">                        
+                            Users
+                        </div>
+                        <div class="platform-stats-value" id="users-stats">
+                            20
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="courses-preview-component" id="about-courses">
+                <div class="courses-preview-component-container">
+                    <div class="courses-preview-row">
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Garden tools
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn all about garden tools
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="images/carousel/carousel1.jpg" />
+                            </div>
+                        </div>
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Growing flowers
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn about how to grow beautiful flowers
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="images/carousel/carousel2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="courses-preview-row">
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Garden tools
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn all about garden tools
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="images/carousel/carousel1.jpg" />
+                            </div>
+                        </div>
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Growing flowers
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn about how to grow beautiful flowers
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="images/carousel/carousel2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="courses-preview-row">
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Garden tools
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn all about garden tools
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="images/carousel/carousel1.jpg" />
+                            </div>
+                        </div>
+                        <div class="card course-preview">
+                            <div class="course-preview-text">
+                                <div class="course-preview-title">
+                                    Growing flowers
+                                </div>
+                                <div class="course-preview-description">
+                                    Learn about how to grow beautiful flowers
+                                </div>
+                            </div>
+                            <div class="course-preview-image">
+                                <img alt="image relevant to course" src="images/carousel/carousel2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-component">
+                <div class="feedback-component-container">
+                    <form class="feedback_form" id="feedback_form" action="/">
+                        <label for="feedback_email">Email</label>
+                        <input type="email" id="feedback_email" name="email" pattern=".+@.+\..+" required>
+                        <label for="feedback_body">Feedback</label>
+                        <textarea id="feedback_body" name="body" required></textarea>
+                        <button type="submit" form="feedback_form" class="button-box button-box-wheat">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modals_heap">
+            <div class="modal_container" id="signup_modal">
+                <div class="modal">
+                    <div class="auth-form-container">
+                        <form class="pretty_form" id="signup_form" action="/">
+                            <label for="signup_name">Name</label>
+                            <input type="text" id="signup_name" name="name" required>
+                            <label for="signup_email">Email</label>
+                            <input type="email" id="signup_email" name="email" pattern=".+@.+\..+" required>
+                            <label for="signup_password">Password</label>
+                            <input type="password" id="signup_password" name="password" required>
+                            <label for="signup_confirm_password">Confirm Password</label>
+                            <input type="password" id="signup_confirm_password" name="confirm_password" required>
+                        </form>
+                    </div>
+                    <div class="modal-action-buttons">
+                        <button type="submit" form="signup_form" class="button-filled button-filled-dark-green">Sign up</button>
+                        <div class="button-box button-box-red" onclick="closeModal('signup_modal')">Cancel</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal_container" id="login_modal">
+                <div class="modal">
+                    <div class="auth-form-container">
+                        <form class="pretty_form" id="login_form" action="/">
+                            <label for="login_email">Email</label>
+                            <input type="email" id="login_email" name="email" pattern=".+@.+\..+" required>
+                            <label for="login_password">Password</label>
+                            <input type="password" id="login_password" name="password" required>
+                        </form>
+                    </div>
+                    <div class="modal-action-buttons">
+                        <button type="submit" form="login_form" class="button-filled button-filled-dark-green">Login</button>
+                        <div class="button-box button-box-red" onclick="closeModal('login_modal')">Cancel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts/navBar.js"></script>
+        <script src="scripts/imageCarousel.js"></script>
+        <script src="scripts/modal.js"></script>
+        <script src="scripts/countingNumbers.js"></script>
+        <script>
+            addWhatchedNumberCounter('courses-stats', 0, 100, 5000)
+            addWhatchedNumberCounter('videos-stats', 0, 70, 5000)
+            addWhatchedNumberCounter('users-stats', 0, 20, 5000)
+        </script>
+    </body>
+</html>

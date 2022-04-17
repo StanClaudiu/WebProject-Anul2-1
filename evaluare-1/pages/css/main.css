@@ -1,0 +1,13 @@
+@font-face {
+    font-family: raleway-medium;
+    src: url(../fonts/raleway/Raleway-Medium.ttf);
+} 
+
+* {
+    font-family: raleway-medium;
+    margin: 0;
+}
+
+html {
+    scroll-behavior:smooth;
+}

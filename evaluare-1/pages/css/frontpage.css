@@ -1,0 +1,386 @@
+.frontpage-components {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246/var(--tw-bg-opacity));
+}
+
+.head-component {
+    background: rgb(175,255,50);
+    background: linear-gradient(90deg, rgba(175,255,50,1) 0%, rgba(118,255,48,1) 50%, rgba(70,255,70,1) 100%);
+
+    padding-top: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.322);
+}
+
+.head-component-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1000px;
+    padding: 40px 15px 40px 15px;
+}
+
+.head-component-text {
+    display: flex;
+    margin-top: 10%;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 2;
+}
+
+.head-component-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1.5;
+}
+
+.head-component-image > * {
+    max-width: 100%;
+}
+
+.head-component-text-title {
+    color: rgb(140, 72, 29);
+    max-width: 450px;
+    font-size: 34px;
+}
+
+.head-component-text-description {
+    margin-top: 15px;
+    max-width: 500px;
+    color: rgb(1, 49, 2);
+}
+
+.head-component-text-buttons {
+    margin: 20px 0px 20px 20px;
+}
+
+.head-component-text-buttons > * {
+    margin-right: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+    .head-component-container {
+        flex-direction: column;
+    }
+
+    .head-component-image {
+        align-items: center;
+    }
+
+    .head-component-text {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.carousel-component {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.carousel-component-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin-top: 40px;
+}
+
+.garden-devider-component {
+    height: 400px;
+    background-image: url(../images/deviders/garden_devider.png);
+    background-repeat: repeat-x;
+    background-size: 1200px 400px;
+}
+
+.description-component {
+    background-color: rgb(15,100,52);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px 40px 10px;
+    box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.322);
+}
+
+.description-component-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.description-bloks-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0px 25px 0px;
+}
+
+.description-block {
+    flex: 1;
+    height: 100%;
+    margin: 0px 25px 0px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#description-bloks-first-row > .description-block {
+    padding: 20px 30px 60px 30px;
+}
+
+#description-bloks-second-row > .description-block {
+    padding: 60px 30px 20px 30px;
+}
+
+.description-block-title {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.description-block-text {
+    color: white;
+}
+
+#description-block-first {
+    background-color: rgba(126, 223, 30, 0.2);
+}
+
+#description-block-second {
+    background-color: rgba(255, 218, 8, 0.2);
+}
+
+#description-block-third {
+    background-color: rgba(0, 228, 156, 0.1);
+}
+
+#description-block-forth {
+    background-color: rgba(23, 84, 15, 0.2);
+}
+
+.description-component-center-decoration-container {
+    width: 0px;
+}
+
+.description-component-center-decoration {
+    position: absolute;
+    z-index: 10;
+    width: 160px;
+    height: 160px;
+    background-image: url(../images/decorations/leafcircle.png);
+    background-size: 160px 160px;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+}
+
+@media only screen and (max-width: 1000px) {
+    .description-component-center-decoration {
+        display: none;
+    }
+    .description-bloks-row {
+        flex-direction: column;
+    }
+    #description-bloks-first-row > .description-block {
+        padding: 30px;
+    }
+    #description-bloks-second-row > .description-block {
+        padding: 30px;
+    }
+    .description-bloks-row {
+        margin: 0px;
+    }
+    .description-block {
+        margin: 15px 10px 15px 10px;
+    }
+}
+
+.platform-stats-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.platform-stats-component-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 50px;
+}
+
+.platform-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.platform-stats-name {
+    color: rgb(0, 71, 0);
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.platform-stats-value {
+    color: rgb(0, 134, 0);
+    font-size: 26px;
+}
+
+@media only screen and (max-width: 600px) {
+    .platform-stats-component-container {
+        flex-direction: column;
+    } 
+}
+
+.courses-preview-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+    padding-bottom: 50px;
+}
+
+.courses-preview-component-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.courses-preview-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.course-preview {
+    flex: 1;
+    margin: 5px;
+    padding: 0px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    max-width: 500px;
+    height: 200px;
+}
+
+.course-preview-text {
+    flex: 1;
+    margin: 20px 0px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.course-preview-image {
+    flex: 1.2;
+    clip-path: circle(100% at 100% 50%);
+    background-color: green;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.course-preview-image > * {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    object-fit: cover;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.course-preview-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(0, 71, 0);
+    margin-bottom: 8px;
+}
+
+.course-preview-description {
+    color: rgb(0, 113, 0);
+}
+
+@media only screen and (max-width: 900px) {
+    .courses-preview-row {
+        flex-direction: column;
+    } 
+}
+
+.feedback-component {
+    background: rgb(0,115,26);
+    background: linear-gradient(180deg, rgba(0,115,26,1) 0%, rgba(0,24,12,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback-component-container {
+    padding: 30px 0px;
+    max-width: 800px;
+    width: 90%;
+}
+
+.feedback_form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.feedback_form > label {
+    color: wheat;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.feedback_form > input {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: wheat;
+    padding: 10px;
+    font-weight: bold;
+    box-shadow: none;
+    border: 2px solid wheat;
+}
+
+.feedback_form > textarea {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: wheat;
+    padding: 10px;
+    font-weight: bold;
+    border: 2px solid wheat;
+}
+
+.feedback_form > button {
+    background-color: transparent;
+}

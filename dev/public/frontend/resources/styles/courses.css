@@ -1,0 +1,129 @@
+.courses-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.page-name {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.courses-display {
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column;
+}
+
+.available-courses {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.course-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: solid 1px green;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.course-summary-image-and-text-container {
+    flex: 1;
+}
+
+.course-summary-image {
+    clip-path: circle(100% at 0% 50%);
+    background-color: green;
+    height: 150px;
+}
+
+.course-summary-image > * {
+    height: 100%;
+    opacity: 0.6;
+}
+
+.course-summary-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.course-summary-text > * {
+    font-weight: bolder;
+    margin-bottom: 8px;
+    font-size: 18px;
+    color: rgb(0, 71, 0);
+}
+
+.course-summary-progress-container {
+    flex: 0.9;
+    color: rgb(0, 101, 0);
+}
+
+@media only screen and (max-width:700px) {
+    .course-summary {
+        flex-direction: column;
+    }
+    .course-summary-image {
+        order: 2;
+        clip-path: none;
+        border-bottom-left-radius: 10px;
+    }
+
+    .course-summary-image  > *{
+        border-bottom-left-radius: 10px;
+    }
+
+    .course-summary-progress-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .course-summary-progress-container .progress-bar {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .course-summary-progress-container .progress-bar > * {
+        border-radius: 0;
+    }
+
+    .course-summary-progress-container > div:nth-child(1) {
+        margin-left: 10px;
+        margin-bottom: 4px;
+    }
+
+    .course-summary-image-and-text-container {
+        justify-content: space-between;
+        padding-left: 10px;
+    }
+
+}
+
+@media only screen and (max-width:500px) { 
+    .course-summary-image-and-text-container {
+        flex-direction: column;
+        padding: 0;
+    }
+    .course-summary-image {
+        order: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    .course-summary-image > * {
+        width: 100%;
+        object-fit: cover;
+    }
+    .course-summary-progress-container > div:nth-child(1) {
+        margin: 10px 0px 10px 0px;
+        align-self: center;
+    }
+    .course-summary-text {
+        margin-top: 10px;
+    }
+}
