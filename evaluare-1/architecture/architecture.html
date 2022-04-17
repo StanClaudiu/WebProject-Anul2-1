@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title> GarT (Gardening Web Tutor) </title>
+</head>
+
+<body prefix="schema: https://schema.org/" itemscope=""
+      itemtype="http://schema.org/WebPage">
+    <article typeof="schema:ScholarlyArticle">
+        <header>
+            <h1> GarT (Gardening Web Tutor) </h1>
+        </header>
+        <h2>Table of contents</h2>
+        <ul>
+            <li>
+                <a href="#authors">Authors</a>
+            </li>
+            <li>
+                <a href="#frontend-architecture">1. Frontend architecture</a>
+                <ul>
+                    <li><a href="#pages">1.1 Pages</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#backend-architecture">2. Backend architecture</a>
+                <ul>
+                    <li><a href="#frontend-backend-communication">2.1 Communication between backend and front-end</a></li>
+                    <li><a href="#data-flow">2.2 Data flow</a></li>
+                    <li><a href="#code-structure">2.3 Code structure</a></li>
+                    <li><a href="#data-storage">2.4 Data storage</a></li>
+                </ul>
+            </li>
+        </ul>
+        <section id="authors" typeof="sa:AuthorsList">
+            <div role="contentinfo">
+                <h2>Authors</h2>
+                <ul>
+
+                    <li typeof="sa:ContribuitorRole" property="schema:author">
+                        <span typeof="sa:Person">
+                            <meta property="schema:familyName" content="Stan" />
+                            <meta property="schema:givenName" content="Claudiu Gavril" />
+                            <span property="schema:name"> Stan Claudiu Gavril </span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailTo:stanclaudiu321@gmail.com" property="schema:email">stanclaudiu321@gmail.com</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li typeof="sa:ContribuitorRole" property="schema:author">
+                        <span typeof="sa:Person">
+                            <meta property="schema:familyName" content="Grigorita" />
+                            <meta property="schema:givenName" content="Delia" />
+                            <span property="schema:name"> Grigorita Delia </span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailTo:deliaiustinagrigorita@gmail.com" property="schema:email">deliaiustinagrigorita@gmail.com</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li typeof="sa:ContribuitorRole" property="schema:author">
+                        <span typeof="sa:Person">
+                            <meta property="schema:familyName" content="Mihalache" />
+                            <meta property="schema:givenName" content="Radu-Stefan" />
+                            <span property="schema:name"> Mihalache Radu-Stefan </span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailTo:radustefan1302@gmail.com" property="schema:email">radustefan1302@gmail.com</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section typeof="sa:Abstract">
+            <div role="document">
+                <h2 id="frontend-architecture">1. Frontend Architecture</h2>
+                <h3 id="pages">1.1 Pages</h3>
+                <p>
+                    Routes : <br />
+                    /main -- Main Page on which the user first arives <br />
+                    /courses -- Courses page where a logged in user can see his progress or choose a new course <br />
+                    /course/{course_name} -- Course page where user can study course <br />
+                    /mygarden -- My garden page where user can manage his own garden <br />
+                    /leaderboard -- Leaderboard page where users can see the best performing users of the application <br />
+                    /managecourses -- Manage courses page accessable only by admins where admin can add, edit or remove course <br />
+
+                    <br />
+
+                    The frontend application uses fontawesome in order to take advantege of the icons it provides.<br />
+                    The frontend application uses only vanilla css and javascript.
+                </p>
+
+            </div>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods">
+            <div role="document">
+                <h2 id="backend-architecture">2. Backend Architecture</h2>
+                <h3 id="frontend-backend-communication">2.1 Frontend-Backend Communication</h3>
+                <p>
+                    The backend is implmeneted in nodeJS and it will provide a REST API for the front-end to communicate with.
+                    <br />
+                    The frontend pages will be generated in a hibrid fashion :
+                    <br />
+                    For static pages like the front page where the only information required from the backend is the number of users and the number of courses, the page will be generated by the backend enierly.
+                    <br />
+                    For more dynamic pages like My Garden page, the frontend will use AJAX calls to the backend REST API in order to obtain data.
+                    <br />
+                    For authentication, the backend will generate a token for each logged in user that will be received by the frontend and stored in local storage. The token will be provided for each API call that requires authentication, for example, /get_my_garden_info.
+                </p>
+                <h3 id="data-flow">2.2 Data Flow</h3>
+                <p>
+                    The data will be sent and received in JSON format. The backend will provide data for MyGarden, All Courses, a Specific Corse and The Leaderboard.
+                    <br />
+                    The frontend will do POST request with data such as User Registration Info, User Login Info, Feedback, Add Course Info, Edit Course Info, Add Plant To Garden Info.
+                </p>
+                <h3 id="code-structure">2.3 Code structure</h3>
+                <p>
+                    The backend follows the MVC pattern, the authorisation will be structured in middlewares and each route will be managed by a function in a controller.
+                </p>
+                <h3 id="data-storage">2.4 Data storage</h3>
+                <p>
+                    The data will be stored either in a MySQL database or and Oracle database with a layer of PL/SQL depending on how much time we have.
+                </p>
+
+            </div>
+        </section>
+    </article>
+</body>
+</html>
