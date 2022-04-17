@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title> GarT (Gardening Web Tutor) </title>
+</head>
+
+<body prefix="schema: https://schema.org/" itemscope=""
+      itemtype="http://schema.org/WebPage">
+    <article typeof="schema:ScholarlyArticle">
+        <header>
+            <h1> GarT (Gardening Web Tutor) </h1>
+        </header>
+        <h2>Table of contents</h2>
+        <ul>
+            <li>
+                <a href="#authors">Authors</a>
+            </li>
+            <li>
+                <a href="#introduction">1. Introduction</a>
+                <ul>
+                    <li><a href="#purpose">1.1 Purpose</a></li>
+                    <li><a href="#design">1.2 Design</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#steps-of-usage">2. Steps of usage</a>
+                <ul>
+                    <li><a href="#main-page">2.1 Main Page</a></li>
+                    <li><a href="#login-register">2.2 Login-Register</a></li>
+                    <li><a href="#courses-page">2.3 Courses Page</a></li>
+                    <li><a href="#course-page">2.4 Course Page</a></li>
+                    <li><a href="#leaderboard-page">2.5 Leaderboard Page</a></li>
+                    <li><a href="#my-garden-page">2.6 My Garden Page</a></li>
+                    <li><a href="#admin-manage-courses-page">2.7 Admin Manage Courses Page</a></li>
+                </ul>
+            </li>
+        </ul>
+        <section id="authors" typeof="sa:AuthorsList">
+            <div role="contentinfo">
+                <h2>Authors</h2>
+                <ul>
+
+                    <li typeof="sa:ContribuitorRole" property="schema:author">
+                        <span typeof="sa:Person">
+                            <meta property="schema:familyName" content="Stan" />
+                            <meta property="schema:givenName" content="Claudiu Gavril" />
+                            <span property="schema:name"> Stan Claudiu Gavril </span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailTo:stanclaudiu321@gmail.com" property="schema:email">stanclaudiu321@gmail.com</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li typeof="sa:ContribuitorRole" property="schema:author">
+                        <span typeof="sa:Person">
+                            <meta property="schema:familyName" content="Grigorita" />
+                            <meta property="schema:givenName" content="Delia" />
+                            <span property="schema:name"> Grigorita Delia </span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailTo:deliaiustinagrigorita@gmail.com" property="schema:email">deliaiustinagrigorita@gmail.com</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li typeof="sa:ContribuitorRole" property="schema:author">
+                        <span typeof="sa:Person">
+                            <meta property="schema:familyName" content="Mihalache" />
+                            <meta property="schema:givenName" content="Radu-Stefan" />
+                            <span property="schema:name"> Mihalache Radu-Stefan </span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailTo:radustefan1302@gmail.com" property="schema:email">radustefan1302@gmail.com</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section typeof="sa:Abstract">
+            <div role="document">
+                <h2 id="introduction">1. Introduction</h2>
+                <h3 id="purpose">1.1 Purpose</h3>
+                <p>
+                    Gardening web tutor is an application that teaches users how to plant and harvest varius vegetables and fruitsa and lets them manage their own garden as well as giving them remainders about taking care of plants.
+                    The app encourages progress by showing a leader board of the score's of all application users.
+                </p>
+
+                <h3 id="design">1.2 Design</h3>
+                <p>
+                    The application offers courses that are managed by admins. Admins can add, edit or remove courses. The appliation implements a rich text editor for making courses. Users need to authenticate in order to use the application.
+                    Adimns are already seeded in the database and they just need to login. Courses are structured into subcourses in an tree manner. Users can manage their own garden by adding and harvesting plants on the application.
+                </p>
+
+            </div>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods">
+            <div role="document">
+                <h2 id="steps-of-usage">2. Steps Of Usage</h2>
+                <h3 id="main-page">2.1 Main Page</h3>
+                <p>
+                    The main page is where information about application is given, there are login and register buttons
+                </p>
+                <img alt="website-image" src="images/main.png" width="800" />
+                <p>
+                    and anyone can send feedback
+                </p>
+                <img alt="website-image" src="images/feedback.png" width="800" />
+
+                <h3 id="login-register">2.2 Login Register</h3>
+                <p>
+                    If login or register buttons are clicked a form will popup
+                </p>
+                <img alt="website-image" src="images/register.png" width="800" />
+                <img alt="website-image" src="images/login.png" width="800" />
+
+                <h3 id="courses-page">2.3 Courses page</h3>
+                <p>
+                    After authentication the user will be redirected to the a dashboard 
+                </p>
+                <img alt="website-image" src="images/dashboard.png" width="800" />
+                <p>
+                    with the courses page, in which you can view courses and your progress on them, you can search for courses and you can click on course to start it
+                </p>
+                <img alt="website-image" src="images/courses.png" width="800" />
+
+                <h3 id="course-page">2.4 Course page</h3>
+                <p>
+                    Each course has a video, a structure of subcourses and a text section.
+                </p>
+
+                <img alt="website-image" src="images/course.png" width="800" />
+
+                <h3 id="leaderboard-page">2.5 Leaderboard page</h3>
+                <p>
+                    This product is presented as a new product, autonomous, but still similar to sites for others fields (computer science, biology etc.). It shares the same ideas with many other sites, but for the fields of mathematics.
+                </p>
+
+                <h3 id="my-garden-page">2.6 My garden page</h3>
+                <p>
+                    My garden shows all the your current plants and each plant type has an options button marked with ...
+                </p>
+                <img alt="website-image" src="images/my_garden_plants_show.png" width="800" />
+                <p>
+                    When you open the options a popup will apear with all the plants of that plant type. If you harvest or remove a plant you can click the x button to remove it from the application.
+                </p>
+                <img alt="website-image" src="images/my_garden_harvest.png" width="800" />
+                <p>
+                    You can add another plant to your garden by clicking the + button
+                </p>
+                <img alt="website-image" src="images/my_garden_plant_add.png" width="800" />
+                <p>
+                    After clicking the button a popup will apear with input fields
+                </p>
+                <img alt="website-image" src="images/my_garden_plant.jpg" width="800" />
+                <p>
+                    Remainders are given by the applications in order to help the user take care of his garden, each remainder can be dismissed with the x button or open to display mor details with the ... button
+                </p>
+                <img alt="website-image" src="images/my_garden_remainders.png" width="800" />
+                <img alt="website-image" src="images/my_garden_remainder.png" width="800" />
+
+                
+                <h3 id="admin-manage-courses-page">2.7 Admin manage page</h3>
+                <p>
+                    Admins can manage courses on this page, the + button is for adding courses, each course has an edit and delete button
+                </p>
+                <img alt="website-image" src="images/manage_courses.jpg" width="800" />
+                <p>
+                    The + and edit buttons will open a popup with a form that contains course input fields amangs which a rich text editor
+                </p>
+                <img alt="website-image" src="images/add_course.png" width="800" />
+
+            </div>
+        </section>
+    </article>
+</body>
+</html>
