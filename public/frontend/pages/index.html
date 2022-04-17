@@ -296,9 +296,9 @@
                 <div class="feedback-component-container">
                     <form class="feedback_form" id="feedback_form" action="/">
                         <label for="feedback_email">Email</label>
-                        <input type="email" id="feedback_email" name="email" required>
+                        <input type="email" id="feedback_email" name="email" pattern=".+@.+\..+" required>
                         <label for="feedback_body">Feedback</label>
-                        <textarea id="feedback_body" name="body"></textarea>
+                        <textarea id="feedback_body" name="body" required></textarea>
                         <button type="submit" form="feedback_form" class="button-box button-box-wheat">Submit</button>
                     </form>
                 </div>
@@ -313,7 +313,7 @@
                             <label for="signup_name">Name</label>
                             <input type="text" id="signup_name" name="name" required>
                             <label for="signup_email">Email</label>
-                            <input type="email" id="signup_email" name="email" required>
+                            <input type="email" id="signup_email" name="email" pattern=".+@.+\..+" required>
                             <label for="signup_password">Password</label>
                             <input type="password" id="signup_password" name="password" required>
                             <label for="signup_confirm_password">Confirm Password</label>
@@ -331,7 +331,7 @@
                     <div class="auth-form-container">
                         <form class="pretty_form" id="login_form" action="/">
                             <label for="login_email">Email</label>
-                            <input type="email" id="login_email" name="email" required>
+                            <input type="email" id="login_email" name="email" pattern=".+@.+\..+" required>
                             <label for="login_password">Password</label>
                             <input type="password" id="login_password" name="password" required>
                         </form>
