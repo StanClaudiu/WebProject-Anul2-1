@@ -10,7 +10,7 @@ const pool = createPool({
 });
 
 
-const mySqlDatabase = {
+const oracleDatabase = {
     getDataFromTable: (table, callBack) => {
         pool.query(
             `SELECT * FROM ??`, [
@@ -26,4 +26,4 @@ const mySqlDatabase = {
     }
 };
 
-export default mySqlDatabase
+export default oracleDatabase
