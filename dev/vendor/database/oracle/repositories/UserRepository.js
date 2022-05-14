@@ -1,19 +1,23 @@
-class UserRepository {
-    dbConnection
+import UserPackege from "./../plsql/UserPackege.sql";
 
-    constructor(dbConnection) {
-        this.dbConnection = dbConnection;
-        this.initRepo();
+class UserRepository {
+    db
+
+    constructor(db) {
+        this.db = db;
     }
 
-    initRepo() {
-        this.dbConnection.then(
-        (connection) => {
-            console.log("cool")
-        },
-        (error) => {
-            console.log(error)
-        });
+    async initRepo() {
+        console.log(UserPackege)
+        const result = await this.db.execute('select user, systimestamp from dual');
+        
+        console.log(result)
+        const user = result.rows[0].USER;
+        const date = result.rows[0].SYSTIMESTAMP;
+
+        console.log(user)
+        console.log(date)
+
     }
 }
 

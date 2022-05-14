@@ -4,6 +4,8 @@ import { mainRoutes } from "./routes/web/index.js";
 import "dotenv/config"
 
 const db = new OracleDatabase()
+await db.connect()
+
 const app = new App(process.env.PORT || 4000, db)
 app.useWebRoute(mainRoutes)
 

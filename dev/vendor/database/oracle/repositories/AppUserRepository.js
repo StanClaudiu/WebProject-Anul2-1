@@ -1,19 +1,12 @@
 class AppUserRepository {
-    dbConnection
+    db
 
-    constructor(dbConnection) {
-        this.dbConnection = dbConnection;
-        this.initRepo();
+    constructor(db) {
+        this.db = db;
     }
 
-    initRepo() {
-        this.dbConnection.then(
-        (connection) => {
-            console.log("cool")
-        },
-        (error) => {
-            console.log(error)
-        });
+    async initRepo() {
+
     }
 }
 
