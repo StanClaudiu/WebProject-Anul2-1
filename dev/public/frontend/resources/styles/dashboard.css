@@ -81,6 +81,9 @@ main {
 .navbar:hover li .nav-link i{
     transition-duration:300ms;/*how can I make it so it runs back with same delay*/
 }
+.navbar li .nav-link i{
+    transition-duration:300ms;/*how can I make it so it runs back with same delay*/
+}/*ca sa se decolereze mai ok*/
 .navbar:hover li:nth-child(1) .nav-link i{
     color:rgb(29, 158, 222);
 }/* aici pot schimba culorile*/
