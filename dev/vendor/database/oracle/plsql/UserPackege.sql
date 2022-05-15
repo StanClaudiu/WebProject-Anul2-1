@@ -53,25 +53,54 @@ BEGIN
 END; 
 /
 
+
+
+
+
+
+
 --CREATE PACKEGE
 
 CREATE OR REPLACE PACKAGE user_packege IS
-    PROCEDURE adauga_student (nume studenti.nume%type, prenume studenti.prenume%type);
+    FUNCTION add_user ( user_role base_user.role%type, 
+                        user_name base_user.name%type,
+                        user_email base_user.email%type,
+                        user_password base_user.password%type) RETURN INT;
 END user_packege;
 /
 
 CREATE OR REPLACE PACKAGE BODY user_packege IS
 
-    PROCEDURE initialize IS
-        DECLARE
-            CURSOR create_table 
-        BEGIN
-            CREATE TABLE IF NOT EXISTS studenti (
-              id INT NOT NULL PRIMARY KEY,
-            );
-            
-            DBMS_OUTPUT.PUT_LINE('Created user database');
-        END initialize;
+    FUNCTION add_user ( user_role base_user.role%type, 
+                        user_name base_user.name%type,
+                        user_email base_user.email%type,
+                        user_password base_user.password%type) RETURN INT AS
+         
+        CURSOR same_email_users IS SELECT email FROM base_user WHERE email = user_email;
+        insert_sql LONG;
+        v_aux base_user.email%type;
+    BEGIN
+        OPEN same_email_users;
+        FETCH same_email_users INTO v_aux;      
+        
+        IF (same_email_users%NOTFOUND = FALSE)
+        THEN
+            raise_application_error(-20001, 'Already used email');
+        END IF;
+        
+        insert_sql := 'INSERT INTO base_user (role, name, email, password) VALUES (';
+        --|| user_role || ',' || user_name || ',' || user_email || ',' || user_password || ')';
+        
+        DBMS_OUTPUT.PUT_LINE(insert_sql);
+        
+        --EXECUTE IMMEDIATE insert_sql;
+        
+        RETURN 1;
+    END add_user;                
     
 END user_packege; 
 /
+
+set serverout on;
+
+SELECT user_packege.add_user('Becali', 'Gigi', 'ra', 'da') FROM DUAL;
