@@ -24,6 +24,12 @@ CREATE OR REPLACE PACKAGE user_packege IS
                         user_name base_user.name%type,
                         user_email base_user.email%type,
                         user_password base_user.password%type) RETURN INT;
+                        
+    FUNCTION get_users RETURN INT;          
+    
+    FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN INT;
+    
+    FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN INT;
 END user_packege;/* STATEMENT */
 
 
@@ -50,6 +56,21 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
         COMMIT;
         
         RETURN 1;
-    END add_user;                
+    END add_user;         
+    
+    FUNCTION get_users RETURN INT AS
+    BEGIN
+        RETURN 1;
+    END get_users;          
+    
+    FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN INT AS
+    BEGIN
+        RETURN 1;
+    END get_user_by_id;   
+    
+    FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN INT AS
+    BEGIN
+        RETURN 1;
+    END get_user_by_email;  
     
 END user_packege; /* STATEMENT */
