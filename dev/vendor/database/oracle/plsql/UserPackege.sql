@@ -24,7 +24,7 @@ CREATE OR REPLACE PACKAGE user_packege IS
                         user_name base_user.name%type,
                         user_email base_user.email%type,
                         user_password base_user.password%type) RETURN INT;
-END user_packege;
+END user_packege;/* STATEMENT */
 
 
 CREATE OR REPLACE PACKAGE BODY user_packege IS
@@ -52,4 +52,4 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
         RETURN 1;
     END add_user;                
     
-END user_packege;
+END user_packege; /* STATEMENT */

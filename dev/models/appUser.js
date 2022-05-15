@@ -1,9 +1,9 @@
-import { User } from "./index"
+import { User } from "./index.js"
 
 class AppUser extends User {
     
-    constructor(db, id, name, email, password) {
-        supper(db, "user", id, name, email, password)
+    constructor(db, name, email, password, id = 0) {
+        super(db, "user", name, email, password, id)
     }
 
     static getAppUserById(db, id) {
@@ -22,7 +22,7 @@ class AppUser extends User {
     }
 
     create() {
-
+        super.create()
     }
 
     update() {

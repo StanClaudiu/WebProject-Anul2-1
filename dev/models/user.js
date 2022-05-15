@@ -6,7 +6,7 @@ class User {
     email
     password
 
-    constructor(db, id, role, name, email, password) {
+    constructor(db, role, name, email, password, id = 0) {
         this.db = db
         this.id = id
         this.role = role
@@ -25,7 +25,7 @@ class User {
     }
 
     create() {
-
+        this.db.userRepository.create(this.role, this.name, this.email, this.password);
     }
 
     update() {

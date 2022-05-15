@@ -9,5 +9,7 @@ mainRoutes.get(`/courses`, PagesController.coursesPage);
 mainRoutes.get(`/leaderboard`, PagesController.leaderboardPage);
 mainRoutes.get(`/favicon.ico`, PagesController.favicon);
 
+mainRoutes.get(`/login`, PagesController.login);
+
 
 export default mainRoutes

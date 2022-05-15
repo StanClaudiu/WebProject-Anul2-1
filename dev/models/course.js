@@ -41,4 +41,4 @@ class Course {
     }
 }
 
-export default Session
+export default Course
