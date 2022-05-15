@@ -25,11 +25,18 @@ class OracleDatabase {
 
     async connect() {
         this.dbPool = await OracleDatabase.getDBPool()
-        this.userRepository.initRepo()
-        this.appAdminRepository.initRepo()
-        this.appUserRepository.initRepo()
-        this.sessionRepository.initRepo()
-        this.courseRepository.initRepo()
+    }
+
+    async initEnvironment() {
+        console.log("Initializing db environment...")
+
+        await this.userRepository.initRepoEnvironment()
+        await this.appAdminRepository.initRepoEnvironment()
+        await this.appUserRepository.initRepoEnvironment()
+        await this.sessionRepository.initRepoEnvironment()
+        await this.courseRepository.initRepoEnvironment()
+
+        console.log("Done initializing db environment")
     }
 
     static async getDBPool() {

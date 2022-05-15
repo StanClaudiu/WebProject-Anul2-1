@@ -1,4 +1,4 @@
-import UserPackege from "./../plsql/UserPackege.sql";
+import fs from "fs"
 
 class UserRepository {
     db
@@ -7,17 +7,16 @@ class UserRepository {
         this.db = db;
     }
 
-    async initRepo() {
-        console.log(UserPackege)
-        const result = await this.db.execute('select user, systimestamp from dual');
-        
-        console.log(result)
-        const user = result.rows[0].USER;
-        const date = result.rows[0].SYSTIMESTAMP;
-
-        console.log(user)
-        console.log(date)
-
+    async initRepoEnvironment() {
+        try {
+            const data = fs.readFileSync('vendor/database/oracle/plsql/UserPackege.sql', 'utf8');
+            console.log(data)
+            const result = await this.db.execute(data);
+            console.log(result)
+        } 
+        catch (err) {
+            console.error(err);
+        }
     }
 }
 

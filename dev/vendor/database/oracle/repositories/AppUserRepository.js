@@ -5,7 +5,7 @@ class AppUserRepository {
         this.db = db;
     }
 
-    async initRepo() {
+    async initRepoEnvironment() {
 
     }
 }

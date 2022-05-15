@@ -5,7 +5,7 @@ class SessionRepository {
         this.db = db;
     }
 
-    async initRepo() {
+    async initRepoEnvironment() {
 
     }
 }
