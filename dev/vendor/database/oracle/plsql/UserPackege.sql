@@ -1,11 +1,9 @@
-set serverout on;
-
 --CREATE TABLE
 
-DROP SEQUENCE base_user_seq;
-/
-DROP TABLE base_user CASCADE CONSTRAINTS;
-/
+DROP SEQUENCE base_user_seq /* STATEMENT */;
+
+DROP TABLE base_user CASCADE CONSTRAINTS /* STATEMENT */;
+
 
 CREATE TABLE base_user
 (
@@ -14,12 +12,9 @@ CREATE TABLE base_user
     name VARCHAR2(40) NOT NULL,
     email VARCHAR2(40) NOT NULL,
     password VARCHAR2(30) NOT NULL
-);
-/
-CREATE SEQUENCE base_user_seq START WITH 1;
-/
+) /* STATEMENT */;
 
-
+CREATE SEQUENCE base_user_seq START WITH 1 /* STATEMENT */;
 
 
 --CREATE PACKEGE
@@ -30,7 +25,7 @@ CREATE OR REPLACE PACKAGE user_packege IS
                         user_email base_user.email%type,
                         user_password base_user.password%type) RETURN INT;
 END user_packege;
-/
+
 
 CREATE OR REPLACE PACKAGE BODY user_packege IS
 
@@ -57,5 +52,4 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
         RETURN 1;
     END add_user;                
     
-END user_packege; 
-/
+END user_packege;
