@@ -73,4 +73,4 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
         RETURN 1;
     END get_user_by_email;  
     
-END user_packege; /* STATEMENT */
+END user_packege;
