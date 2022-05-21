@@ -25,11 +25,11 @@ CREATE OR REPLACE PACKAGE user_packege IS
                         user_email base_user.email%type,
                         user_password base_user.password%type) RETURN INT;
                         
-    FUNCTION get_users RETURN INT;          
+    FUNCTION get_users RETURN base_user%ROWTYPE;          
     
-    FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN INT;
+    FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN base_user%ROWTYPE;
     
-    FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN INT;
+    FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN base_user%ROWTYPE;
 END user_packege;/* STATEMENT */
 
 
@@ -60,19 +60,25 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
         RETURN v_current_user_id;
     END add_user;         
     
-    FUNCTION get_users RETURN INT AS
+    FUNCTION get_users RETURN base_user%ROWTYPE AS
+        v_users base_user%ROWTYPE;
     BEGIN
-        RETURN 1;
+        SELECT * INTO v_users FROM base_user; 
+        RETURN v_users;
     END get_users;          
     
-    FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN INT AS
+    FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN base_user%ROWTYPE AS
+        v_user base_user%ROWTYPE;
     BEGIN
-        RETURN 1;
+        SELECT * INTO v_user FROM base_user WHERE id = user_id; 
+        RETURN v_user;
     END get_user_by_id;   
     
-    FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN INT AS
+    FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN base_user%ROWTYPE AS
+        v_user base_user%ROWTYPE;
     BEGIN
-        RETURN 1;
+        SELECT * INTO v_user FROM base_user WHERE email = user_email; 
+        RETURN v_user;
     END get_user_by_email;  
     
 END user_packege;/* STATEMENT */
