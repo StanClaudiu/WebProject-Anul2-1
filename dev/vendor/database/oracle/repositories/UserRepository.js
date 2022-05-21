@@ -35,7 +35,9 @@ class UserRepository {
         try {
             const result = await this.db.execute(
                 `SELECT user_packege.add_user('${role}', '${name}', '${email}', '${password}') FROM DUAL`);
-            console.log(result)
+            
+            console.log(result);
+            return result.rows[0][Object.keys(result.rows[0])[0]]; //the id
         }
         catch (err) {
             console.log(err);

@@ -25,7 +25,7 @@ class User {
     }
 
     create() {
-        this.db.userRepository.create(this.role, this.name, this.email, this.password);
+        this.id = this.db.userRepository.create(this.role, this.name, this.email, this.password);
     }
 
     update() {

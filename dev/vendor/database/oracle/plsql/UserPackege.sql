@@ -42,6 +42,7 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
          
         CURSOR same_email_users IS SELECT email FROM base_user WHERE email = user_email;
         v_aux base_user.email%type;
+        v_current_user_id INT; 
         PRAGMA AUTONOMOUS_TRANSACTION;
     BEGIN
         OPEN same_email_users;
@@ -55,7 +56,8 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
         INSERT INTO base_user (id, role, name, email, password) VALUES (base_user_seq.NEXTVAL, user_role, user_name, user_email, user_password); 
         COMMIT;
         
-        RETURN 1;
+        SELECT base_user_seq.CURRVAL INTO v_current_user_id FROM DUAL;
+        RETURN v_current_user_id;
     END add_user;         
     
     FUNCTION get_users RETURN INT AS
@@ -73,4 +75,4 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
         RETURN 1;
     END get_user_by_email;  
     
-END user_packege;
+END user_packege;/* STATEMENT */
