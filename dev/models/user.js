@@ -20,6 +20,11 @@ class User {
         return user;
     }
 
+    static getUserByEmail(db, email) {
+        const user = new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
+        return user;
+    }
+
     static deleteUserById(db, id) {
 
     }

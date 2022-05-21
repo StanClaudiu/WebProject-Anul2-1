@@ -17,6 +17,17 @@ class AppAdmin extends User {
         return new AppAdmin(user.db, user.name, user.email, user.password);
     }
 
+    static getAppAdminByEmail(db, email) {
+        const user = User.getUserByEmail(db, id)
+
+        if (user.role != "admin")
+        {
+            //verry bad things may happen
+        }
+
+        return new AppAdmin(user.db, user.name, user.email, user.password);
+    }
+
     static deleteAppAdminById(db, id) {
 
     }
