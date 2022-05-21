@@ -11,4 +11,5 @@ mainRoutes.get(`/myGarden`, PagesController.myGardenPage);
 mainRoutes.get(`/favicon.ico`, PagesController.favicon);
 
 
+
 export default mainRoutes
