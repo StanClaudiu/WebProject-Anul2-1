@@ -1,0 +1,55 @@
+main{
+    display:flex;
+    flex-direction: column;
+}
+.add_button{
+    margin-top: 10vh;
+    margin-right:10vh;
+    margin-left: auto;
+   
+    color:black;
+}
+.table_placement{
+   
+    margin-top: 15vh;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    
+}/*So it looks nice*/
+.table_construction{
+    width: 100%;
+}
+div.table_construction > table {
+    overflow-x:auto;
+    background-color:white;
+    border-collapse: collapse;
+    width: 100%;
+}
+div.table_construction > table tr th:not(:last-child){
+    padding: 10px;
+    
+}
+div.table_construction > div table tr th{
+    min-width: 50px;
+    max-width: 100px;
+}
+div.table_construction > table tr:nth-child(even){
+    border-right:1px solid black;
+    height: 40px;
+    background-color: rgb(93, 93, 97);
+}
+@media only screen and (max-width:700px)
+{
+    main{
+        margin-left: 0rem;
+    }
+    .table_placement{
+        width: 90%;
+        margin-left: 5%;
+        margin-right:  5%;
+    }
+}
+
+

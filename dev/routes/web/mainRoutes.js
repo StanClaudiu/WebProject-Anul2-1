@@ -8,6 +8,7 @@ mainRoutes.get(`/course`, PagesController.coursePage);
 mainRoutes.get(`/courses`, PagesController.coursesPage);
 mainRoutes.get(`/leaderboard`, PagesController.leaderboardPage);
 mainRoutes.get(`/myGarden`, PagesController.myGardenPage);
+mainRoutes.get(`/adminPage`,PagesController.adminPage);
 mainRoutes.get(`/favicon.ico`, PagesController.favicon);
 
 

@@ -21,6 +21,10 @@ const PagesController = {
         response.sendFile("public/frontend/pages/myGarden.html")
     },
 
+    adminPage: (zen,request,response)=>{
+        response.sendFile("public/frontend/pages/adminPage.html")
+    },
+
     favicon: (zen, request, response) => {
         response.sendFile("public/frontend/resources/favicon.ico")
     }
