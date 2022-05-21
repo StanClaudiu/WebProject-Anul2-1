@@ -22,8 +22,10 @@
     display: flex;
     flex: row;
     justify-content: space-around;
+    flex-wrap:wrap;
 }
 .plant_name_Component{
+    margin: 10px 10px 10px 10px;
     display: flex;
     flex-direction:column;
     background-color: greenyellow;
@@ -39,11 +41,13 @@
     font-size: 30px;
     font-weight: bolder;
 }/*luat de la radu din courses.css*/
-.course-summary-image > * {
+.plants-summary-image > * {
     height: 100%;
+    width: 20vw;
+    object-fit: cover;
     opacity: 1;
 }
-.course-summary-image {
+.plants-summary-image {
     height:max(150px,10vw)
 }
 main {
@@ -191,5 +195,18 @@ a.inspect_trees_reminder > i:hover{
     border-radius: 4px;
     padding: 8px;
 }
+
+/*Let's make everything responsive*/
+@media only screen and (max-width:700px) {
+    main{
+        margin-left: 0px;
+    }
+    .plants-summary-image > * {
+        width: 70vw;
+    }
+    
+}
+
+
 /* un fel de tag definit de mine*/
-/* ' ' > */
+/* ' ' >  ~ + */
