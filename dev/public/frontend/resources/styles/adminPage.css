@@ -29,6 +29,16 @@ main{
 .table_construction{
     width: 100%;
 }
+div.table_construction tr th:last-child i:hover{
+    color: rgb(255, 0, 0);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+div.table_construction tr th:nth-last-child(2) i:hover{
+    color: rgb(0, 255, 72);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
 div.table_construction > table {
     overflow-x:auto;
     background-color:white;
@@ -59,7 +69,8 @@ div.table_construction > table tr:nth-child(2){
 }
 div.table_construction >table tr:nth-child(odd):not(:first-child):hover{
     transition-duration: 500ms;
-    background-color: rgba(252, 248, 4, 0.755);    
+    background-color: rgba(252, 248, 4, 0.755);
+     
 }
 div.table_construction >table tr:nth-child(odd):not(:first-child){
     transition-duration: 250ms;
@@ -72,7 +83,10 @@ div.table_construction >table tr:nth-child(odd):not(:first-child){
     background-color: rgb(255, 255, 255);
     border-radius: 0px;
 }
-
+#delete_course .modal{
+    max-width: 30vw;
+    text-align: center;
+}
 
 @media only screen and (max-width:700px)
 {
