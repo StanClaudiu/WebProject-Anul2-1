@@ -1,6 +1,7 @@
 import http from "http"
 import { Router } from "./index.js"
-import { AddRequestFunctionalities, 
+import { AddZenFunctionalities,
+         AddRequestFunctionalities, 
          AddResponseFunctionalities } from "./functionalities/index.js"
 import path from "path";
 import url from "url";
@@ -24,12 +25,16 @@ class App {
 
     listen() {
         http.createServer(async function (request, response) {
-
+            
             let zen = {}
-            zen = this.addZenFunctionalities(zen);
+            zen = AddZenFunctionalities(zen);
             response = AddResponseFunctionalities(response);
-            request = await AddRequestFunctionalities(request);
+            request = AddRequestFunctionalities(request);
 
+            await request.augment()
+            await response.augment()
+            await zen.augment(this.db, request)
+            
             response = this.setResponseHeaders(response);
 
             //AugmentData
@@ -72,13 +77,6 @@ class App {
         response.setHeader('Access-Control-Max-Age', 2592000);
 
         return response;
-    }
-
-    addZenFunctionalities(zen) {
-        if (this.db) {
-            zen.db = this.db;
-        }
-        return zen;
     }
 
     async handleStatic(request, response) {

@@ -55,10 +55,14 @@ const parseBody = async (request) => {
     }
 }
 
-const AddRequestFunctionalities = async (request) => {
-    request.parameters = url.parse(request.url, true).query;
-    request.cookies = parseCookies(request);
-    request.body = await parseBody(request);
+const AddRequestFunctionalities = (request) => {
+
+    request.augment = async () => {
+        request.parameters = url.parse(request.url, true).query;
+        request.cookies = parseCookies(request);
+        request.body = await parseBody(request);
+    }
+
     return request;
 }
 

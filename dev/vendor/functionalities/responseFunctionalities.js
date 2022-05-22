@@ -72,9 +72,11 @@ const AddResponseFunctionalities = (response) => {
     }
 
     response.setCookie = (key, value) => {
-        response.setHeader('Set-Cookie', `${key}=${value};`)
+        response.setHeader('Set-Cookie', `${key}=${value};HttpOnly;Domain=${process.env.APP_DOMAIN};Path=/;overwrite=true`)
         return response;
     }
+
+    response.augment = async () => {}
 
     return response
 }
