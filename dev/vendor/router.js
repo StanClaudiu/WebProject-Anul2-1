@@ -13,31 +13,31 @@ class Router {
         this.patchRoutes = {}
     }
 
-    post(url, controller) {
+    post(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.postRoutes[url])
             console.error(`route ${url} was already added as POST route`)
-        this.postRoutes[url] = controller
+        this.postRoutes[url] = {"controller": controller, "middleware":  middleware}
     }
-    get(url, controller) {
+    get(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.getRoutes[url])
             console.error(`route ${url} was already added as GET route`)
-        this.getRoutes[url] = controller
+        this.getRoutes[url] = {"controller": controller, "middleware":  middleware}
     }
-    delete(url, controller) {
+    delete(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.deleteRoutes[url])
             console.error(`route ${url} was already added as DELETE route`)
-        this.deleteRoutes[url] = controller
+        this.deleteRoutes[url] = {"controller": controller, "middleware": middleware}
     }
-    put(url, controller) {
+    put(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.putRoutes[url])
             console.error(`route ${url} was already added as PUT route`)
-        this.putRoutes[url] = controller
+        this.putRoutes[url] = {"controleer": controller, "middleware": middleware}
     }
 
-    patch(url, controller) {
+    patch(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.patchRoutes[url])
             console.error(`route ${url} was already added as PUT route`)
-        this.patchRoutes[url] = controller
+        this.patchRoutes[url] = {"controller": controller, "middleware": middleware}
     }
 
     async handleRoute(zen, request, response) {
@@ -54,15 +54,25 @@ class Router {
         try {
             switch (request.method) {
                 case "POST":
-                    return await this.postRoutes[requestUrl](zen, request, response)
+                    if (await this.postRoutes[requestUrl]["middleware"](zen, request, response)) {
+                        return await this.postRoutes[requestUrl]["controller"](zen, request, response)
+                    }
                 case "GET":
-                    return await this.getRoutes[requestUrl](zen, request, response)
+                    if (await this.getRoutes[requestUrl]["middleware"](zen, request, response)) {
+                        return await this.getRoutes[requestUrl]["controller"](zen, request, response)
+                    }
                 case "DELETE":
-                    return await this.deleteRoutes[requestUrl](zen, request, response)
+                    if (await this.deleteRoutes[requestUrl]["middleware"](zen, request, response)) {
+                        return await this.deleteRoutes[requestUrl]["controller"](zen, request, response)
+                    }
                 case "PUT":
-                    return await this.putRoutes[requestUrl](zen, request, response)
+                    if (await this.putRoutes[requestUrl]["middleware"](zen, request, response)) {
+                        return await this.putRoutes[requestUrl]["controller"](zen, request, response)
+                    }
                 case "PATCH":
-                    return await this.patchRoutes[requestUrl](zen, request, response)
+                    if (await this.patchRoutes[requestUrl]["middleware"](zen, request, response)) {
+                        return await this.patchRoutes[requestUrl]["controller"](zen, request, response)   
+                    }
                 default:
                     throw new Error(`no route with such http verb: ${request.method}`)
             }

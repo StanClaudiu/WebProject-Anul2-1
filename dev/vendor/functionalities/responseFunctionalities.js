@@ -71,6 +71,11 @@ const AddResponseFunctionalities = (response) => {
         return response
     }
 
+    response.setCookie = (key, value) => {
+        response.setHeader('Set-Cookie', `${key}=${value};`)
+        return response;
+    }
+
     return response
 }
 

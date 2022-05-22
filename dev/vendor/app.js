@@ -30,6 +30,10 @@ class App {
             response = AddResponseFunctionalities(response);
             request = await AddRequestFunctionalities(request);
 
+            response = this.setResponseHeaders(response);
+
+            //AugmentData
+
             if (this.isStatic(request.url)) {
                 response = await this.handleStatic(request, response);
                 return;
