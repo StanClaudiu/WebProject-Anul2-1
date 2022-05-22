@@ -11,28 +11,28 @@ class Session {
         this.user = user
     }
 
-    static getIdByToken(db, token) {
+    static async getIdByToken(db, token) {
 
     }
 
-    static getSessionById(db, id) {
-        const user = new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
+    static async getSessionById(db, id) {
+        const user = await new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
         return user;
     }
 
-    static deleteSessionById(db, id) {
+    static async deleteSessionById(db, id) {
 
     }
 
-    create() {
+    async create() {
 
     }
 
-    update() {
+    async update() {
 
     }
 
-    delete() {
+    async delete() {
 
     }
 }

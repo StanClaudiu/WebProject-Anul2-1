@@ -15,31 +15,29 @@ class User {
         this.password = password
     }
 
-    static getUserById(db, id) {
-        const userDetails = db.userRepository.getById(id)
-        const user = new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
-        return user;
+    static async getUserById(db, id) {
+        const userDetails = await db.userRepository.getById(id)
+        return new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
     }
 
-    static getUserByEmail(db, email) {
-        const userDetails = db.userRepository.getByEmail(email)
-        const user = new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
-        return user;
+    static async getUserByEmail(db, email) {
+        const userDetails = await db.userRepository.getByEmail(email)
+        return new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
     }
 
-    static deleteUserById(db, id) {
-
-    }
-
-    create() {
-        this.id = this.db.userRepository.create(this.role, this.name, this.email, this.password);
-    }
-
-    update() {
+    static async deleteUserById(db, id) {
 
     }
 
-    delete() {
+    async create() {
+        this.id = await this.db.userRepository.create(this.role, this.name, this.email, this.password);
+    }
+
+    async update() {
+
+    }
+
+    async delete() {
 
     }
 }

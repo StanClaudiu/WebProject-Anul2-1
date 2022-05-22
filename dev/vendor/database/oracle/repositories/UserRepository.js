@@ -47,10 +47,10 @@ class UserRepository {
     async getById(id) {
         try {
             const result = await this.db.execute(
-                `SELECT user_packege.get_user_by_id('${id}') FROM DUAL`);
+                `SELECT * from TABLE( user_packege.get_user_by_id('${id}'))`);
             
             console.log(result);
-            //return result.rows[0][Object.keys(result.rows[0])[0]]; //the id
+            return result.rows[0]; //the id
         }
         catch (err) {
             console.log(err);
@@ -60,10 +60,10 @@ class UserRepository {
     async getByEmail(email) {
         try {
             const result = await this.db.execute(
-                `SELECT user_packege.get_user_by_email('${email}') FROM DUAL`);
+                `SELECT * from TABLE( user_packege.get_user_by_email('${email}'))`);
             
             console.log(result);
-            //return result.rows[0][Object.keys(result.rows[0])[0]]; //the id
+            return result.rows[0]; //the id
         }
         catch (err) {
             console.log(err);

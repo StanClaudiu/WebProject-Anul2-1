@@ -6,8 +6,8 @@ class AppAdmin extends User {
         super(db, "admin", name, email, password, id)
     }
 
-    static getAppAdminById(db, id) {
-        const user = User.getUserById(db, id)
+    static async getAppAdminById(db, id) {
+        const user = await User.getUserById(db, id)
         
         if (user.role != "admin")
         {
@@ -17,8 +17,8 @@ class AppAdmin extends User {
         return new AppAdmin(user.db, user.name, user.email, user.password);
     }
 
-    static getAppAdminByEmail(db, email) {
-        const user = User.getUserByEmail(db, id)
+    static async getAppAdminByEmail(db, email) {
+        const user = await User.getUserByEmail(db, id)
 
         if (user.role != "admin")
         {
@@ -28,19 +28,19 @@ class AppAdmin extends User {
         return new AppAdmin(user.db, user.name, user.email, user.password);
     }
 
-    static deleteAppAdminById(db, id) {
+    static async deleteAppAdminById(db, id) {
 
     }
 
-    create() {
-        super.create()
+    async create() {
+        await super.create()
     }
 
-    update() {
+    async update() {
 
     }
 
-    delete() {
+    async delete() {
 
     }
 }

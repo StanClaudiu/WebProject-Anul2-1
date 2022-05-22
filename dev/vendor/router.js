@@ -40,7 +40,7 @@ class Router {
         this.patchRoutes[url] = controller
     }
 
-    handleRoute(zen, request, response) {
+    async handleRoute(zen, request, response) {
         if (request.error) {
             console.log(error)
             return response.status(500).json({
@@ -54,15 +54,15 @@ class Router {
         try {
             switch (request.method) {
                 case "POST":
-                    return this.postRoutes[requestUrl](zen, request, response)
+                    return await this.postRoutes[requestUrl](zen, request, response)
                 case "GET":
-                    return this.getRoutes[requestUrl](zen, request, response)
+                    return await this.getRoutes[requestUrl](zen, request, response)
                 case "DELETE":
-                    return this.deleteRoutes[requestUrl](zen, request, response)
+                    return await this.deleteRoutes[requestUrl](zen, request, response)
                 case "PUT":
-                    return this.putRoutes[requestUrl](zen, request, response)
+                    return await this.putRoutes[requestUrl](zen, request, response)
                 case "PATCH":
-                    return this.patchRoutes[requestUrl](zen, request, response)
+                    return await this.patchRoutes[requestUrl](zen, request, response)
                 default:
                     throw new Error(`no route with such http verb: ${request.method}`)
             }

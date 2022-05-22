@@ -31,15 +31,15 @@ class App {
             request = await AddRequestFunctionalities(request);
 
             if (this.isStatic(request.url)) {
-                response = this.handleStatic(request, response);
+                response = await this.handleStatic(request, response);
                 return;
             }
 
             console.log(`${request.method} on ${request.url}`)
 
             if (this.hasValidHeaders(request.headers)) {
-                response = this.router.handleRoute(zen, request, response)
-                return
+                response = await this.router.handleRoute(zen, request, response)
+                return;
             } 
             else {
                 response.status(415).json({
@@ -50,9 +50,7 @@ class App {
 
         }.bind(this)).listen(this.port)
 
-
         console.log(`app running on PORT: ${this.port}`)
-
     }
     useRoute(router) { //doesn't check for duplicate routes
         this.router.getRoutes = { ...this.router.getRoutes, ...router.getRoutes }
@@ -79,7 +77,7 @@ class App {
         return zen;
     }
 
-    handleStatic(request, response) {
+    async handleStatic(request, response) {
 
         const parsedUrl = url.parse(request.url)
 
@@ -91,7 +89,7 @@ class App {
                 success: false,
             })
 
-        return response.sendFile("public/" + realPath.replace(/^.+?[/]/, ''))  
+        return await response.sendFile("public/" + realPath.replace(/^.+?[/]/, ''))  
     }
 }
 

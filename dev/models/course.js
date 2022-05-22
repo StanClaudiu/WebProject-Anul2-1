@@ -15,28 +15,28 @@ class Course {
         this.videoLink = videoLink
     }
 
-    static getIdByToken(db, token) {
+    static async getIdByToken(db, token) {
 
     }
 
-    static getCourseById(db, id) {
-        const user = new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
+    static async getCourseById(db, id) {
+        const user = await new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
         return user;
     }
 
-    static deleteCourseById(db, id) {
+    static async deleteCourseById(db, id) {
 
     }
 
-    create() {
+    async create() {
 
     }
 
-    update() {
+    async update() {
 
     }
 
-    delete() {
+    async delete() {
 
     }
 }

@@ -63,7 +63,7 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
     END add_user;         
     
     FUNCTION get_users RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * INTO v_users FROM base_user;
+        CURSOR table_cursor IS SELECT * FROM base_user;
     BEGIN
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);

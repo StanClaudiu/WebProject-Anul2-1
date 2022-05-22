@@ -6,8 +6,8 @@ class AppUser extends User {
         super(db, "user", name, email, password, id)
     }
 
-    static getAppUserById(db, id) {
-        const user = User.getUserById(db, id)
+    static async getAppUserById(db, id) {
+        const user = await User.getUserById(db, id)
         
         if (user.role != "user")
         {
@@ -17,8 +17,8 @@ class AppUser extends User {
         return new AppUser(user.db, user.name, user.email, user.password);
     }
 
-    static getAppUserByEmail(db, email) {
-        const user = User.getUserByEmail(db, id)
+    static async getAppUserByEmail(db, email) {
+        const user = await User.getUserByEmail(db, id)
 
         if (user.role != "user")
         {
@@ -28,19 +28,19 @@ class AppUser extends User {
         return new AppUser(user.db, user.name, user.email, user.password);
     }
 
-    static deleteAppUserById(db, id) {
+    static async deleteAppUserById(db, id) {
 
     }
 
-    create() {
-        super.create()
+    async create() {
+        await super.create()
     }
 
-    update() {
+    async update() {
 
     }
 
-    delete() {
+    async delete() {
 
     }
 }
