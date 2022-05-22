@@ -18,13 +18,13 @@ class User {
     static async getUserById(db, id) {
         const userDetails = await db.userRepository.getById(id)
         return userDetails == null ? null : 
-            new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
+            new User(db, userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"], userDetails["ID"])
     }
 
     static async getUserByEmail(db, email) {
         const userDetails = await db.userRepository.getByEmail(email)
         return userDetails == null ? null :
-            new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
+            new User(db, userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"], userDetails["ID"])
     }
 
     async create() {

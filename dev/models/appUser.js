@@ -9,25 +9,23 @@ class AppUser extends User {
     static async getAppUserById(db, id) {
         const user = await User.getUserById(db, id)
         
-        if (user.role != "user")
+        if (user == null || user.role != "user")
         {
-            console.log("Role mismatch")
             return null
         }
 
-        return new AppUser(user.db, user.name, user.email, user.password);
+        return new AppUser(user.db, user.name, user.email, user.password, user.id);
     }
 
     static async getAppUserByEmail(db, email) {
-        const user = await User.getUserByEmail(db, id)
+        const user = await User.getUserByEmail(db, email)
 
-        if (user.role != "user")
+        if (user == null || user.role != "user")
         {
-            console.log("Role mismatch")
             return null
         }
 
-        return new AppUser(user.db, user.name, user.email, user.password);
+        return new AppUser(user.db, user.name, user.email, user.password, user.id);
     }
 
     async create() {

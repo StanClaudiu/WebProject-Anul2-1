@@ -9,25 +9,23 @@ class AppAdmin extends User {
     static async getAppAdminById(db, id) {
         const user = await User.getUserById(db, id)
         
-        if (user.role != "admin")
+        if (user != null || user.role != "admin")
         {
-            console.log("Role mismatch")
             return null
         }
 
-        return new AppAdmin(user.db, user.name, user.email, user.password);
+        return new AppAdmin(user.db, user.name, user.email, user.password, user.id);
     }
 
     static async getAppAdminByEmail(db, email) {
-        const user = await User.getUserByEmail(db, id)
+        const user = await User.getUserByEmail(db, email)
 
-        if (user.role != "admin")
+        if (user != null || user.role != "admin")
         {
-            console.log("Role mismatch")
             return null
         }
 
-        return new AppAdmin(user.db, user.name, user.email, user.password);
+        return new AppAdmin(user.db, user.name, user.email, user.password, user.id);
     }
 
     async create() {
