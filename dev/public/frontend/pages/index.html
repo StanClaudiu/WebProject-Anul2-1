@@ -309,7 +309,7 @@
             <div class="modal_container" id="signup_modal">
                 <div class="modal">
                     <div class="auth-form-container">
-                        <form class="pretty_form" id="signup_form" action="/register" method="post" enctype="multipart/form-data">
+                        <form class="pretty_form" id="signup_form" action="/api/v1/register" method="post" enctype="multipart/form-data">
                             <label for="signup_name">Name</label>
                             <input type="text" id="signup_name" name="name" required>
                             <label for="signup_email">Email</label>
@@ -329,7 +329,7 @@
             <div class="modal_container" id="login_modal">
                 <div class="modal">
                     <div class="auth-form-container">
-                        <form class="pretty_form" id="login_form" action="/">
+                        <form class="pretty_form" id="login_form" action="/api/v1/login" method="post" enctype="multipart/form-data">
                             <label for="login_email">Email</label>
                             <input type="email" id="login_email" name="email" pattern=".+@.+\..+" required>
                             <label for="login_password">Password</label>

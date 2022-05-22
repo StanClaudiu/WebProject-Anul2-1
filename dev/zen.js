@@ -1,6 +1,7 @@
 import { OracleDatabase } from "./vendor/database/index.js";
 import { App } from "./vendor/index.js";
 import { mainRoutes } from "./routes/web/index.js";
+import { authRoutes } from "./routes/api/index.js";
 import "dotenv/config"
 
 const db = new OracleDatabase()
@@ -11,7 +12,8 @@ if (parseInt(process.env.DB_INIT_ENVIRONMENT) == 1) {
 }
 
 const app = new App(process.env.PORT || 4000, db)
-app.useWebRoute(mainRoutes)
+app.useRoute(mainRoutes)
+app.useRoute(authRoutes)
 
 
 app.listen();

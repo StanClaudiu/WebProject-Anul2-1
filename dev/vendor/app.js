@@ -54,7 +54,7 @@ class App {
         console.log(`app running on PORT: ${this.port}`)
 
     }
-    useWebRoute(router) {
+    useRoute(router) { //doesn't check for duplicate routes
         this.router.getRoutes = { ...this.router.getRoutes, ...router.getRoutes }
         this.router.postRoutes = { ...this.router.postRoutes, ...router.postRoutes }
         this.router.deleteRoutes = { ...this.router.deleteRoutes, ...router.deleteRoutes }

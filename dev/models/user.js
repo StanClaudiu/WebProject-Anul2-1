@@ -16,11 +16,13 @@ class User {
     }
 
     static getUserById(db, id) {
+        const userDetails = db.userRepository.getById(id)
         const user = new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
         return user;
     }
 
     static getUserByEmail(db, email) {
+        const userDetails = db.userRepository.getByEmail(email)
         const user = new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
         return user;
     }

@@ -9,12 +9,12 @@ const AuthController = {
             request.body.fields["password"])
 
         appUser.create()
-        //do redirect
+
         response.json("all good")
     },
 
     login: (zen, request, response) => {
-        const user = User.getUserByEmail(request.body.fields["email"])
+        const user = User.getUserByEmail(zen.db, request.body.fields["email"])
 
         response.json("all good")
     }

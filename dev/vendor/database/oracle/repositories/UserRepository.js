@@ -43,6 +43,32 @@ class UserRepository {
             console.log(err);
         }
     }
+
+    async getById(id) {
+        try {
+            const result = await this.db.execute(
+                `SELECT user_packege.get_user_by_id('${id}') FROM DUAL`);
+            
+            console.log(result);
+            //return result.rows[0][Object.keys(result.rows[0])[0]]; //the id
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    async getByEmail(email) {
+        try {
+            const result = await this.db.execute(
+                `SELECT user_packege.get_user_by_email('${email}') FROM DUAL`);
+            
+            console.log(result);
+            //return result.rows[0][Object.keys(result.rows[0])[0]]; //the id
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 export default UserRepository;
