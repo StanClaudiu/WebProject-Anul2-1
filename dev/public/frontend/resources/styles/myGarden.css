@@ -20,8 +20,7 @@
 }
 .garden_Component_Container{
     display: flex;
-    flex: row;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap:wrap;
 }
 .plant_name_Component{
@@ -43,7 +42,7 @@
 }/*luat de la radu din courses.css*/
 .plants-summary-image > * {
     height: 100%;
-    width: 20vw;
+    width: 25vw;
     object-fit: cover;
     opacity: 1;
 }

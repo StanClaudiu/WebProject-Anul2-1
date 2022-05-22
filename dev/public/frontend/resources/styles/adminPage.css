@@ -1,4 +1,5 @@
 main{
+    background-color: rgb(190, 245, 168);
     display:flex;
     flex-direction: column;
 }
@@ -9,13 +10,20 @@ main{
    
     color:black;
 }
+
+.add_button i:hover{
+    color: rgb(243, 18, 2);
+    transition:1s;
+    border-radius: 50%;
+    cursor: pointer;
+}
 .table_placement{
    
     margin-top: 15vh;
     text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
     
 }/*So it looks nice*/
 .table_construction{
@@ -36,17 +44,43 @@ div.table_construction > div table tr th{
     max-width: 100px;
 }
 div.table_construction > table tr:nth-child(even){
-    border-right:1px solid black;
     height: 40px;
-    background-color: rgb(93, 93, 97);
+    background-color: rgb(190, 245, 168);
+    background-image:linear-gradient(white,rgb(190, 245, 168),rgb(190, 245, 168),white);
 }
+div.table_construction > table tr:first-child{
+    height: 40px;
+    background-color: rgb(190, 245, 168);
+}
+div.table_construction > table tr:nth-child(2){
+    height: 40px;
+    background-color: rgb(190, 245, 168);
+    background-image: linear-gradient(rgb(190, 245, 168),white);
+}
+div.table_construction >table tr:nth-child(odd):not(:first-child):hover{
+    transition-duration: 500ms;
+    background-color: rgba(252, 248, 4, 0.755);    
+}
+div.table_construction >table tr:nth-child(odd):not(:first-child){
+    transition-duration: 250ms;
+}
+.modal{
+   justify-content: flex-start;
+   
+    max-width: 80vw;
+    max-height: 80vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px;
+}
+
+
 @media only screen and (max-width:700px)
 {
     main{
         margin-left: 0rem;
     }
     .table_placement{
-        width: 90%;
+        width: 90;
         margin-left: 5%;
         margin-right:  5%;
     }

@@ -75,8 +75,8 @@
                                 <th> </th>
                             </tr>
                         </div>
-                            <div id="#element1"> 
-                                <tr>
+                        <div id="#unu"> 
+                            <tr>
                                 <th>How to plant tomatoes</th>
                                 <th>1h 29m</th>
                                 <th>5</th>
@@ -225,11 +225,38 @@
                     </div>
             </div>
         </main>
+
+
+
+        <div class="modals_heap"> <!-- De ce asta aici?,de unde vine?-->
+            <div class="modal_container" id="add_course">
+                <div class="modal">
+                    <div class="auth-form-container add_course_menu">
+                        <form class="pretty_form" id="" action="/">
+                            <!-- here we put our info-->
+                            <label for="name_of_plant">Name</label>
+                            <input type="text" id="name_of_plant" name="name_of_plant" required>
+                            <label for="name_of_plant">Name</label>
+                            <input type="text" id="name_of_plant" name="name_of_plant" required>
+                            <label for="name_of_plant">Name</label>
+                            <input type="text" id="name_of_plant" name="name_of_plant" required>
+                            <label for="name_of_plant">Name</label>
+                            <input type="text" id="name_of_plant" name="name_of_plant" required>
+                        </form>
+                    </div>
+                    <div class="modal-action-buttons">
+                        <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Create</button>
+                        <div class="button-box button-box-red" onclick="closeModal('add_course')">Cancel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     
+
 
     <script src="public/frontend/resources/scripts/navBar.js"></script>
     <script src="public/frontend/resources/scripts/modal.js"></script>
-    <script src="public/frontend/resources/scripts/countingNumbers.js"></script>   
+    
         <script></script> <!-- it should do something-->
     </body>
 </html>
