@@ -76,6 +76,11 @@ const AddResponseFunctionalities = (response) => {
         return response;
     }
 
+    response.deleteCookie = (key) => {
+        response.setHeader('Set-Cookie', `${key}=;HttpOnly;Domain=${process.env.APP_DOMAIN};Path=/;overwrite=true;expires=Thu, 01 Jan 1970 00:00:01 GMT;`)
+        return response;
+    }
+
     response.augment = async () => {}
 
     return response

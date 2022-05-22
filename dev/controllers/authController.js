@@ -48,6 +48,11 @@ const AuthController = {
         }
 
         response.json("all good")
+    },
+
+    logout: async (zen, request, response) => {
+        response.deleteCookie("authToken")
+        response.json("all good")
     }
 }
 
