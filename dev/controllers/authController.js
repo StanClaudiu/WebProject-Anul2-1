@@ -20,11 +20,7 @@ const AuthController = {
     login: async (zen, request, response) => {
         const user = await User.getUserByEmail(zen.db, request.body.fields["email"])
 
-        console.log(user.password)
-        console.log(request.body.fields["password"])
-        console.log(compareSync(user.password, request.body.fields["password"]))
-        
-        if (user == null || !compareSync(user.password, request.body.fields["password"])) {
+        if (user == null || !compareSync(request.body.fields["password"], user.password)) {
             response.json("invalid email or password")
             return
         }
