@@ -11,7 +11,8 @@ class AppAdmin extends User {
         
         if (user.role != "admin")
         {
-            //verry bad things may happen
+            console.log("Role mismatch")
+            return null
         }
 
         return new AppAdmin(user.db, user.name, user.email, user.password);
@@ -22,26 +23,15 @@ class AppAdmin extends User {
 
         if (user.role != "admin")
         {
-            //verry bad things may happen
+            console.log("Role mismatch")
+            return null
         }
 
         return new AppAdmin(user.db, user.name, user.email, user.password);
     }
 
-    static async deleteAppAdminById(db, id) {
-
-    }
-
     async create() {
         await super.create()
-    }
-
-    async update() {
-
-    }
-
-    async delete() {
-
     }
 }
 

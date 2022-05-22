@@ -17,28 +17,18 @@ class User {
 
     static async getUserById(db, id) {
         const userDetails = await db.userRepository.getById(id)
-        return new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
+        return userDetails == null ? null : 
+            new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
     }
 
     static async getUserByEmail(db, email) {
         const userDetails = await db.userRepository.getByEmail(email)
-        return new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
-    }
-
-    static async deleteUserById(db, id) {
-
+        return userDetails == null ? null :
+            new User(db, userDetails["ID"], userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"])
     }
 
     async create() {
         this.id = await this.db.userRepository.create(this.role, this.name, this.email, this.password);
-    }
-
-    async update() {
-
-    }
-
-    async delete() {
-
     }
 }
 

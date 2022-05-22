@@ -50,7 +50,7 @@ class UserRepository {
                 `SELECT * from TABLE( user_packege.get_user_by_id('${id}'))`);
             
             console.log(result);
-            return result.rows[0]; //the id
+            return result.rows.length == 0 ? null : result.rows[0]; //the id
         }
         catch (err) {
             console.log(err);
@@ -63,7 +63,7 @@ class UserRepository {
                 `SELECT * from TABLE( user_packege.get_user_by_email('${email}'))`);
             
             console.log(result);
-            return result.rows[0]; //the id
+            return result.rows.length == 0 ? null : result.rows[0]; //the id
         }
         catch (err) {
             console.log(err);

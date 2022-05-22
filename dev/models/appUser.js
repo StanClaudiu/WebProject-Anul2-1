@@ -11,7 +11,8 @@ class AppUser extends User {
         
         if (user.role != "user")
         {
-            //verry bad things may happen
+            console.log("Role mismatch")
+            return null
         }
 
         return new AppUser(user.db, user.name, user.email, user.password);
@@ -22,26 +23,15 @@ class AppUser extends User {
 
         if (user.role != "user")
         {
-            //verry bad things may happen
+            console.log("Role mismatch")
+            return null
         }
 
         return new AppUser(user.db, user.name, user.email, user.password);
     }
 
-    static async deleteAppUserById(db, id) {
-
-    }
-
     async create() {
         await super.create()
-    }
-
-    async update() {
-
-    }
-
-    async delete() {
-
     }
 }
 

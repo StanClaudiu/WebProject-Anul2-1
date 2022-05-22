@@ -11,7 +11,7 @@ CREATE TABLE base_user
     role VARCHAR2(10) NOT NULL,
     name VARCHAR2(40) NOT NULL,
     email VARCHAR2(40) NOT NULL,
-    password VARCHAR2(30) NOT NULL
+    password VARCHAR2(80) NOT NULL
 ) /* STATEMENT */;
 
 CREATE SEQUENCE base_user_seq START WITH 1 /* STATEMENT */;

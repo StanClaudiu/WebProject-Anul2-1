@@ -1,7 +1,5 @@
 import oracledb from 'oracledb'; 
 import { UserRepository,
-         AppUserRepository,
-         AppAdminRepository,
          CourseRepository,
          SessionRepository
         } from './repositories/index.js'
@@ -10,15 +8,11 @@ import "dotenv/config";
 class OracleDatabase {
     dbPool
     userRepository
-    appAdminRepository
-    appUserRepository
     sessionRepository
     courseRepository
 
     constructor() {
         this.userRepository = new UserRepository(this)
-        this.appAdminRepository = new AppAdminRepository(this)
-        this.appUserRepository = new AppUserRepository(this)
         this.sessionRepository = new SessionRepository(this)
         this.courseRepository = new CourseRepository(this)
     }
@@ -31,8 +25,6 @@ class OracleDatabase {
         console.log("Initializing db environment...")
 
         await this.userRepository.initRepoEnvironment()
-        await this.appAdminRepository.initRepoEnvironment()
-        await this.appUserRepository.initRepoEnvironment()
         await this.sessionRepository.initRepoEnvironment()
         await this.courseRepository.initRepoEnvironment()
 
