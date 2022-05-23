@@ -1,13 +1,6 @@
 import { User } from "../../models/index.js"
 import jwt from 'jsonwebtoken';
 
-const setDB = (zen, db) => {
-    if (!db) {
-        console.log("Invalid DB")
-    }
-    zen.db = db;
-    return zen
-}
 
 const addSession = async (zen, request) => {
     let isLoggedIn = false
@@ -43,8 +36,8 @@ const addSession = async (zen, request) => {
 
 const AddZenFunctionalities = (zen) => {
     zen.augment = async (db, request) => {
-        zen = setDB(zen, db)
-        zen = addSession(zen, request)
+        zen.db = db;
+        zen = await addSession(zen, request)
     }
     return zen
 }

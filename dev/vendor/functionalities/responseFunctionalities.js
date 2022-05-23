@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import StatusCodes from "http-status-codes";
+import { ZenViewParser } from "../zenViewParser/index.js";
 
 const AddResponseFunctionalities = (response) => {
 
@@ -69,6 +70,18 @@ const AddResponseFunctionalities = (response) => {
         }
 
         return response
+    }
+
+    response.sendRaw = (data, responseType) => {
+        response.setHeader('Content-type', responseType);
+        response.write(data)
+        response.end()
+        return response
+    }
+
+    response.sendZenView = async (wiredObject, zenViewPath) => {
+        const data = await ZenViewParser(wiredObject, zenViewPath)
+        return response.sendRaw(data, 'text/html')
     }
 
     response.setCookie = (key, value) => {
