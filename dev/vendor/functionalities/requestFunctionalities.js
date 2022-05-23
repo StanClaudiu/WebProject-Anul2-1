@@ -61,6 +61,26 @@ const parseUrlencoded = async (request) => {
     return {"fields": fields, "files": {}}
 }
 
+const parseJosnBody = async (request) => {
+    let finalData = {}
+    if (data)
+        try {
+            finalData = JSON.parse(data)
+            req.body = finalData
+        } catch (err) {
+            //daca nu reusim sa parsam body ul de la client, ii spunem eroarea si inchidem conexiunea
+            console.error(`error parsing json from client: `)
+            console.error(err)
+            res.status(400).json({
+                success: false,
+                error: err.message
+            })
+            return
+        }
+    req = this.authFunction(req);
+    res = this.router.handleRoute(req, res)
+}
+
 const parseBody = async (request) => {
     if (!request.headers['content-type']) {
         return {"fields": {}, "files": {}};
