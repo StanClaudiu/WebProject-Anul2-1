@@ -14,8 +14,8 @@ const ZenViewParser = async (wiredObject, zenViewPath) => {
 
     for (let it = 0; it < tokenizedData.length; it++) {
         if (it % 2 == 1) {
-            const zenStatement = new Function(tokenizedData[it])
-            parsedView = parsedView + zenStatement()
+            const zenStatement = new Function('wiredObject', tokenizedData[it])
+            parsedView = parsedView + zenStatement(wiredObject)
         }
         else {
             parsedView = parsedView + tokenizedData[it]
