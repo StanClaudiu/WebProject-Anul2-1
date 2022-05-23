@@ -1,5 +1,5 @@
 import url from "url";
-import bodyParser from 'body-parser'
+import { StringDecoder } from 'string_decoder'
 import formidable from 'formidable'
 
 const parseCookies = (request) => {
@@ -38,9 +38,27 @@ const parseMultipart = async (request) => {
 }
 
 const parseUrlencoded = async (request) => {
-    const urlencodedParser = bodyParser.urlencoded({ extended: false })
+    const decoder = new StringDecoder('utf-8');
+    let buffer = '';
+  
+    await request.on('data', (chunk) => {
+        buffer += decodeURIComponent(decoder.write(chunk));
+    });
+  
+    let fields = {}
 
-    //urlencodedParser.
+    await request.on('end', () => {
+        buffer += decodeURIComponent(decoder.end());
+
+        const decodedValues = buffer.split("&")
+
+        decodedValues.forEach((decodedValue) => {
+            const keyValue = decodedValue.split("=")
+            fields[keyValue[0]] = keyValue[1]
+        })
+    });
+
+    return {"fields": fields, "files": {}}
 }
 
 const parseBody = async (request) => {
@@ -50,7 +68,7 @@ const parseBody = async (request) => {
     if (request.headers['content-type'].includes("multipart/form-data")) {
         return await parseMultipart(request)
     }
-    if (req.headers['content-type'] == "x-www-form-urlencoded") {
+    if (request.headers['content-type'] == "application/x-www-form-urlencoded") {
         return await parseUrlencoded(request)
     }
 }
