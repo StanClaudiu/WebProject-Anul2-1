@@ -1,1 +1,1 @@
-export { default as MySqlDatabase } from './mySqlDatabase.js';
+export { default as OracleDatabase } from './oracle/oracleDatabase.js';
