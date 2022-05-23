@@ -1,1 +1,1 @@
-//placeholder
+export { default as UserMiddleware } from './userMiddleware.js';

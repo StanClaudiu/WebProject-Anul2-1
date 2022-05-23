@@ -1,6 +1,8 @@
 import http from "http"
 import { Router } from "./index.js"
-import fs from "fs";
+import { AddZenFunctionalities,
+         AddRequestFunctionalities, 
+         AddResponseFunctionalities } from "./functionalities/index.js"
 import path from "path";
 import url from "url";
 import StatusCodes from "http-status-codes";
@@ -17,42 +19,49 @@ class App {
     }
 
     isStatic = (url) => String(url).startsWith(`/public`)
+    hasValidHeaders = (headers) => !headers['content-type'] || 
+                                    headers['content-type'].includes("multipart/form-data") ||
+                                    headers['content-type'] == "x-www-form-urlencoded"
 
     listen() {
-        http.createServer(function (request, response) {
-
+        http.createServer(async function (request, response) {
+            
             let zen = {}
-            zen = this.addZenFunctionalities(zen);
-            response = this.addResponseFunctionalities(response);
-            response = this.addResponseFunctionalities(response);
-            request = this.addRequestFunctionalities(request);
+            zen = AddZenFunctionalities(zen);
+            response = AddResponseFunctionalities(response);
+            request = AddRequestFunctionalities(request);
+
+            await request.augment()
+            await response.augment()
+            await zen.augment(this.db, request)
+            
+            response = this.setResponseHeaders(response);
+
+            //AugmentData
 
             if (this.isStatic(request.url)) {
-                response = this.handleStatic(request, response);
+                response = await this.handleStatic(request, response);
                 return;
             }
 
             console.log(`${request.method} on ${request.url}`)
 
-
-            if (!request.headers['content-type']) {
-                response = this.router.handleRoute(zen, request, response)
-                return
+            if (this.hasValidHeaders(request.headers)) {
+                response = await this.router.handleRoute(zen, request, response)
+                return;
             } 
             else {
                 response.status(415).json({
-                    error: `Invalid Content Type Header`
+                    error: `Invalid Headers`
                 })
                 request.connection.destroy()
             }
 
         }.bind(this)).listen(this.port)
 
-
         console.log(`app running on PORT: ${this.port}`)
-
     }
-    useWebRoute(router) {
+    useRoute(router) { //doesn't check for duplicate routes
         this.router.getRoutes = { ...this.router.getRoutes, ...router.getRoutes }
         this.router.postRoutes = { ...this.router.postRoutes, ...router.postRoutes }
         this.router.deleteRoutes = { ...this.router.deleteRoutes, ...router.deleteRoutes }
@@ -70,91 +79,7 @@ class App {
         return response;
     }
 
-    addResponseFunctionalities(response) {
-
-        response.status = (newStatusCode) => {
-            response.statusCode = newStatusCode
-            return response
-        }
-
-        response.json = (newJson) => {
-            response.setHeader('Content-Type', 'application/json');
-            response.write(JSON.stringify(newJson))
-            response.end()
-            return response
-
-        }
-
-        response.sendFile = async (filePath) => {
-
-            const extensionToResponse = {
-                '.ico': 'image/x-icon',
-                '.html': 'text/html',
-                '.js': 'text/javascript',
-                '.json': 'application/json',
-                '.css': 'text/css',
-                '.png': 'image/png',
-                '.jpg': 'image/jpeg',
-                '.wav': 'audio/wav',
-                '.mp3': 'audio/mpeg',
-                '.svg': 'image/svg+xml',
-                '.pdf': 'application/pdf',
-                '.doc': 'application/msword'
-            };
-
-            try {
-                const extension = path.parse(filePath).ext;
-
-                const stat = await fs.promises.stat(filePath);
-
-                if (!stat.isFile) {
-                    return response.status(StatusCodes.BAD_REQUEST).json({
-                        error: `bad request. not a file`
-                    })
-                } 
-                else {
-                    const data = await fs.promises.readFile(filePath)
-                    response.setHeader('Content-type', extensionToResponse[extension] || 'text/plain');
-                    response.setHeader('Content-length', stat.size);
-                    response.write(data)
-                    response.end()
-                }
-            } 
-            catch (err) {
-                console.error(err)
-
-                if (err.code == 'ENOENT') {
-                    return response.status(StatusCodes.NOT_FOUND).json({
-                        error: err.message,
-                        path: filePath
-                    })
-                }
-
-                return response.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-                    ...sendDebugInResponse && { error: err.message },
-                    path: filePath
-                })
-            }
-
-            return response
-        }
-
-        return response
-    }
-
-    addRequestFunctionalities(request) {
-        request.parameters = url.parse(request.url, true).query;
-        return request;
-    }
-
-    addZenFunctionalities(zen) {
-        if (this.db) {
-            zen.db = this.db;
-        }
-        return zen;
-    }
-
-    handleStatic(request, response) {
+    async handleStatic(request, response) {
 
         const parsedUrl = url.parse(request.url)
 
@@ -166,7 +91,7 @@ class App {
                 success: false,
             })
 
-        return response.sendFile("public/" + realPath.replace(/^.+?[/]/, ''))  
+        return await response.sendFile("public/" + realPath.replace(/^.+?[/]/, ''))  
     }
 }
 
