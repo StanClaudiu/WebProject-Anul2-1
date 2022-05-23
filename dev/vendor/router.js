@@ -57,22 +57,27 @@ class Router {
                     if (await this.postRoutes[requestUrl]["middleware"](zen, request, response)) {
                         return await this.postRoutes[requestUrl]["controller"](zen, request, response)
                     }
+                    break
                 case "GET":
                     if (await this.getRoutes[requestUrl]["middleware"](zen, request, response)) {
                         return await this.getRoutes[requestUrl]["controller"](zen, request, response)
                     }
+                    break
                 case "DELETE":
                     if (await this.deleteRoutes[requestUrl]["middleware"](zen, request, response)) {
                         return await this.deleteRoutes[requestUrl]["controller"](zen, request, response)
                     }
+                    break
                 case "PUT":
                     if (await this.putRoutes[requestUrl]["middleware"](zen, request, response)) {
                         return await this.putRoutes[requestUrl]["controller"](zen, request, response)
                     }
+                    break
                 case "PATCH":
                     if (await this.patchRoutes[requestUrl]["middleware"](zen, request, response)) {
                         return await this.patchRoutes[requestUrl]["controller"](zen, request, response)   
                     }
+                    break
                 default:
                     throw new Error(`no route with such http verb: ${request.method}`)
             }
