@@ -99,6 +99,11 @@ const AddResponseFunctionalities = (response) => {
         return response;
     }
 
+    response.redirect = (location) => {
+        response.writeHead(301, {Location: location});
+        return response;
+    }
+
     response.augment = async () => {}
 
     return response

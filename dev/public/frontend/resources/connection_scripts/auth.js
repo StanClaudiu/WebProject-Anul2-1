@@ -39,6 +39,38 @@ const customRegisterHandle = (formElement) => {
     })
 }
 
+const customLoginHandle = (formElement) => {
+    const loginData = handleSubmit(formElement)
+    console.log(JSON.stringify(loginData))
+    fetch("/api/v1/login", {
+        method: 'post',
+        body: JSON.stringify(loginData),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        return response
+    }).then(async (response) => {
+        if (response.status === 200) {
+            let body = await response.json();
+
+            if (body["role"] == "user") {
+                window.location.href = "/courses";
+            }
+            else if (body["role"] == "admin") {
+                window.location.href = "/adminPage";
+            }
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
 const addCustomRegisterHandle = (id) => {
     document.getElementById(id).addEventListener("submit", customRegisterHandle);
+}
+
+const addCustomLoginHandle = (id) => {
+    document.getElementById(id).addEventListener("submit", customLoginHandle);
 }
