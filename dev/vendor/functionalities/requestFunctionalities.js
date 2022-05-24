@@ -38,48 +38,55 @@ const parseMultipart = async (request) => {
 }
 
 const parseUrlencoded = async (request) => {
-    const decoder = new StringDecoder('utf-8');
-    let buffer = '';
-  
-    await request.on('data', (chunk) => {
-        buffer += decodeURIComponent(decoder.write(chunk));
+    return new Promise ((resolve, reject) => {
+            
+        const decoder = new StringDecoder('utf-8');
+        let buffer = '';
+    
+        request.on('data', (chunk) => {
+            buffer += decodeURIComponent(decoder.write(chunk));
+        });
+
+        request.on('end', () => {
+            let fields = {}
+
+            buffer += decodeURIComponent(decoder.end());
+
+            const decodedValues = buffer.split("&")
+
+            decodedValues.forEach((decodedValue) => {
+                const keyValue = decodedValue.split("=")
+                fields[keyValue[0]] = keyValue[1]
+            })
+            console.log(fields)
+            resolve({"fields": fields, "files": {}})
+        });
+
     });
-  
-    let fields = {}
-
-    await request.on('end', () => {
-        buffer += decodeURIComponent(decoder.end());
-
-        const decodedValues = buffer.split("&")
-
-        decodedValues.forEach((decodedValue) => {
-            const keyValue = decodedValue.split("=")
-            fields[keyValue[0]] = keyValue[1]
-        })
-    });
-
-    return {"fields": fields, "files": {}}
 }
 
 const parseJosnBody = async (request) => {
-    let buffer = '';
-    await request.on('data', chunk => {
-        buffer += chunk
-    })
+    return new Promise ((resolve, reject) => { 
 
-    let fields = {}
-
-    await request.on('end', () => {
-        try {
-            fields = JSON.parse(buffer)
-        } 
-        catch (error) {
-            console.log(error)
-            return
-        }    
-    });
+        let buffer = '';
+        request.on('data', chunk => {
+            buffer += chunk
+        })
     
-    return {"fields": fields, "files": {}}
+        request.on('end', () => {
+            let fields = {}
+            try {
+                fields = JSON.parse(buffer)
+                resolve({"fields": fields, "files": {}})
+            } 
+            catch (error) {
+                console.log(error)
+                resolve({"fields": {}, "files": {}})
+                return
+            }    
+        });
+
+    });
 }
 
 const parseBody = async (request) => {

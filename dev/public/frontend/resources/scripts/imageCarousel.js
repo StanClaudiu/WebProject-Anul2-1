@@ -11,19 +11,19 @@ const showSlides = (n) => {
   
   for (let i = 0; i < slides.length; i++) 
   {
-      slides[i].classList.remove("image-slider-active-slide");
+    slides[i].classList.remove("image-slider-active-slide");
   }
   for (let i = 0; i < dots.length; i++) 
   {
-      dots[i].classList.remove("image-slider-active-dot");
+    dots[i].classList.remove("image-slider-active-dot");
   }
   
-  slides[slideIndex-1].classList.add("image-slider-active-slide");
-  dots[slideIndex-1].classList.add("image-slider-active-dot");
+  slides[slideIndex - 1].classList.add("image-slider-active-slide");
+  dots[slideIndex - 1].classList.add("image-slider-active-dot");
 }
 
 const plusSlides = (n) => {
-    console.log("Da")
+  console.log("Da")
   showSlides(slideIndex += n);
 }
 

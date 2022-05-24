@@ -1,12 +1,13 @@
 const handleSubmit = (formElement) => {
     formElement.preventDefault();
-    let data = [...formElement.currentTarget.elements]
+    let data = {};
+
+    [...formElement.currentTarget.elements]
         .filter((inputElement) => inputElement.type !== "submit")
-        .map((inputElement) => {
-            return {
-                [inputElement.getAttribute("name")]: inputElement.type === "file" ? inputElement.files : inputElement.value,
-            };
+        .forEach((inputElement) => {
+            data[inputElement.getAttribute("name")] = inputElement.type === "file" ? inputElement.files : inputElement.value
         });
+
     return data
 };
 
@@ -21,9 +22,9 @@ const customRegisterHandle = (formElement) => {
             'Content-Type': 'application/json'
         }
     }).then((response) => {
-        return response.json()
-    }).then((res) => {
-        if (res.status === 200) {
+        return response
+    }).then((response) => {
+        if (response.status === 201) {
             console.log("Post successfully created!")
         }
     }).catch((error) => {

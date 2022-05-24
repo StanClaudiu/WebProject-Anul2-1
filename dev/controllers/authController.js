@@ -31,7 +31,7 @@ const AuthController = {
             return
         }
 
-        response.json("all good")
+        response.status(201).json("all good")
     },
 
     login: async (zen, request, response) => {
@@ -47,7 +47,7 @@ const AuthController = {
             return
         }
 
-        response.json("all good")
+        response.status(200).json("all good")
     },
 
     logout: async (zen, request, response) => {

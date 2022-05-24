@@ -72,6 +72,11 @@ const AddResponseFunctionalities = (response) => {
         return response
     }
 
+    response.status = (newStatusCode) => {
+        response.statusCode = newStatusCode
+        return response
+    }
+
     response.sendRaw = (data, responseType) => {
         response.setHeader('Content-type', responseType);
         response.write(data)
