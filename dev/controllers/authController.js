@@ -31,7 +31,7 @@ const AuthController = {
             return
         }
 
-        response.status(201).json("all good")
+        response.status(201).json({"role": appUser.role})
     },
 
     login: async (zen, request, response) => {
@@ -47,7 +47,7 @@ const AuthController = {
             return
         }
 
-        response.status(200).json("all good")
+        response.status(200).json({"role": user.role})
     },
 
     logout: async (zen, request, response) => {

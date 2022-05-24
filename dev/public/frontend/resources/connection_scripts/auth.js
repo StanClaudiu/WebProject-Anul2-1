@@ -23,9 +23,16 @@ const customRegisterHandle = (formElement) => {
         }
     }).then((response) => {
         return response
-    }).then((response) => {
+    }).then(async (response) => {
         if (response.status === 201) {
-            console.log("Post successfully created!")
+            let body = await response.json();
+
+            if (body["role"] == "user") {
+                window.location.href = "/courses";
+            }
+            else if (body["role"] == "admin") {
+                window.location.href = "/adminPage";
+            }
         }
     }).catch((error) => {
         console.log(error)
