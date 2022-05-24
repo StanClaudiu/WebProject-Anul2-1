@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Garden</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="public/frontend/resources/styles/main.css">
+        <link rel="stylesheet" href="public/frontend/resources/styles/components.css">
+        <link rel="stylesheet" href="public/frontend/resources/styles/dashboard.css">
+        <link rel="stylesheet" href="public/frontend/resources/styles/leaderboard.css">
+        <link rel="stylesheet" href="public/frontend/resources/font_awesome/css/all.min.css">
+        <link rel="stylesheet" href="public/frontend/resources/styles/myGarden.css">
+    </head>
+    <body id="body_root">
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/main" class="nav-link">
+                        <i class="fa-solid fa-house fa-2xl"></i>
+                        <span class="link-text"> Home</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-seedling fa-2xl"></i>
+                        <span class="link-text"> Garden</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/courses" class="nav-link">
+                        <i class="fa-solid fa-book-bookmark fa-2xl"></i>
+                        <span class="link-text"> Courses</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/leaderboard" class="nav-link">
+                        <i class="fa-solid fa-ranking-star fa-2xl"></i>
+                        <span class="link-text"> Leaderboard</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-person-walking-arrow-right fa-2xl"></i>
+                        <span class="link-text"> Disconnect</span><!-- marcheaza inceputul de text -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+
+        <!--Incercam sa aducem modalele-->
+
+
+
+
+        <main>
+            <!--
+                Butoanele de care zicea Radu
+
+            <div class="nav-bar-field nav-bar-buttons" id="nav-bar-hamburger-element">
+                <a class="button-plain button-plain-wheat nav-bar-button" onclick="openModal('signup_modal')">Sign up</a>
+                <a class="button-box button-box-wheat nav-bar-button" onclick="openModal('login_modal')">Login</a>
+            </div>
+            -->
+            <div class="main_Container" >
+               <div class="comp_Container" >
+                   <div class="header_Container" >
+                       <div class="page-name">My Garden</div>
+                        <div style="color:green"><a class="add_plants" onclick="openModal('add_modal')"><i class="fa-solid fa-circle-plus fa-2xl"></i></a></div>
+                   </div>
+                   <div class="garden_Component_Container" >
+                        <div class="plant_name_Component" >
+                            <div class="plants-summary-image">
+                                <img alt="image of gardening tools" src="public/frontend/resources/images/carousel/carousel1.jpg" />
+                            </div>
+                                <div class="my_description">
+                                    <div>Vegetables</div>
+                                    <div><i class="fa-solid fa-ellipsis"></i></div>
+                            </div>
+                        </div>
+                        <div class="plant_name_Component" >
+                            <div class="plants-summary-image">
+                                <img alt="image of gardening tools" src="public/frontend/resources/images/carousel/carousel1.jpg" />
+                            </div>
+                                <div class="my_description">
+                                    <div>Vegetables</div>
+                                    <div><i class="fa-solid fa-ellipsis"></i></div>
+                            </div>
+                        </div>
+                        <div class="plant_name_Component" >
+                            <div class="plants-summary-image">
+                                <img alt="image of gardening tools" src="public/frontend/resources/images/carousel/carousel1.jpg" />
+                            </div>
+                                <div class="my_description">
+                                    <div>Vegetables</div>
+                                    <div><i class="fa-solid fa-ellipsis"></i></div>
+                            </div>
+                        </div>
+                        <div class="plant_name_Component">
+                            <div class="plants-summary-image">
+                                <img alt="image of tree" src="public/frontend/resources/images/logo.png" />
+                            </div>
+                                <div class="my_description">
+                                    <div>Trees</div>
+                                    <div><a class="inspect_trees_reminder" onclick="openModal('inspect_trees_modal')"><i class="fa-solid fa-ellipsis"></a></i></div>
+                            </div>
+                        </div>
+                        <div class="plant_name_Component" >
+                            <div class="plants-summary-image">
+                                <img alt="image of flowers" src="public/frontend/resources/images/carousel/carousel2.jpg" />
+                            </div>
+                            <div class="my_description">
+                                <div>Flowers</div>
+                            <div><i class="fa-solid fa-ellipsis"></i></div>
+                            </div>
+                        </div>
+                   </div>
+                   <div class="remainder_title">
+                       REMAINDER
+                   </div>
+                   <div class="remainders_Component" >
+                        <div class="remainder_element" >
+                            <div>Water your tomatoes</div>
+                            <div class="options_remainder"><a class="inspect_reminder" onclick="openModal('inspect_reminder_modal')"><i class="fa-solid fa-ellipsis"></i></a></div>
+                            <div class="close_remainder"><a class="close_reminder"onclick="openModal('close_reminder_modal')"><i class="fa-solid fa-xmark"></i></a></div>
+                        </div>
+                        <div class="remainder_element" >
+                            <div>Harvest your flowers</div>
+                            <div class="options_remainder"><i class="fa-solid fa-ellipsis"></i></div>
+                            <div class="close_remainder"><i class="fa-solid fa-xmark"></i></div>
+                        </div>
+                        <div class="remainder_element" >
+                            <div>Graft your grown</div>
+                            <div class="options_remainder"><i class="fa-solid fa-ellipsis"></i></div>
+                            <div class="close_remainder"><i class="fa-solid fa-xmark"></i></div>
+                        </div>
+                   </div>
+               </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="modals_heap"> <!-- De ce asta aici?,de unde vine?-->
+                <div class="modal_container" id="add_modal">
+                    <div class="modal garden_modal">
+                        <div class="auth-form-container">
+                            <form class="pretty_form" id="add_plant_form" action="/">
+                                <label for="name_of_plant">Name</label>
+                                <input type="text" id="name_of_plant" name="name_of_plant" required>
+                                <!-- this needs to be a select-->
+                                <label for="type_of_plant">Type</label>
+                                <div class="selector_add_plant pretty_form">
+                                    <select id="type_of_plant" name="type_of_plant">
+                                    <option value="Trees">Trees</option>
+                                    <option value="Flowers">Flowers</option>
+                                    <option value="Vegetables">Vegetables</option>
+                                    </select>
+                                </div> 
+                            </form>
+                        </div>
+                        <div class="modal-action-buttons">
+                            <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Create</button>
+                            <div class="button-box button-box-red" onclick="closeModal('add_modal')">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal_container" id="inspect_reminder_modal">
+                    <div class="modal">
+                        <div class="auth-form-container remainder_container">
+                           <div>Remainder</div>
+                           <div>Water your tomatoes</div>
+                        </div>
+                        <div class="modal-action-buttons">
+                            <div class="button-box button-box-red" onclick="closeModal('inspect_reminder_modal')">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal_container" id="inspect_trees_modal">
+                    <div class="modal">
+                        <div class="auth-form-container plants_made_beatiful">
+                            <div class="tree_formated">
+                                <div>Copacel</div>
+                                <div><i class="fa-solid fa-xmark"></i></div>
+                            </div>
+                            <div class="tree_formated">
+                                <div>Bonzai</div>
+                                <div><i class="fa-solid fa-xmark"></i></div>
+                            </div>
+                            <div class="tree_formated">
+                                <div>Nuc</div>
+                                <div><i class="fa-solid fa-xmark"></i></div>
+                            </div>
+                        </div>
+                        <div class="modal-action-buttons">
+                            <div class="button-box button-box-red" onclick="closeModal('inspect_trees_modal')">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal_container" id="close_reminder_modal">
+                    <div class="modal">
+                        <div class="auth-form-container">
+                           Are you sure you want to delete this reminder?
+                        </div>
+                        <div class="modal-action-buttons">
+                            <div class="button-box button-box-red" onclick="closeModal('close_reminder_modal')">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+            <script src="public/frontend/resources/scripts/navBar.js"></script>
+            <script src="public/frontend/resources/scripts/modal.js"></script>
+            <script src="public/frontend/resources/scripts/countingNumbers.js"></script>
+          
+    </body>
+
+
+
+       
+        
+</html>

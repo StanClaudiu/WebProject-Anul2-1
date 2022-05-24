@@ -20,7 +20,6 @@
   "homepage": "https://github.com/RaduStefan999/WebProject-Anul2#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "body-parser": "^1.20.0",
     "dateformat": "^4.5.1",
     "dotenv": "^8.6.0",
     "formidable": "^2.0.1",

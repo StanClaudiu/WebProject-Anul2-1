@@ -1,0 +1,103 @@
+main{
+    background-color: rgb(190, 245, 168);
+    display:flex;
+    flex-direction: column;
+}
+.add_button{
+    margin-top: 10vh;
+    margin-right:10vh;
+    margin-left: auto;
+   
+    color:black;
+}
+
+.add_button i:hover{
+    color: rgb(243, 18, 2);
+    transition:1s;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.table_placement{
+   
+    margin-top: 15vh;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    
+}/*So it looks nice*/
+.table_construction{
+    width: 100%;
+}
+div.table_construction tr th:last-child i:hover{
+    color: rgb(255, 0, 0);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+div.table_construction tr th:nth-last-child(2) i:hover{
+    color: rgb(0, 255, 72);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+div.table_construction > table {
+    overflow-x:auto;
+    background-color:white;
+    border-collapse: collapse;
+    width: 100%;
+}
+div.table_construction > table tr th:not(:last-child){
+    padding: 10px;
+    
+}
+div.table_construction > div table tr th{
+    min-width: 50px;
+    max-width: 100px;
+}
+div.table_construction > table tr:nth-child(even){
+    height: 40px;
+    background-color: rgb(190, 245, 168);
+    background-image:linear-gradient(white,rgb(190, 245, 168),rgb(190, 245, 168),white);
+}
+div.table_construction > table tr:first-child{
+    height: 40px;
+    background-color: rgb(190, 245, 168);
+}
+div.table_construction > table tr:nth-child(2){
+    height: 40px;
+    background-color: rgb(190, 245, 168);
+    background-image: linear-gradient(rgb(190, 245, 168),white);
+}
+div.table_construction >table tr:nth-child(odd):not(:first-child):hover{
+    transition-duration: 500ms;
+    background-color: rgba(252, 248, 4, 0.755);
+     
+}
+div.table_construction >table tr:nth-child(odd):not(:first-child){
+    transition-duration: 250ms;
+}
+.modal{
+   justify-content: flex-start;
+   
+    max-width: 80vw;
+    max-height: 80vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px;
+}
+#delete_course .modal{
+    max-width: 30vw;
+    text-align: center;
+}
+
+@media only screen and (max-width:700px)
+{
+    main{
+        margin-left: 0rem;
+    }
+    .table_placement{
+        width: 90;
+        margin-left: 5%;
+        margin-right:  5%;
+    }
+}
+
+
