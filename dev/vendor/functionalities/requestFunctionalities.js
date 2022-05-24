@@ -63,21 +63,18 @@ const parseUrlencoded = async (request) => {
 
 const parseJosnBody = async (request) => {
     let buffer = '';
-    await req.on('data', chunk => {
+    await request.on('data', chunk => {
         buffer += chunk
     })
 
     let fields = {}
 
-    await req.on('end', () => {
+    await request.on('end', () => {
         try {
             fields = JSON.parse(buffer)
         } 
         catch (error) {
-            res.status(400).json({
-                success: false,
-                error: err.message
-            })
+            console.log(error)
             return
         }    
     });
@@ -94,6 +91,9 @@ const parseBody = async (request) => {
     }
     if (request.headers['content-type'] == "application/x-www-form-urlencoded") {
         return await parseUrlencoded(request)
+    }
+    if (request.headers['content-type'] == "application/json") {
+        return await parseJosnBody(request)
     }
 }
 

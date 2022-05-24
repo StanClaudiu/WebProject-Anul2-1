@@ -21,7 +21,8 @@ class App {
     isStatic = (url) => String(url).startsWith(`/public`)
     hasValidHeaders = (headers) => !headers['content-type'] || 
                                     headers['content-type'].includes("multipart/form-data") ||
-                                    headers['content-type'] == "application/x-www-form-urlencoded"
+                                    headers['content-type'] == "application/x-www-form-urlencoded" ||
+                                    headers['content-type'] == "application/json"
 
     listen() {
         http.createServer(async function (request, response) {

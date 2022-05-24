@@ -312,7 +312,7 @@
             <div class="modal_container" id="signup_modal">
                 <div class="modal">
                     <div class="auth-form-container">
-                        <form class="pretty_form" id="signup_form" action="/api/v1/register" method="post" enctype="multipart/form-data">
+                        <form class="pretty_form" id="signup_form">
                             <label for="signup_name">Name</label>
                             <input type="text" id="signup_name" name="name" required>
                             <label for="signup_email">Email</label>
@@ -351,10 +351,13 @@
         <script src="public/frontend/resources/scripts/imageCarousel.js"></script>
         <script src="public/frontend/resources/scripts/modal.js"></script>
         <script src="public/frontend/resources/scripts/countingNumbers.js"></script>
+        <script src="public/frontend/resources/connection_scripts/auth.js"></script>
         <script>
             addWhatchedNumberCounter('courses-stats', 0, 100, 5000)
             addWhatchedNumberCounter('videos-stats', 0, 70, 5000)
             addWhatchedNumberCounter('users-stats', 0, 20, 5000)
+
+            addCustomRegisterHandle('signup_form')
         </script>
     </body>
 </html>
