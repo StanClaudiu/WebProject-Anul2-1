@@ -5,6 +5,7 @@
     display: inline-block;
     border-radius: 7px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .button-plain:hover {
