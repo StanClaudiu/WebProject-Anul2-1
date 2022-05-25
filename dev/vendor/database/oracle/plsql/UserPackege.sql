@@ -14,10 +14,13 @@ CREATE TABLE base_user
     password VARCHAR2(80) NOT NULL
 ) /* STATEMENT */;
 
+
+
 CREATE SEQUENCE base_user_seq START WITH 1 /* STATEMENT */;
 
 
 --CREATE PACKEGE
+
 
 CREATE OR REPLACE PACKAGE user_packege IS
     TYPE table_type is table of base_user%ROWTYPE;
@@ -33,6 +36,8 @@ CREATE OR REPLACE PACKAGE user_packege IS
     
     FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN table_type PIPELINED;
 END user_packege;/* STATEMENT */
+
+
 
 
 CREATE OR REPLACE PACKAGE BODY user_packege IS
@@ -87,3 +92,10 @@ CREATE OR REPLACE PACKAGE BODY user_packege IS
     END get_user_by_email;  
     
 END user_packege;/* STATEMENT */
+
+
+
+----DE LUAT DE AICI!!!!!DE STERS ADICA
+SELECT user_packege.get_users() FROM DUAL;
+
+
