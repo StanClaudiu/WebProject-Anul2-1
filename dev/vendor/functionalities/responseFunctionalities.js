@@ -100,7 +100,8 @@ const AddResponseFunctionalities = (response) => {
     }
 
     response.redirect = (location) => {
-        response.writeHead(301, {Location: location});
+        response.writeHead(302, {Location: location});
+        response.end()
         return response;
     }
 

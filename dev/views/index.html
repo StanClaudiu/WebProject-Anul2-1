@@ -21,8 +21,21 @@
                     </div>
                 </div>
                 <div class="nav-bar-field nav-bar-buttons" id="nav-bar-hamburger-element">
-                    <a class="button-plain button-plain-wheat nav-bar-button" onclick="openModal('signup_modal')">Sign up</a>
-                    <a class="button-box button-box-wheat nav-bar-button" onclick="openModal('login_modal')">Login</a>
+                    @@zen
+                        if (!wiredObject['isLoggedIn']) {
+                            return `
+                                <a class="button-plain button-plain-wheat nav-bar-button" onclick="openModal('signup_modal')">Sign up</a>
+                                <a class="button-box button-box-wheat nav-bar-button" onclick="openModal('login_modal')">Login</a>
+                            `
+                        }
+                        else {
+                            return `
+                                <a class="button-plain button-plain-wheat nav-bar-button" href="${wiredObject['user']['role'] == 'user' ? '/courses' : '/adminPage'}">Dashboard</a>
+                            `
+                        }
+                        return wiredObject["email"]
+                    @@zen
+
                     <div class="nav-bar-close-hamburger" onclick="closeHamburgerNavbar()"><i class="fa-solid fa-circle-xmark"></i></div>
                 </div>
                 <div class="nav-bar-field nav-bar-toggle-hamburger" onclick="openHamburgerNavbar()">
@@ -110,9 +123,6 @@
                     <div class="description-bloks-row" id="description-bloks-first-row">
                         <div class="card description-block" id="description-block-first">
                             <div class="description-block-title">
-                                @@zen
-                                    return wiredObject["email"]
-                                @@zen
                                 Text block 1
                             </div>
                             <div class="description-block-text">
