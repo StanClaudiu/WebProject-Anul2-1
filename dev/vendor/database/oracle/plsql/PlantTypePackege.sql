@@ -52,7 +52,7 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
     END add_plant_type;         
     
     FUNCTION get_plant_types RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM base_user;
+        CURSOR table_cursor IS SELECT * FROM plant_type;
     BEGIN
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
@@ -60,7 +60,7 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
     END get_plant_types;           
     
     FUNCTION get_plant_type_by_id ( id_plant_type plant_type.id%TYPE) RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM base_user WHERE id = id_plant_type;
+        CURSOR table_cursor IS SELECT * FROM plant_type WHERE id = id_plant_type;
     BEGIN
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
