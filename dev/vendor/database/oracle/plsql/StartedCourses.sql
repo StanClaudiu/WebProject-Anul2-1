@@ -27,14 +27,18 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
 -----let's make the package
 
     CREATE OR REPLACE PACKAGE started_courses_package IS
-        TYPE table_type IS TABLE OF started_courses%ROWTYPE;
         
-        FUNCTION create_started_course (id_user started_courses.id_user%TYPE,
-                                        id_curs started_courses.id_curs%TYPE) RETURN INT;
+        CURSOR table_for_return_allCourses IS SELECT sc.id_statistics , sc.id_curs, sc.progress,c.course_name,c.description_course   FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs; 
+        ----this is just for the type
+        
+        TYPE preview_courses_table IS TABLE OF table_for_return_allCourses%ROWTYPE;
+        
+        FUNCTION create_started_course (p_id_user started_courses.id_user%TYPE,
+                                        p_id_curs started_courses.id_curs%TYPE) RETURN INT ;
         FUNCTION update_started_course (id_stat started_courses.id_curs%TYPE,
                                         p_progress started_courses.id_curs%TYPE) RETURN INT;
         FUNCTION getAllStartedCourses(p_id_user started_courses.id_user%TYPE) 
-                                                                        RETURN table_type PIPELINED;
+                                                                        RETURN preview_courses_table PIPELINED;
         
     END started_courses_package /* STATEMENT */ ;
     
@@ -46,12 +50,12 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
     CREATE OR REPLACE PACKAGE BODY started_courses_package IS
         
         
-         FUNCTION create_started_course (id_user started_courses.id_user%TYPE,
-                                        id_curs started_courses.id_curs%TYPE) RETURN INT AS      
+         FUNCTION create_started_course (p_id_user started_courses.id_user%TYPE,
+                                        p_id_curs started_courses.id_curs%TYPE) RETURN INT AS      
             PRAGMA AUTONOMOUS_TRANSACTION;
             id_val_stat INT;    
          BEGIN
-            INSERT INTO started_courses VALUES(started_courses_seq.NEXTVAL,id_user,id_curs,0);
+            INSERT INTO started_courses VALUES(started_courses_seq.NEXTVAL,p_id_user,p_id_curs,0);
             COMMIT;
             SELECT started_courses_seq.CURRVAL INTO id_val_stat FROM DUAL;
             RETURN id_val_stat;
@@ -79,8 +83,9 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
             RETURN -1;
         END update_started_course;
         
-        FUNCTION getAllStartedCourses(p_id_user started_courses.id_user%TYPE) RETURN table_type PIPELINED IS
-            CURSOR table_started_courses IS SELECT * FROM started_courses WHERE started_courses.id_user = p_id_user; 
+        FUNCTION getAllStartedCourses(p_id_user started_courses.id_user%TYPE) RETURN preview_courses_table PIPELINED IS
+            CURSOR table_started_courses IS SELECT sc.id_statistics , c.id_curs, sc.progress,c.course_name,c.description_course  
+            FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs where id_user=p_id_user OR (NVL(id_user,-1)=-1 AND NVL(c.parent_id,-1)=-1);
         BEGIN
             FOR current_course IN table_started_courses LOOP
                 PIPE ROW(current_course);
@@ -91,10 +96,11 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
 
 ---MY TESTS
 ROLLBACK;
-INSERT INTO started_courses VALUES(1,1,1,0.2);--ID , ID_USER , ID_CURS , PROCENTAJ
-INSERT INTO started_courses VALUES(2,1,2,0.2);
 
-SELECT started_courses_package.update_started_course(1,2) FROM DUAL;
-SELECT started_courses_package.create_started_course(1,3) FROM DUAL;
-SELECT started_courses_package.getAllStartedCourses(2) FROM DUAL;
-SELECT * FROM started_courses;
+
+SELECT sc.id_user,sc.id_statistics , sc.id_curs, sc.progress,c.course_name,c.description_course   FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs where id_user=1 OR NVL(id_user,-1)=-1;
+
+SELECT started_courses_package.update_started_course(1,0.4) FROM DUAL;
+SELECT started_courses_package.create_started_course(1,5) FROM DUAL;
+SELECT started_courses_package.getAllStartedCourses(1) FROM DUAL;
+SELECT * FROM started_courses;  
