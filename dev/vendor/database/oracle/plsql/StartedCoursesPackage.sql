@@ -93,14 +93,3 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
         END;
         
   END started_courses_package /* STATEMENT */;
-
----MY TESTS
-ROLLBACK;
-
-
-SELECT sc.id_user,sc.id_statistics , sc.id_curs, sc.progress,c.course_name,c.description_course   FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs where id_user=1 OR NVL(id_user,-1)=-1;
-
-SELECT started_courses_package.update_started_course(1,0.4) FROM DUAL;
-SELECT started_courses_package.create_started_course(1,5) FROM DUAL;
-SELECT started_courses_package.getAllStartedCourses(1) FROM DUAL;
-SELECT * FROM started_courses;  
