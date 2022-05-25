@@ -1,18 +1,22 @@
 class Course {
     db
     id
-    name
     parrentCourse
+    content
     description
-    videoLink
+    name
+    imgPath
+    videoPath
 
-    constructor(db, id, name, parrentCourse, description, videoLink) {
+    constructor(db, content, description, name, imgPath, videoPath= "null", parrentCourse = undefined,  id = 0) {
         this.db = db
         this.id = id
-        this.name = name
         this.parrentCourse = parrentCourse
+        this.content = content
         this.description = description
-        this.videoLink = videoLink
+        this.name = name
+        this.imgPath = imgPath
+        this.videoPath = videoPath
     }
 
     static async getIdByToken(db, token) {
@@ -29,11 +33,15 @@ class Course {
     }
 
     async create() {
-
+        this.id = await this.db.courseRepository.create(
+            this.parrentCourse != undefined ?  this.parrentCourse.id : "null", 
+            this.content, this.description, this.name, this.imgPath, this.videoPath)
     }
 
     async update() {
-
+        await this.db.courseRepository.update(
+            this.id, this.parrentCourse != undefined ?  this.parrentCourse.id : "null",
+            this.content, this.description, this.name, this.imgPath, this.videoPath)
     }
 
     async delete() {

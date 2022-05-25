@@ -9,7 +9,7 @@ class UserRepository {
 
     async initRepoEnvironment() {
         try {
-            const data = fs.readFileSync('vendor/database/oracle/plsql/UserPackege.sql', 'utf8');
+            const data = fs.readFileSync('vendor/database/oracle/plsql/UserPackage.sql', 'utf8');
             const  sqlCommands = data.split("/* STATEMENT */;").join("#")
                                 .split("/* STATEMENT */").join("#")
                                 .split("#");

@@ -36,7 +36,7 @@ CREATE OR REPLACE PACKAGE courses_package IS
                         p_image_path_download courses.image_path_download%TYPE,     p_course_video_path courses.course_video_path%TYPE) RETURN INT;
     FUNCTION getAllCourses RETURN base_type PIPELINED;
     FUNCTION getById(p_id_curs INT) RETURN base_type PIPELINED;
-END courses_package/* STATEMENT */;
+END courses_package;/* STATEMENT */
 
 CREATE OR REPLACE PACKAGE BODY courses_package IS
     
@@ -130,4 +130,4 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
         EXCEPTION WHEN others THEN
         raise_application_error(-20001,'I have an error when I am trying to get a curs by Id');
         END;
-END courses_package/* STATEMENT */;
+END courses_package;/* STATEMENT */

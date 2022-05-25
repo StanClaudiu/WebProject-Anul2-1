@@ -15,4 +15,6 @@ mainRoutes.get(`/adminPage`,PagesController.adminPage, UserMiddleware);
 
 mainRoutes.get(`/favicon.ico`, PagesController.favicon);
 
+mainRoutes.get(`/test`, PagesController.test);
+
 export default mainRoutes

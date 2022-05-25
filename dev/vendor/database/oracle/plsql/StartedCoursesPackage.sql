@@ -40,12 +40,10 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
         FUNCTION getAllStartedCourses(p_id_user started_courses.id_user%TYPE) 
                                                                         RETURN preview_courses_table PIPELINED;
         
-    END started_courses_package /* STATEMENT */ ;
+    END started_courses_package;/* STATEMENT */
     
    
          
-                                        
-    set serveroutput on;
     
     CREATE OR REPLACE PACKAGE BODY started_courses_package IS
         
@@ -92,4 +90,4 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
             END LOOP;
         END;
         
-  END started_courses_package /* STATEMENT */;
+  END started_courses_package;/* STATEMENT */

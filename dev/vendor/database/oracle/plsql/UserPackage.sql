@@ -1,31 +1,28 @@
 --CREATE TABLE
 
-DROP SEQUENCE reminder_seq /* STATEMENT */;
+DROP SEQUENCE base_user_seq /* STATEMENT */;
 
-DROP TABLE reminder CASCADE CONSTRAINTS /* STATEMENT */;
+DROP TABLE base_user CASCADE CONSTRAINTS /* STATEMENT */;
 
 
-CREATE TABLE reminder
+CREATE TABLE base_user
 (
     id INT NOT NULL PRIMARY KEY,
-    id_plant INT NOT NULL,  
-    CONSTRAINT fk_plant
-        FOREIGN KEY (id_plant)
-        REFERENCES plant(id)
-        ON DELETE CASCADE,
-        
-    content VARCHAR2(40) NOT NULL
+    role VARCHAR2(10) NOT NULL,
+    name VARCHAR2(40) NOT NULL,
+    email VARCHAR2(40) NOT NULL,
+    password VARCHAR2(80) NOT NULL
 ) /* STATEMENT */;
 
 
 
-CREATE SEQUENCE reminder_seq START WITH 1 /* STATEMENT */;
+CREATE SEQUENCE base_user_seq START WITH 1 /* STATEMENT */;
 
 
 --CREATE PACKEGE
 
 
-CREATE OR REPLACE PACKAGE reminder_packege IS
+CREATE OR REPLACE PACKAGE user_packege IS
     TYPE table_type is table of base_user%ROWTYPE;
     
     FUNCTION add_user ( user_role base_user.role%TYPE, 
@@ -38,12 +35,12 @@ CREATE OR REPLACE PACKAGE reminder_packege IS
     FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN table_type PIPELINED;
     
     FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN table_type PIPELINED;
-END reminder_packege;/* STATEMENT */
+END user_packege;/* STATEMENT */
 
 
 
 
-CREATE OR REPLACE PACKAGE BODY reminder_packege IS
+CREATE OR REPLACE PACKAGE BODY user_packege IS
 
     FUNCTION add_user ( user_role base_user.role%type, 
                         user_name base_user.name%type,
@@ -94,11 +91,6 @@ CREATE OR REPLACE PACKAGE BODY reminder_packege IS
         END LOOP;
     END get_user_by_email;  
     
-END reminder_packege;/* STATEMENT */
-
-
-
-----DE LUAT DE AICI!!!!!DE STERS ADICA
-SELECT reminder_packege.get_users() FROM DUAL;
+END user_packege;/* STATEMENT */
 
 

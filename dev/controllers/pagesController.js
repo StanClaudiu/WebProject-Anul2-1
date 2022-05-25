@@ -1,4 +1,5 @@
 import { StatusCodes } from "http-status-codes"
+import { Course } from "../models/index.js"
 
 const PagesController = {
     landingPage: async (zen, request, response) => {
@@ -27,6 +28,14 @@ const PagesController = {
 
     favicon: async (zen, request, response) => {
         await response.sendFile("public/frontend/resources/favicon.ico")
+    },
+
+    test: async (zen, request, response) => {
+        const curs = new Course(zen.db, "Acesta este cursul", "uite asa", "geani", "moraru", "aici")
+        await curs.create()
+        curs.content = "L-am schimbat"
+        await curs.update()
+        response.json(curs)
     }
 }
 

@@ -70,8 +70,3 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
 END plant_type_packege;/* STATEMENT */
 
 
-
-----DE LUAT DE AICI!!!!!DE STERS ADICA
-SELECT plant_packege.get_users() FROM DUAL;
-
-

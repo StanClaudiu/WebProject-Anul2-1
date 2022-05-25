@@ -102,8 +102,3 @@ CREATE OR REPLACE PACKAGE BODY plant_packege IS
 END plant_packege;/* STATEMENT */
 
 
-
-----DE LUAT DE AICI!!!!!DE STERS ADICA
-SELECT plant_packege.get_plants() FROM DUAL;
-
-
