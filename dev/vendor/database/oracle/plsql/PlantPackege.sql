@@ -54,15 +54,15 @@ CREATE OR REPLACE PACKAGE BODY plant_packege IS
                          id_type plant.id_type%TYPE,
                          plant_name plant.name%TYPE) RETURN INT AS
          
-        v_current_pant_id INT; 
+        v_current_plant_id INT; 
         PRAGMA AUTONOMOUS_TRANSACTION;
     BEGIN
         
         INSERT INTO plant (id, id_user, id_type, name) VALUES (plant_seq.NEXTVAL, id_user, id_type, plant_name); 
         COMMIT;
         
-        SELECT plant_seq.CURRVAL INTO v_current_pant_id FROM DUAL;
-        RETURN v_current_pant_id;
+        SELECT plant_seq.CURRVAL INTO v_current_plant_id FROM DUAL;
+        RETURN v_current_plant_id;
     END add_plant;         
     
     FUNCTION get_plants RETURN table_type PIPELINED AS

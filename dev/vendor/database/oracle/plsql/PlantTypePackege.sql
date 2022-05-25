@@ -39,24 +39,25 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
 
     FUNCTION add_plant_type ( plant_type_name plant_type.name%TYPE,
                               plant_type_image_link plant_type.image_link%TYPE) RETURN INT AS
-         
+                 
+        v_current_plant_type_id INT; 
         PRAGMA AUTONOMOUS_TRANSACTION;
     BEGIN
     
-        INSERT INTO plant_type (id, role, name, email, password) VALUES (base_user_seq.NEXTVAL, user_role, user_name, user_email, user_password); 
+        INSERT INTO plant_type (id, name, image_link) VALUES (plant_type_seq.NEXTVAL, plant_type_name, plant_type_image_link); 
         COMMIT;
         
-        SELECT base_user_seq.CURRVAL INTO v_current_user_id FROM DUAL;
-        RETURN v_current_user_id;
-    END add_user;         
+        SELECT plant_type_seq.CURRVAL INTO v_current_plant_type_id FROM DUAL;
+        RETURN v_current_plant_type_id;
+    END add_plant_type;         
     
-    FUNCTION get_users RETURN table_type PIPELINED AS
+    FUNCTION get_plant_types RETURN table_type PIPELINED AS
         CURSOR table_cursor IS SELECT * FROM base_user;
     BEGIN
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
         END LOOP;
-    END get_users;          
+    END get_plant_types;          
     
     FUNCTION get_user_by_id ( user_id base_user.id%TYPE) RETURN table_type PIPELINED AS
         CURSOR table_cursor IS SELECT * FROM base_user WHERE id = user_id; 
@@ -66,13 +67,13 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
         END LOOP;
     END get_user_by_id;   
     
-    FUNCTION get_user_by_email ( user_email base_user.email%TYPE) RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM base_user WHERE email = user_email;
+    FUNCTION get_plant_type_by_id ( id_plant_type plant_type.id%TYPE) RETURN table_type PIPELINED AS
+        CURSOR table_cursor IS SELECT * FROM base_user WHERE id = id_plant_type;
     BEGIN
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
         END LOOP;
-    END get_user_by_email;  
+    END get_plant_type_by_id;  
     
 END plant_type_packege;/* STATEMENT */
 
