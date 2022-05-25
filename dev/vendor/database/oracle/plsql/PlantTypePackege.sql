@@ -21,7 +21,7 @@ CREATE SEQUENCE plant_type_seq START WITH 1 /* STATEMENT */;
 
 
 CREATE OR REPLACE PACKAGE plant_type_packege IS
-    TYPE table_type is table of plant%ROWTYPE;
+    TYPE table_type is table of plant_type%ROWTYPE;
     
     FUNCTION add_plant_type ( plant_type_name plant_type.name%TYPE,
                               plant_type_image_link plant_type.image_link%TYPE) RETURN INT;
@@ -57,15 +57,7 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
         END LOOP;
-    END get_plant_types;          
-    
-    FUNCTION get_user_by_id ( user_id base_user.id%TYPE) RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM base_user WHERE id = user_id; 
-    BEGIN
-        FOR current_record IN table_cursor LOOP
-            PIPE ROW(current_record);
-        END LOOP;
-    END get_user_by_id;   
+    END get_plant_types;           
     
     FUNCTION get_plant_type_by_id ( id_plant_type plant_type.id%TYPE) RETURN table_type PIPELINED AS
         CURSOR table_cursor IS SELECT * FROM base_user WHERE id = id_plant_type;
