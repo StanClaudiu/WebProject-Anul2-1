@@ -32,9 +32,9 @@ CREATE SEQUENCE plant_seq START WITH 1 /* STATEMENT */;
 CREATE OR REPLACE PACKAGE plant_packege IS
     TYPE table_type is table of plant%ROWTYPE;
     
-    FUNCTION add_user ( id_user plant.id_user%TYPE, 
-                        id_type plant.id_type%TYPE,
-                        name plant.name%TYPE) RETURN INT;
+    FUNCTION add_plant ( id_user plant.id_user%TYPE, 
+                         id_type plant.id_type%TYPE,
+                         plant_name plant.name%TYPE) RETURN INT;
                         
     FUNCTION get_plants RETURN table_type PIPELINED;          
     
@@ -51,19 +51,19 @@ END plant_packege;/* STATEMENT */
 CREATE OR REPLACE PACKAGE BODY plant_packege IS
 
     FUNCTION add_plant ( id_user plant.id_user%TYPE, 
-                        id_type plant.id_type%TYPE,
-                        name plant.name%TYPE) RETURN INT;
+                         id_type plant.id_type%TYPE,
+                         plant_name plant.name%TYPE) RETURN INT AS
          
         v_current_pant_id INT; 
         PRAGMA AUTONOMOUS_TRANSACTION;
     BEGIN
         
-        INSERT INTO plant (id, id_user, id_type, name) VALUES (plant_seq.NEXTVAL, id_user, id_type, name); 
+        INSERT INTO plant (id, id_user, id_type, name) VALUES (plant_seq.NEXTVAL, id_user, id_type, plant_name); 
         COMMIT;
         
         SELECT plant_seq.CURRVAL INTO v_current_pant_id FROM DUAL;
         RETURN v_current_pant_id;
-    END add_user;         
+    END add_plant;         
     
     FUNCTION get_plants RETURN table_type PIPELINED AS
         CURSOR table_cursor IS SELECT * FROM plant;
@@ -87,28 +87,23 @@ CREATE OR REPLACE PACKAGE BODY plant_packege IS
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
         END LOOP;
-    END get_user_by_email;  
+    END get_plants_by_user_id;  
     
-        FUNCTION add_plant ( id_user plant.id_user%TYPE, 
-                        id_type plant.id_type%TYPE,
-                        name plant.name%TYPE) RETURN INT;
-         
-        v_current_pant_id INT; 
+    FUNCTION delete_plant_by_id ( id_plant plant.id%TYPE) RETURN INT AS
         PRAGMA AUTONOMOUS_TRANSACTION;
     BEGIN
         
-        INSERT INTO plant (id, id_user, id_type, name) VALUES (plant_seq.NEXTVAL, id_user, id_type, name); 
+        DELETE FROM plant WHERE id = id_plant;
         COMMIT;
         
-        SELECT plant_seq.CURRVAL INTO v_current_pant_id FROM DUAL;
-        RETURN v_current_pant_id;
-    END add_user;   
+        RETURN 1;
+    END delete_plant_by_id;   
     
 END plant_packege;/* STATEMENT */
 
 
 
 ----DE LUAT DE AICI!!!!!DE STERS ADICA
-SELECT plant_packege.get_users() FROM DUAL;
+SELECT plant_packege.get_plants() FROM DUAL;
 
 
