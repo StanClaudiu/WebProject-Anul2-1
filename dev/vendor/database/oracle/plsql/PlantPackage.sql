@@ -10,11 +10,11 @@ CREATE TABLE plant
     id INT NOT NULL PRIMARY KEY,
     id_user INT NOT NULL,
     id_type INT NOT NULL,  
-    CONSTRAINT fk_user
+    CONSTRAINT fk_plant_to_user
         FOREIGN KEY (id_user)
         REFERENCES base_user(id)
         ON DELETE CASCADE,
-    CONSTRAINT fk_type
+    CONSTRAINT fk_plant_to_type
         FOREIGN KEY (id_type)
         REFERENCES plant_type(id)
         ON DELETE CASCADE,
