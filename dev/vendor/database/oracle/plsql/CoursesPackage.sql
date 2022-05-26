@@ -46,7 +46,6 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
                         p_image_path_download courses.image_path_download%TYPE,     p_course_video_path courses.course_video_path%TYPE) RETURN INT IS
                         v_number_id INT;
                         v_value_parent INT;
-                        v_val_parinte INT;
                              PRAGMA AUTONOMOUS_TRANSACTION;
                         BEGIN
                              IF p_parent_id>0 OR p_parent_id<=0 THEN ---aici intra numerele
