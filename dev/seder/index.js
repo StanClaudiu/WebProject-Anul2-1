@@ -1,0 +1,1 @@
+export { default as SeedAdmins } from "./adminSeder.js"
