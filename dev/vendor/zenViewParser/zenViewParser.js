@@ -8,7 +8,8 @@ const ZenViewParser = async (wiredObject, zenViewPath) => {
     }
 
     let data = await fs.promises.readFile(zenViewPath, 'utf8')
-    const tokenizedData = data.split("@@zen")
+    const preprocessedData = data.replaceAll("@@host", process.env.APP_URI)
+    const tokenizedData = preprocessedData.split("@@zen")
 
     let parsedView = ''
 
