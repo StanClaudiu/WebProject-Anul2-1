@@ -1,6 +1,6 @@
 import { Router } from "../../vendor/index.js";
 import { PagesController } from "../../controllers/index.js";
-import { UserMiddleware } from "../../middlewares/index.js"
+import { UserMiddleware, AdminMiddleware } from "../../middlewares/index.js"
 
 const mainRoutes = new Router();
 
@@ -11,7 +11,7 @@ mainRoutes.get(`/course`, PagesController.coursePage, UserMiddleware);
 mainRoutes.get(`/courses`, PagesController.coursesPage, UserMiddleware);
 mainRoutes.get(`/leaderboard`, PagesController.leaderboardPage, UserMiddleware);
 mainRoutes.get(`/myGarden`, PagesController.myGardenPage, UserMiddleware);
-mainRoutes.get(`/adminPage`,PagesController.adminPage, UserMiddleware);
+mainRoutes.get(`/adminPage`,PagesController.adminPage, AdminMiddleware);
 
 mainRoutes.get(`/favicon.ico`, PagesController.favicon);
 
