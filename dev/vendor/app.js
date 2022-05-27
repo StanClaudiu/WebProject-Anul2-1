@@ -32,21 +32,21 @@ class App {
             response = AddResponseFunctionalities(response);
             request = AddRequestFunctionalities(request);
 
-            await request.augment()
-            await response.augment()
-            await zen.augment(this.db, request)
+            console.log(`${request.method} on ${request.url}`) 
             
             response = this.setResponseHeaders(response);
-
-            //AugmentData
-
+            
             if (this.isStatic(request.url)) {
                 response = await this.handleStatic(request, response);
                 return;
             }
+            
+            //AugmentData
 
-            console.log(`${request.method} on ${request.url}`)
-
+            await request.augment()
+            await response.augment()
+            await zen.augment(this.db, request)
+            
             if (this.hasValidHeaders(request.headers)) {
                 response = await this.router.handleRoute(zen, request, response)
                 return;
