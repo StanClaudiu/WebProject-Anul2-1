@@ -100,6 +100,10 @@
     padding: 20px;
 }
 
+.long_modal_container {
+    align-items: flex-start;
+}
+
 .modal_container_show {
     opacity: 1;
     pointer-events: auto;
@@ -131,7 +135,7 @@
     overflow-y: hidden;
 }
 
-.auth-form-container {
+.full-form-container {
     width: 100%;
 }
 
