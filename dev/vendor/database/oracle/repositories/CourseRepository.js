@@ -60,6 +60,19 @@ class CourseUserRepository {
             console.log(err);
         }
     }
+
+    async get() {
+        try {
+            const result = await this.db.execute(
+                `SELECT * from TABLE( courses_package.getAllCourses())`);
+            
+            console.log(result);
+            return result.rows.length == 0 ? null : result.rows[0]; //the id
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 export default CourseUserRepository;

@@ -19,8 +19,8 @@ class Course {
         this.videoPath = videoPath
     }
 
-    static async getIdByToken(db, token) {
-
+    static async getCourses(db) {
+        await db.courseRepository.get()
     }
 
     static async getCourseById(db, id) {
