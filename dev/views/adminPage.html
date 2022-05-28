@@ -222,8 +222,14 @@
                             </select>
                             <label for="create_course_description">Description</label>
                             <input type="text" id="create_course_description" name="description" required>
-                            <label for="name_of_plant">Name</label>
-                            <input type="text" id="name_of_plant" name="name_of_plant" required>
+                            <label for="create_course_content">Content</label>
+                            <textarea id="create_course_content" name="content" rows="4" ></textarea>
+                            <label for="create_course_duration">Duration</label>
+                            <input type="number" min="0" id="create_course_duration" name="duration" required>
+                            <label for="create_course_image">Course Image</label>
+                            <input type="file" id="create_course_image" name="image" accept="image/png, image/jpeg" required>
+                            <label for="create_course_video">Course Video</label>
+                            <input type="file" id="create_course_video" name="video" accept="video/mp4" required>
                         </form>
                     </div>
                     <div class="modal-action-buttons">

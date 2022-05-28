@@ -151,6 +151,20 @@
     margin-bottom: 10px;
 }
 
+.pretty_form > select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.pretty_form > textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
 .search-box {
     display: flex;
     flex-direction: row;
