@@ -12,6 +12,7 @@ CREATE TABLE courses(
     course_content VARCHAR2(1000) NOT NULL,
     description_course VARCHAR2 (200) NOT NULL,
     course_name VARCHAR2 (100) NOT NULL,
+    course_duration INT NOT NULL,
     image_path_download VARCHAR2(100) NOT NULL,
     course_video_path VARCHAR2(100),
      CONSTRAINT fk_child_course 
@@ -30,9 +31,11 @@ CREATE OR REPLACE PACKAGE courses_package IS
     
     FUNCTION create_course(p_parent_id courses.parent_id%TYPE,      p_course_content courses.course_content%TYPE,
                         p_description_course courses.description_course%TYPE,       p_course_name courses.course_name%TYPE,
+                        p_course_duration courses.course_duration%TYPE,
                         p_image_path_download courses.image_path_download%TYPE,     p_course_video_path courses.course_video_path%TYPE) RETURN INT;
     FUNCTION update_course (p_id_curs INT,p_parent_id courses.parent_id%TYPE,      p_course_content courses.course_content%TYPE,
                         p_description_course courses.description_course%TYPE,       p_course_name courses.course_name%TYPE,
+                        p_course_duration courses.course_duration%TYPE,
                         p_image_path_download courses.image_path_download%TYPE,     p_course_video_path courses.course_video_path%TYPE) RETURN INT;
     FUNCTION getAllCourses RETURN base_type PIPELINED;
     FUNCTION getById(p_id_curs INT) RETURN base_type PIPELINED;
@@ -43,6 +46,7 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
     ----when u create a course, it can be a parent or child, but a direct child! the parrents have null as parent
     FUNCTION create_course(p_parent_id courses.parent_id%TYPE,      p_course_content courses.course_content%TYPE,
                         p_description_course courses.description_course%TYPE,       p_course_name courses.course_name%TYPE,
+                        p_course_duration courses.course_duration%TYPE,
                         p_image_path_download courses.image_path_download%TYPE,     p_course_video_path courses.course_video_path%TYPE) RETURN INT IS
                         v_number_id INT;
                         v_value_parent INT;
@@ -80,6 +84,7 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
              
               FUNCTION update_course (p_id_curs INT,p_parent_id courses.parent_id%TYPE,      p_course_content courses.course_content%TYPE,
                         p_description_course courses.description_course%TYPE,       p_course_name courses.course_name%TYPE,
+                        p_course_duration courses.course_duration%TYPE,
                         p_image_path_download courses.image_path_download%TYPE,     p_course_video_path courses.course_video_path%TYPE) RETURN INT IS
                  v_parent_id INT;
                 PRAGMA AUTONOMOUS_TRANSACTION;

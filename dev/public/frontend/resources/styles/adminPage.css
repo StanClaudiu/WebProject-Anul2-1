@@ -75,16 +75,14 @@ div.table_construction >table tr:nth-child(odd):not(:first-child):hover{
 div.table_construction >table tr:nth-child(odd):not(:first-child){
     transition-duration: 250ms;
 }
-.modal{
-   justify-content: flex-start;
-   
-    max-width: 80vw;
-    max-height: 80vh;
+.course_add_edit_modal{
+    justify-content: flex-start;
+    max-width: 900px;
     background-color: rgb(255, 255, 255);
-    border-radius: 0px;
 }
-#delete_course .modal{
-    max-width: 30vw;
+
+.course_delete_modal{
+    max-width: 200px;
     text-align: center;
 }
 

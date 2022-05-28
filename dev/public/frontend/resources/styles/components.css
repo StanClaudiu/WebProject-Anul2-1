@@ -86,7 +86,8 @@
     left: 0;
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.453);
     z-index: 100;
     display: flex;
@@ -95,6 +96,12 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.long_modal_container {
+    align-items: flex-start;
 }
 
 .modal_container_show {
@@ -128,7 +135,7 @@
     overflow-y: hidden;
 }
 
-.auth-form-container {
+.full-form-container {
     width: 100%;
 }
 
@@ -145,6 +152,20 @@
 }
 
 .pretty_form > input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.pretty_form > select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.pretty_form > textarea {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;

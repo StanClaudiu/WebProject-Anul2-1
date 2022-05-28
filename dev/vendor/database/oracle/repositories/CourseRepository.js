@@ -31,13 +31,11 @@ class CourseUserRepository {
         }
     }
 
-    async create(parentId, content, description, name, imgPath, videoPath) {
+    async create(parentId, content, description, name, duration, imgPath, videoPath) {
         try {
-            console.log(  `SELECT courses_package.create_course(${parentId}, '${content}',
-            '${description}', '${name}', '${imgPath}', '${videoPath}') FROM DUAL`)
             const result = await this.db.execute(
                 `SELECT courses_package.create_course(${parentId}, '${content}',
-                 '${description}', '${name}', '${imgPath}', '${videoPath}') FROM DUAL`);
+                 '${description}', '${name}', ${duration}, '${imgPath}', '${videoPath}') FROM DUAL`);
             
             console.log(result);
             return result.rows[0][Object.keys(result.rows[0])[0]]; //the id
@@ -47,14 +45,27 @@ class CourseUserRepository {
         }
     }
 
-    async update(courseId, parentId, content, description, name, imgPath, videoPath) {
+    async update(courseId, parentId, content, description, name, duration, imgPath, videoPath) {
         try {
             const result = await this.db.execute(
                 `SELECT courses_package.update_course(${courseId}, ${parentId}, '${content}',
-                 '${description}', '${name}', '${imgPath}', '${videoPath}') FROM DUAL`);
+                 '${description}', '${name}', ${duration}, '${imgPath}', '${videoPath}') FROM DUAL`);
             
             console.log(result);
             return result.rows[0][Object.keys(result.rows[0])[0]]; //the id
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    async get() {
+        try {
+            const result = await this.db.execute(
+                `SELECT * from TABLE( courses_package.getAllCourses())`);
+            
+            console.log(result);
+            return result.rows.length == 0 ? null : result.rows[0]; //the id
         }
         catch (err) {
             console.log(err);

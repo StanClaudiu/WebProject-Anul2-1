@@ -22,20 +22,8 @@ const PagesController = {
         await response.sendZenView({}, "views/myGarden.html")
     },
 
-    adminPage: async (zen,request,response) => {
-        await response.sendZenView({}, "views/adminPage.html")
-    },
-
     favicon: async (zen, request, response) => {
         await response.sendFile("public/frontend/resources/favicon.ico")
-    },
-
-    test: async (zen, request, response) => {
-        const curs = new Course(zen.db, "Acesta este cursul", "uite asa", "geani", "moraru", "aici")
-        await curs.create()
-        curs.content = "L-am schimbat"
-        await curs.update()
-        response.json(curs)
     }
 }
 
