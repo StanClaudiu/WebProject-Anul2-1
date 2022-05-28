@@ -211,7 +211,7 @@
 
         <div class="modals_heap">
             <div class="modal_container" id="add_course">
-                <div class="modal">
+                <div class="modal course_add_edit_modal">
                     <div class="auth-form-container add_course_menu">
                         <form class="pretty_form" id="" action="/">
                             <label for="create_course_name">Name</label>
@@ -239,7 +239,7 @@
                 </div>
             </div>
             <div class="modal_container" id="edit_course">
-                <div class="modal">
+                <div class="modal course_add_edit_modal">
                     <div class="auth-form-container add_course_menu">
                         <form class="pretty_form" id="" action="/">
                             <!-- here we put our info-->
@@ -260,15 +260,15 @@
                 </div>
             </div>
             <div class="modal_container" id="delete_course">
-                <div class="modal">
+                <div class="modal course_delete_modal">
                     <div class="auth-form-container delete_course_menu">
                         <div>
                             Are you sure you want to delete this course?
                         </div>
                     </div>
                     <div class="modal-action-buttons">
-                        <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Cancel</button>
-                        <div class="button-box button-box-red" onclick="closeModal('delete_course')">Delete</div>
+                        <div class="button-box button-box-red" onclick="closeModal('delete_course')">Cancel</div>
+                        <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Delete</button>
                     </div>
                 </div>
             </div>

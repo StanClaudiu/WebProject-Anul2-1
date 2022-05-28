@@ -86,7 +86,8 @@
     left: 0;
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.453);
     z-index: 100;
     display: flex;
@@ -95,6 +96,8 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    overflow-y: scroll;
+    padding: 20px;
 }
 
 .modal_container_show {
