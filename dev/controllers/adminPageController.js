@@ -31,7 +31,7 @@ const AdminPageController = {
     },
 
     delete: async (zen, request, response) => {
-        await Course.deleteById(request.parameters.id)
+        await Course.deleteById(zen.db, request.parameters.id)
         await response.redirect("/adminPage")
     }
 }

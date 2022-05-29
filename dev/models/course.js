@@ -39,7 +39,7 @@ class Course {
     }
 
     static async getCourseById(db, id) {
-        const courseDetails = await db.userRepository.getById(id)
+        const courseDetails = await db.courseRepository.getById(id)
 
         return courseDetails == null ? null : 
             new Course(db, 
@@ -55,7 +55,7 @@ class Course {
     }
 
     static async deleteById(db, id) {
-        await db.userRepository.delete_course_by_id(id)
+        await db.courseRepository.delete_course_by_id(id)
     }
 
     async create() {
