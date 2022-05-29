@@ -10,11 +10,11 @@ const AdminPageController = {
     },
     
     create: async (zen, request, response) => {
-        const uploadImageURL = zen.fileManager.upload(request.body.files["image"])
-        const uploadVideoURL = zen.fileManager.upload(request.body.files["video"])
+        const uploadImageURL = await zen.fileManager.upload(request.body.files["image"])
+        const uploadVideoURL = await zen.fileManager.upload(request.body.files["video"])
 
         const course = new Course(zen.db, request.body.fields["content"], 
-                                request.body.fields["descirption"], request.body.fields["name"],
+                                request.body.fields["description"], request.body.fields["name"],
                                 request.body.fields["duration"], uploadImageURL, uploadVideoURL,
                                 request.body.fields["parrentCourse"])
         

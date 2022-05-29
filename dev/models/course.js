@@ -2,6 +2,7 @@ class Course {
     db
     id
     parrentCourse
+    parrentCourseId
     content
     description
     name
@@ -9,10 +10,10 @@ class Course {
     imgPath
     videoPath
 
-    constructor(db, content, description, name, duration, imgPath, videoPath= "null", parrentCourse = undefined,  id = 0) {
+    constructor(db, content, description, name, duration, imgPath, videoPath= "null", parrentCourseId = null,  id = 0) {
         this.db = db
         this.id = id
-        this.parrentCourse = parrentCourse
+        this.parrentCourseId = parrentCourseId
         this.content = content
         this.description = description
         this.name = name
@@ -36,13 +37,13 @@ class Course {
 
     async create() {
         this.id = await this.db.courseRepository.create(
-            this.parrentCourse != undefined ?  this.parrentCourse.id : "null", 
+            this.parrentCourseId != null ?  this.parrentCourseId : "null", 
             this.content, this.description, this.name, this.duration, this.imgPath, this.videoPath)
     }
 
     async update() {
         await this.db.courseRepository.update(
-            this.id, this.parrentCourse != undefined ?  this.parrentCourse.id : "null",
+            this.id, this.parrentCourseId != null ?  this.parrentCourseId : "null",
             this.content, this.description, this.name, this.duration, this.imgPath, this.videoPath)
     }
 
