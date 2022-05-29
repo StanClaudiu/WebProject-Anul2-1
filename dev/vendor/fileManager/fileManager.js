@@ -13,6 +13,7 @@ const FileManager = {
             'image/jpeg': '.jpg',
             'audio/wav': '.wav',
             'audio/mpeg': '.mp3',
+            'video/mp4': '.mp4',
             'image/svg+xml': '.svg',
             'application/pdf': '.pdf',
             'application/msword': '.doc'

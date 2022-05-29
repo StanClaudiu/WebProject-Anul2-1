@@ -30,6 +30,7 @@ const AddResponseFunctionalities = (response) => {
             '.jpg': 'image/jpeg',
             '.wav': 'audio/wav',
             '.mp3': 'audio/mpeg',
+            '.mp4': 'video/mp4',
             '.svg': 'image/svg+xml',
             '.pdf': 'application/pdf',
             '.doc': 'application/msword'
