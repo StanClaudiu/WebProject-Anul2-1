@@ -11,10 +11,12 @@ class App {
     port
     router
     db
+    fileManager
 
-    constructor(port, db) {
+    constructor(port, db, fileManager) {
         this.port = port
         this.db = db
+        this.fileManager = fileManager
         this.router = new Router()
     }
 
@@ -45,7 +47,7 @@ class App {
 
             await request.augment()
             await response.augment()
-            await zen.augment(this.db, request)
+            await zen.augment(this.db, this.fileManager, request)
             
             if (this.hasValidHeaders(request.headers)) {
                 response = await this.router.handleRoute(zen, request, response)

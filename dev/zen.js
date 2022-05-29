@@ -1,6 +1,7 @@
 import { OracleDatabase } from "./vendor/database/index.js";
 import { SeedAdmins } from "./seder/index.js"
 import { App } from "./vendor/index.js";
+import { FileManager } from "./vendor/fileManager/index.js"
 import { mainRoutes } from "./routes/web/index.js";
 import { authRoutes } from "./routes/api/index.js";
 import "dotenv/config"
@@ -16,7 +17,7 @@ if (parseInt(process.env.DB_SEED) == 1) {
     await SeedAdmins(db)
 }
 
-const app = new App(process.env.PORT || 4000, db)
+const app = new App(process.env.PORT || 4000, db, FileManager)
 app.useRoute(mainRoutes)
 app.useRoute(authRoutes)
 
