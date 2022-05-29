@@ -65,7 +65,7 @@ class CourseUserRepository {
                 `SELECT * from TABLE( courses_package.getAllCourses())`);
             
             console.log(result);
-            return result.rows.length == 0 ? null : result.rows[0]; //the id
+            return result.rows;
         }
         catch (err) {
             console.log(err);

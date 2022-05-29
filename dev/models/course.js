@@ -23,7 +23,20 @@ class Course {
     }
 
     static async getCourses(db) {
-        await db.courseRepository.get()
+        const coursesData = await db.courseRepository.get()
+        const courses = coursesData.map(courseData => 
+            new Course(db, 
+                courseData["COURSE_CONTENT"],
+                courseData["DESCRIPTION_COURSE"],
+                courseData["COURSE_NAME"],
+                courseData["COURSE_DURATION"],
+                courseData["IMAGE_PATH_DOWNLOAD"],
+                courseData["COURSE_VIDEO_PATH"],
+                courseData["PARENT_ID"],
+                courseData["ID_CURS"]
+            )
+        );
+        return courses
     }
 
     static async getCourseById(db, id) {
