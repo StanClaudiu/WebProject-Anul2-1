@@ -29,12 +29,6 @@
                 </li>
             </ul>
         </nav>
-        
-
-       
-
-
-
 
         <main>
             <div style="color:green" class="add_button"><a class="add_plants" onclick="openModal('add_course')"><i class="fa-solid fa-circle-plus fa-2xl"></i></a></div>
@@ -213,7 +207,7 @@
             <div class="modal_container long_modal_container" id="add_course">
                 <div class="modal course_add_edit_modal">
                     <div class="full-form-container">
-                        <form class="pretty_form" id="" action="/">
+                        <form class="pretty_form" id="create_form" action="@@host/api/v1/courses" method="post" enctype="multipart/form-data">
                             <label for="create_course_name">Name</label>
                             <input type="text" id="create_course_name" name="name" required>
                             <label for="create_course_parrentCourse">Parrent Course</label>
@@ -233,7 +227,7 @@
                         </form>
                     </div>
                     <div class="modal-action-buttons">
-                        <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Create</button>
+                        <button type="submit" form="create_form" class="button-filled button-filled-dark-green">Create</button>
                         <div class="button-box button-box-red" onclick="closeModal('add_course')">Cancel</div>
                     </div>
                 </div>
@@ -241,7 +235,7 @@
             <div class="modal_container long_modal_container" id="edit_course">
                 <div class="modal course_add_edit_modal">
                     <div class="full-form-container">
-                        <form class="pretty_form" id="" action="/">
+                        <form class="pretty_form" id="edit_form" action="/">
                             <label for="edit_course_name">Name</label>
                             <input type="text" id="edit_course_name" name="name" required>
                             <label for="edit_course_parrentCourse">Parrent Course</label>
