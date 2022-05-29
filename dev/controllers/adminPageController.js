@@ -10,9 +10,17 @@ const AdminPageController = {
     },
     
     create: async (zen, request, response) => {
-        zen.fileManager.upload(request.body.files["image"])
+        const uploadImageURL = zen.fileManager.upload(request.body.files["image"])
+        const uploadVideoURL = zen.fileManager.upload(request.body.files["video"])
 
-        await response.sendZenView({}, "views/adminPage.html")
+        const course = new Course(zen.db, request.body.fields["content"], 
+                                request.body.fields["descirption"], request.body.fields["name"],
+                                request.body.fields["duration"], uploadImageURL, uploadVideoURL,
+                                request.body.fields["parrentCourse"])
+        
+        await course.create()
+
+        await response.redirect("/adminPage")
     }
 }
 
