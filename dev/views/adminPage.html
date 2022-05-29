@@ -35,7 +35,7 @@
             <div class="table_placement" style="background-color:green">
                 <div class="table_construction">
                     <table>
-                        <div id="#head"> 
+                        <div> 
                                 <tr>
                                 <th>Name of course</th>
                                 <th>Estimated completion time</th>
@@ -51,152 +51,32 @@
                                 <th> </th>
                             </tr>
                         </div>
-                        <div id="unu"> 
-                            <tr>
-                                <th>How to plant tomatoes</th>
-                                <th>1h 29m</th>
-                                <th>5</th>
-                                <th><a class="add_plants" onclick="openModal('edit_course')"><i class="fa-solid fa-pen-to-square"></i></a></th>
-                                <th><a class="add_plants" onclick="openModal('delete_course')"><i class="fa-solid fa-trash-can"></i></a></th>
-                            </tr>
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
 
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#trei">
-                            <tr>
-                                <th>Beginner flower
-                                    planting strategies</th>
-                                <th>2h 20m</th>
-                                <th>9</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                        </div>
+                        @@zen
+
+                        return wiredObject.map(course => {
+                            return `
+                            <div> 
+                                <tr>
+                                    <th>${course.name}</th>
+                                    <th>${course.duration}</th>
+                                    <th>5</th>
+                                    <th><a class="add_plants" onclick="openModal('edit_course')"><i class="fa-solid fa-pen-to-square"></i></a></th>
+                                    <th><a class="add_plants" onclick="openModal('delete_course')"><i class="fa-solid fa-trash-can"></i></a></th>
+                                </tr>
+                                <tr>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                </tr>
+                            </div>
+
+                            `
+                        }).join("\n")
+
+                        @@zen
                         
                         </table>
                     </div>
