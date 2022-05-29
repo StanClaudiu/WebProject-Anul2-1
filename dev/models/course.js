@@ -39,12 +39,23 @@ class Course {
     }
 
     static async getCourseById(db, id) {
-        const user = await new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
-        return user;
+        const courseDetails = await db.userRepository.getById(id)
+
+        return courseDetails == null ? null : 
+            new Course(db, 
+                courseData["COURSE_CONTENT"],
+                courseData["DESCRIPTION_COURSE"],
+                courseData["COURSE_NAME"],
+                courseData["COURSE_DURATION"],
+                courseData["IMAGE_PATH_DOWNLOAD"],
+                courseData["COURSE_VIDEO_PATH"],
+                courseData["PARENT_ID"],
+                courseData["ID_CURS"]
+            )
     }
 
-    static async deleteCourseById(db, id) {
-
+    static async deleteById(db, id) {
+        await db.userRepository.delete_course_by_id(id)
     }
 
     async create() {
@@ -60,11 +71,20 @@ class Course {
     }
 
     async getChildCourses() {
-        
-    }
-
-    async delete() {
-
+        const coursesData = await this.db.courseRepository.getByParentId(this.id)
+        const courses = coursesData.map(courseData => 
+            new Course(this.db, 
+                courseData["COURSE_CONTENT"],
+                courseData["DESCRIPTION_COURSE"],
+                courseData["COURSE_NAME"],
+                courseData["COURSE_DURATION"],
+                courseData["IMAGE_PATH_DOWNLOAD"],
+                courseData["COURSE_VIDEO_PATH"],
+                courseData["PARENT_ID"],
+                courseData["ID_CURS"]
+            )
+        );
+        return courses
     }
 }
 

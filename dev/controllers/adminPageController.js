@@ -4,8 +4,12 @@ import { Course } from "../models/index.js"
 const AdminPageController = {
 
     view: async (zen, request, response) => {
-        const courses = await Course.getCourses(zen.db)
-        
+        let courses = await Course.getCourses(zen.db)
+
+        for (let it = 0; it < courses.length; it++) {
+            courses[it].nrOfChildren = (await courses[it].getChildCourses()).length;
+        }
+
         const parentCourses = courses.filter(course => course.parrentCourseId == null)
 
         await response.sendZenView(
@@ -23,6 +27,11 @@ const AdminPageController = {
         
         await course.create()
 
+        await response.redirect("/adminPage")
+    },
+
+    delete: async (zen, request, response) => {
+        await Course.deleteById(request.parameters.id)
         await response.redirect("/adminPage")
     }
 }

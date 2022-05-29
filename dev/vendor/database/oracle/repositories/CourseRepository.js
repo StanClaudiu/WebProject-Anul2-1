@@ -85,26 +85,13 @@ class CourseUserRepository {
         }
     }
 
-    async getById(id) {
-        try {
-            const result = await this.db.execute(
-                `SELECT * from TABLE( courses_package.getById('${id}'))`);
-            
-            console.log(result);
-            return result.rows.length == 0 ? null : result.rows[0]; //the id
-        }
-        catch (err) {
-            console.log(err);
-        }
-    }
-
     async getByParentId(parentId) {
         try {
             const result = await this.db.execute(
                 `SELECT * from TABLE( courses_package.get_courses_by_parent_id('${parentId}'))`);
             
             console.log(result);
-            return result.rows.length == 0 ? null : result.rows[0]; //the id
+            return result.rows; //the id
         }
         catch (err) {
             console.log(err);
