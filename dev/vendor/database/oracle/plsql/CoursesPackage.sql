@@ -38,7 +38,11 @@ CREATE OR REPLACE PACKAGE courses_package IS
                         p_course_duration courses.course_duration%TYPE,
                         p_image_path_download courses.image_path_download%TYPE,     p_course_video_path courses.course_video_path%TYPE) RETURN INT;
     FUNCTION getAllCourses RETURN base_type PIPELINED;
-    FUNCTION getById(p_id_curs INT) RETURN base_type PIPELINED;
+    FUNCTION getById(p_id_curs courses.id_curs%TYPE) RETURN base_type PIPELINED;
+    
+    FUNCTION get_courses_by_parent_id(p_parent_id_curs courses.parent_id%TYPE) RETURN base_type PIPELINED;
+    FUNCTION delete_course_by_id(p_id_curs courses.id_curs%TYPE) RETURN INT;
+    
 END courses_package;/* STATEMENT */
 
 CREATE OR REPLACE PACKAGE BODY courses_package IS
@@ -117,21 +121,46 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
     
     END update_course;
     
-        FUNCTION getAllCourses RETURN base_type PIPELINED IS
-        BEGIN
-            FOR v_std_line IN (SELECT * FROM courses) LOOP
-                PIPE ROW(v_std_line);
-            END LOOP;
+    FUNCTION getAllCourses RETURN base_type PIPELINED IS
+    BEGIN
+        FOR v_std_line IN (SELECT * FROM courses) LOOP
+            PIPE ROW(v_std_line);
+        END LOOP;
         EXCEPTION WHEN others THEN
         raise_application_error(-20001,'I have an error when I am trying to get all the courses');
-        END getAllCourses;
+    END getAllCourses;
         
-        FUNCTION getById(p_id_curs INT) RETURN base_type PIPELINED IS
-        BEGIN
-            FOR v_std_line IN (SELECT * FROM courses WHERE id_curs=p_id_curs) LOOP
-                PIPE ROW(v_std_line);
-            END LOOP;
+    FUNCTION getById(p_id_curs courses.id_curs%TYPE) RETURN base_type PIPELINED IS
+    BEGIN
+        FOR v_std_line IN (SELECT * FROM courses WHERE id_curs=p_id_curs) LOOP
+            PIPE ROW(v_std_line);
+        END LOOP;
+        
         EXCEPTION WHEN others THEN
         raise_application_error(-20001,'I have an error when I am trying to get a curs by Id');
-        END;
+    END;
+    
+    FUNCTION get_courses_by_parent_id(p_parent_id_curs courses.parent_id%TYPE) RETURN base_type PIPELINED IS
+        CURSOR table_cursor IS SELECT * FROM courses WHERE parent_id = p_parent_id_curs;
+    BEGIN
+        FOR current_record IN table_cursor LOOP
+            PIPE ROW(current_record);
+        END LOOP;
+        
+        EXCEPTION WHEN others THEN
+        raise_application_error(-20001,'I have an error when I am trying to get a curs parent by Id');
+    END;
+    
+    FUNCTION delete_course_by_id(p_id_curs courses.id_curs%TYPE) RETURN INT IS
+        PRAGMA AUTONOMOUS_TRANSACTION;
+    BEGIN
+        
+        DELETE FROM courses WHERE id_curs = p_id_curs;
+        COMMIT;
+        
+        EXCEPTION WHEN others THEN
+        raise_application_error(-20001,'I have an error when I am trying to get a curs parent by Id');
+        RETURN 1;
+    END;
+    
 END courses_package;/* STATEMENT */

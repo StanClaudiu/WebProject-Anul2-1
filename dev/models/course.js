@@ -1,7 +1,6 @@
 class Course {
     db
     id
-    parrentCourse
     parrentCourseId
     content
     description
@@ -58,6 +57,10 @@ class Course {
         await this.db.courseRepository.update(
             this.id, this.parrentCourseId != null ?  this.parrentCourseId : "null",
             this.content, this.description, this.name, this.duration, this.imgPath, this.videoPath)
+    }
+
+    async getChildCourses() {
+        
     }
 
     async delete() {
