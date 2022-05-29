@@ -59,7 +59,7 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
                                     IF  v_number_id>0 THEN
                                         raise_application_error(-20001,'Woops!something is wrong, a negative number');
                                     ELSE
-                                        INSERT INTO courses VALUES(course_seq.NEXTVAL,p_parent_id,p_course_content,p_description_course,p_course_name,p_image_path_download,p_course_video_path);
+                                        INSERT INTO courses VALUES(course_seq.NEXTVAL,p_parent_id,p_course_content,p_description_course,p_course_name,p_course_duration,p_image_path_download,p_course_video_path);
                                         COMMIT;
                                         SELECT course_seq.CURRVAL INTO v_number_id FROM DUAL;
                                         RETURN v_number_id;
@@ -70,7 +70,7 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
                               ELSE
                               ----aici vin null-urile
                                SELECT NVL(p_parent_id,-1) INTO v_value_parent FROM DUAL;
-                                INSERT INTO courses VALUES(course_seq.NEXTVAL,p_parent_id,p_course_content,p_description_course,p_course_name,p_image_path_download,p_course_video_path);
+                                INSERT INTO courses VALUES(course_seq.NEXTVAL,p_parent_id,p_course_content,p_description_course,p_course_name,p_course_duration,p_image_path_download,p_course_video_path);
                                   COMMIT;
                                  SELECT course_seq.CURRVAL INTO v_number_id FROM DUAL;
                             RETURN v_number_id;
@@ -97,7 +97,7 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
             SELECT NVL(parent_id,-1) INTO v_parent_id FROM courses WHERE id_curs=p_parent_id;---if the parent is invalid then we won't find anyone and we'll get an expception
             ---IF IT'S NEGATIVE WE KNOW THERE WAS NULL OTHERWISE NO
             IF v_parent_id = -1 THEN
-                UPDATE courses SET parent_id=p_parent_id, course_content=p_course_content,description_course=p_description_course,course_name=p_course_name,image_path_download=p_image_path_download,course_video_path=p_course_video_path 
+                UPDATE courses SET parent_id=p_parent_id, course_content=p_course_content,description_course=p_description_course,course_name=p_course_name,course_duration=p_course_duration,image_path_download=p_image_path_download,course_video_path=p_course_video_path 
                 WHERE id_curs=p_id_curs;
                 COMMIT;
                 RETURN 1;---DO YOUR JOB UPDATE
@@ -107,7 +107,7 @@ CREATE OR REPLACE PACKAGE BODY courses_package IS
         END IF;
     ELSE
     ----HERE WE HAVE THE NULLS
-   UPDATE courses SET parent_id=p_parent_id, course_content=p_course_content,description_course=p_description_course,course_name=p_course_name,image_path_download=p_image_path_download,course_video_path=p_course_video_path 
+   UPDATE courses SET parent_id=p_parent_id, course_content=p_course_content,description_course=p_description_course,course_name=p_course_name,course_duration=p_course_duration,image_path_download=p_image_path_download,course_video_path=p_course_video_path 
                 WHERE id_curs=p_id_curs;
                 COMMIT;
              RETURN 1;
