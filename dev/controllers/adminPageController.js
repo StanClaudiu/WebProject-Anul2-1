@@ -6,7 +6,10 @@ const AdminPageController = {
     view: async (zen, request, response) => {
         const courses = await Course.getCourses(zen.db)
         
-        await response.sendZenView(courses, "views/adminPage.html")
+        const parentCourses = courses.filter(course => course.parrentCourseId == null)
+
+        await response.sendZenView(
+            {"courses": courses, "parentCourses": parentCourses}, "views/adminPage.html")
     },
     
     create: async (zen, request, response) => {

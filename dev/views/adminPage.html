@@ -54,7 +54,7 @@
 
                         @@zen
 
-                        return wiredObject.map(course => {
+                        return wiredObject["courses"].map(course => {
                             return `
                             <div> 
                                 <tr>
@@ -93,6 +93,11 @@
                             <label for="create_course_parrentCourse">Parrent Course</label>
                             <select id="create_course_parrentCourse" name="parrentCourse" required>
                                 <option value="null">This is a parent course</option>
+                                @@zen
+                                    return wiredObject["parentCourses"].map(course => {
+                                        return `<option value="${course.id}">${course.name}</option>`
+                                    }).join("\n")
+                                @@zen      
                             </select>
                             <label for="create_course_description">Description</label>
                             <input type="text" id="create_course_description" name="description" required>
@@ -121,6 +126,11 @@
                             <label for="edit_course_parrentCourse">Parrent Course</label>
                             <select id="edit_course_parrentCourse" name="parrentCourse" required>
                                 <option value="null">This is a parent course</option>
+                                @@zen
+                                    return wiredObject["parentCourses"].map(course => {
+                                        return `<option value="${course.id}">${course.name}</option>`
+                                    }).join("\n")
+                                @@zen      
                             </select>
                             <label for="edit_course_description">Description</label>
                             <input type="text" id="edit_course_description" name="description" required>
