@@ -1,7 +1,8 @@
 
 const FileManager = {
     upload: async (file) => {
-        console.log(file.path)
+        console.log(file)
+        console.log(file.filepath)
     },
 }
 

@@ -23,6 +23,10 @@ const parseCookies = (request) => {
 const parseMultipart = async (request) => {
     const multipartParser = formidable({ multiples: true });
 
+    multipartParser.multiples = true;
+    multipartParser.maxFileSize = parseInt(process.env.STORAGE_MAX_UPLOAD_SIZE);
+    multipartParser.uploadDir = process.env.STORAGE_CACHE;
+
     const parsedBody = await new Promise((resolve, reject) => {
         multipartParser.parse(request, function (error, fields, files) {
             if (error) {
