@@ -15,6 +15,11 @@ const AdminPageController = {
         await response.sendZenView(
             {"courses": courses, "parentCourses": parentCourses}, "views/adminPage.html")
     },
+
+    read: async (zen, request, response) => {
+        const course = await Course.getById(zen.db, request.parameters.id)
+        response.status(200).json(course.toPOJO())
+    },
     
     create: async (zen, request, response) => {
         const uploadImageURL = await zen.fileManager.upload(request.body.files["image"])

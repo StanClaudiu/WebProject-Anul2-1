@@ -61,7 +61,7 @@
                                     <th>${course.name}</th>
                                     <th>${course.duration}</th>
                                     <th>${course.nrOfChildren}</th>
-                                    <th><a class="add_plants" onclick="openModal('edit_course')"><i class="fa-solid fa-pen-to-square"></i></a></th>
+                                    <th><a class="add_plants" onclick="openEditModal('@@host/api/v1/courses/read','@@host/api/v1/courses/update','${course.id}')"><i class="fa-solid fa-pen-to-square"></i></a></th>
                                     <th><a class="add_plants" onclick="openDeleteModal('@@host/api/v1/courses/delete','${course.id}')"><i class="fa-solid fa-trash-can"></i></a></th>
                                 </tr>
                                 <tr>
@@ -171,6 +171,5 @@
     <script src="@@host/public/frontend/resources/connection_scripts/formHandler.js"></script>
     <script src="@@host/public/frontend/resources/connection_scripts/adminPage.js"></script>
     
-        <script></script> <!-- it should do something-->
     </body>
 </html>

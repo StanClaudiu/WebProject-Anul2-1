@@ -38,10 +38,10 @@ class Course {
         return courses
     }
 
-    static async getCourseById(db, id) {
-        const courseDetails = await db.courseRepository.getById(id)
+    static async getById(db, id) {
+        const courseData = await db.courseRepository.getById(id)
 
-        return courseDetails == null ? null : 
+        return courseData == null ? null : 
             new Course(db, 
                 courseData["COURSE_CONTENT"],
                 courseData["DESCRIPTION_COURSE"],
@@ -85,6 +85,19 @@ class Course {
             )
         );
         return courses
+    }
+
+    toPOJO() {
+        return {
+            "id": this.id,
+            "parrentCourseId": this.parrentCourseId,
+            "content": this.content,
+            "description": this.description,
+            "name": this.name,
+            "duration": this.duration,
+            "imgPath": this.imgPath,
+            "videoPath": this.videoPath
+        }
     }
 }
 
