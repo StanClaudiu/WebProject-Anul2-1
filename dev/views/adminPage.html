@@ -120,7 +120,7 @@
             <div class="modal_container long_modal_container" id="edit_course">
                 <div class="modal course_add_edit_modal">
                     <div class="full-form-container">
-                        <form class="pretty_form" id="edit_form" action="/">
+                        <form class="pretty_form" id="edit_form" action="---to-be-dinamicly-replaced---" method="post" enctype="multipart/form-data">
                             <label for="edit_course_name">Name</label>
                             <input type="text" id="edit_course_name" name="name" required>
                             <label for="edit_course_parrentCourse">Parrent Course</label>
@@ -139,13 +139,13 @@
                             <label for="edit_course_duration">Duration</label>
                             <input type="number" min="0" id="edit_course_duration" name="duration" required>
                             <label for="edit_course_image">Course Image</label>
-                            <input type="file" id="edit_course_image" name="image" accept="image/png, image/jpeg" required>
+                            <input type="file" id="edit_course_image" name="image" accept="image/png, image/jpeg">
                             <label for="edit_course_video">Course Video</label>
-                            <input type="file" id="edit_course_video" name="video" accept="video/mp4" required>
+                            <input type="file" id="edit_course_video" name="video" accept="video/mp4">
                         </form>
                     </div>
                     <div class="modal-action-buttons">
-                        <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Edit</button>
+                        <button type="submit" form="edit_form" class="button-filled button-filled-dark-green">Edit</button>
                         <div class="button-box button-box-red" onclick="closeModal('edit_course')">Cancel</div>
                     </div>
                 </div>

@@ -9,6 +9,16 @@ const openEditModal = (readPath, updatePath, id) => {
     const editForm = document.getElementById("edit_form")
     editForm.action = `${updatePath}?id=${id}`
 
+    const formItems = {
+        "name": document.getElementById("edit_course_name"),
+        "parrentCourse": document.getElementById("edit_course_parrentCourse"),
+        "description": document.getElementById("edit_course_description"),
+        "content": document.getElementById("edit_course_content"),
+        "duration": document.getElementById("edit_course_duration"),
+        "image": document.getElementById("edit_course_image"),
+        "video": document.getElementById("edit_course_video")
+    }
+
     fetch(`${readPath}?id=${id}`, {
         method: 'get',
         headers: {
@@ -20,7 +30,11 @@ const openEditModal = (readPath, updatePath, id) => {
         if (response.status === 200) {
             let body = await response.json();
 
-            console.log(body["name"])
+            formItems["name"].value = body["name"]
+            formItems["parrentCourse"].value = body["parrentCourseId"]
+            formItems["description"].value = body["description"]
+            formItems["content"].value = body["content"]
+            formItems["duration"].value = body["duration"]
         }
     }).catch((error) => {
         console.log(error)
