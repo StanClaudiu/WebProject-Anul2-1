@@ -101,7 +101,7 @@ class CourseUserRepository {
     async delete_course_by_id(id) {
         try {
             const result = await this.db.execute(
-                `SELECT * from TABLE( courses_package.delete_course_by_id('${id}'))`);
+                `SELECT courses_package.delete_course_by_id('${id}') FROM DUAL`);
             
             console.log(result);
         }

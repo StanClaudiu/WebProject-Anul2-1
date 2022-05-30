@@ -62,7 +62,7 @@
                                     <th>${course.duration}</th>
                                     <th>${course.nrOfChildren}</th>
                                     <th><a class="add_plants" onclick="openModal('edit_course')"><i class="fa-solid fa-pen-to-square"></i></a></th>
-                                    <th><a class="add_plants" onclick="openModal('delete_course')"><i class="fa-solid fa-trash-can"></i></a></th>
+                                    <th><a class="add_plants" onclick="openDeleteModal('@@host/api/v1/courses/delete','${course.id}')"><i class="fa-solid fa-trash-can"></i></a></th>
                                 </tr>
                                 <tr>
                                     <th> </th>
@@ -156,7 +156,7 @@
                         <div>
                             Are you sure you want to delete this course?
                         </div>
-                        <form id="delete_form" action="@@host/api/v1/courses/delete?id=1" method="post"></form>
+                        <form id="delete_form" action="---to-be-dinamicly-replaced---" method="post"></form>
                     </div>
                     <div class="modal-action-buttons">
                         <div class="button-box button-box-red" onclick="closeModal('delete_course')">Cancel</div>
