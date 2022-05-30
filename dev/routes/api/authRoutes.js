@@ -8,5 +8,8 @@ authRoutes.post(`/api/v1/login`, AuthController.login);
 authRoutes.get(`/api/v1/logout`, AuthController.logout);
 
 authRoutes.post(`/api/v1/courses`, AdminPageController.create);
+authRoutes.post(`/api/v1/courses/delete`, AdminPageController.delete);
+authRoutes.get(`/api/v1/courses/read`, AdminPageController.read);
+authRoutes.post(`/api/v1/courses/update`, AdminPageController.update);
 
 export default authRoutes

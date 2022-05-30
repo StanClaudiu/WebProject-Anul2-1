@@ -1,7 +1,7 @@
 class Course {
     db
     id
-    parrentCourse
+    parrentCourseId
     content
     description
     name
@@ -9,10 +9,10 @@ class Course {
     imgPath
     videoPath
 
-    constructor(db, content, description, name, duration, imgPath, videoPath= "null", parrentCourse = undefined,  id = 0) {
+    constructor(db, content, description, name, duration, imgPath, videoPath= "null", parrentCourseId = null,  id = 0) {
         this.db = db
         this.id = id
-        this.parrentCourse = parrentCourse
+        this.parrentCourseId = parrentCourseId
         this.content = content
         this.description = description
         this.name = name
@@ -22,32 +22,82 @@ class Course {
     }
 
     static async getCourses(db) {
-        await db.courseRepository.get()
+        const coursesData = await db.courseRepository.get()
+        const courses = coursesData.map(courseData => 
+            new Course(db, 
+                courseData["COURSE_CONTENT"],
+                courseData["DESCRIPTION_COURSE"],
+                courseData["COURSE_NAME"],
+                courseData["COURSE_DURATION"],
+                courseData["IMAGE_PATH_DOWNLOAD"],
+                courseData["COURSE_VIDEO_PATH"],
+                courseData["PARENT_ID"],
+                courseData["ID_CURS"]
+            )
+        );
+        return courses
     }
 
-    static async getCourseById(db, id) {
-        const user = await new User(db, 1, "user", "geni", "geani@gmail.com", "parola123")
-        return user;
+    static async getById(db, id) {
+        const courseData = await db.courseRepository.getById(id)
+
+        return courseData == null ? null : 
+            new Course(db, 
+                courseData["COURSE_CONTENT"],
+                courseData["DESCRIPTION_COURSE"],
+                courseData["COURSE_NAME"],
+                courseData["COURSE_DURATION"],
+                courseData["IMAGE_PATH_DOWNLOAD"],
+                courseData["COURSE_VIDEO_PATH"],
+                courseData["PARENT_ID"],
+                courseData["ID_CURS"]
+            )
     }
 
-    static async deleteCourseById(db, id) {
-
+    static async deleteById(db, id) {
+        await db.courseRepository.delete_course_by_id(id)
     }
 
     async create() {
         this.id = await this.db.courseRepository.create(
-            this.parrentCourse != undefined ?  this.parrentCourse.id : "null", 
+            this.parrentCourseId != null ?  this.parrentCourseId : "null", 
             this.content, this.description, this.name, this.duration, this.imgPath, this.videoPath)
     }
 
     async update() {
         await this.db.courseRepository.update(
-            this.id, this.parrentCourse != undefined ?  this.parrentCourse.id : "null",
+            this.id, this.parrentCourseId != null ?  this.parrentCourseId : "null",
             this.content, this.description, this.name, this.duration, this.imgPath, this.videoPath)
     }
 
-    async delete() {
+    async getChildCourses() {
+        const coursesData = await this.db.courseRepository.getByParentId(this.id)
+        const courses = coursesData.map(courseData => 
+            new Course(this.db, 
+                courseData["COURSE_CONTENT"],
+                courseData["DESCRIPTION_COURSE"],
+                courseData["COURSE_NAME"],
+                courseData["COURSE_DURATION"],
+                courseData["IMAGE_PATH_DOWNLOAD"],
+                courseData["COURSE_VIDEO_PATH"],
+                courseData["PARENT_ID"],
+                courseData["ID_CURS"]
+            )
+        );
+        return courses
+    }
 
+    toPOJO() {
+        return {
+            "id": this.id,
+            "parrentCourseId": this.parrentCourseId,
+            "content": this.content,
+            "description": this.description,
+            "name": this.name,
+            "duration": this.duration,
+            "imgPath": this.imgPath,
+            "videoPath": this.videoPath
+        }
     }
 }
 

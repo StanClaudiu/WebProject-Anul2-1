@@ -35,7 +35,7 @@
             <div class="table_placement" style="background-color:green">
                 <div class="table_construction">
                     <table>
-                        <div id="#head"> 
+                        <div> 
                                 <tr>
                                 <th>Name of course</th>
                                 <th>Estimated completion time</th>
@@ -51,152 +51,32 @@
                                 <th> </th>
                             </tr>
                         </div>
-                        <div id="unu"> 
-                            <tr>
-                                <th>How to plant tomatoes</th>
-                                <th>1h 29m</th>
-                                <th>5</th>
-                                <th><a class="add_plants" onclick="openModal('edit_course')"><i class="fa-solid fa-pen-to-square"></i></a></th>
-                                <th><a class="add_plants" onclick="openModal('delete_course')"><i class="fa-solid fa-trash-can"></i></a></th>
-                            </tr>
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
 
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#doi">
-                            <tr>
-                                <th>How to graft trees</th>
-                                <th>3h 00m</th>
-                                <th>12</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                            
-                            <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                            </tr>
-                        </div>
-                        <div id="#trei">
-                            <tr>
-                                <th>Beginner flower
-                                    planting strategies</th>
-                                <th>2h 20m</th>
-                                <th>9</th>
-                                <th><i class="fa-solid fa-pen-to-square"></i> </th>
-                                <th><i class="fa-solid fa-trash-can"></i></th>
-                            </tr>
-                        </div>
+                        @@zen
+
+                        return wiredObject["courses"].map(course => {
+                            return `
+                            <div> 
+                                <tr>
+                                    <th>${course.name}</th>
+                                    <th>${course.duration}</th>
+                                    <th>${course.nrOfChildren}</th>
+                                    <th><a class="add_plants" onclick="openEditModal('@@host/api/v1/courses/read','@@host/api/v1/courses/update','${course.id}')"><i class="fa-solid fa-pen-to-square"></i></a></th>
+                                    <th><a class="add_plants" onclick="openDeleteModal('@@host/api/v1/courses/delete','${course.id}')"><i class="fa-solid fa-trash-can"></i></a></th>
+                                </tr>
+                                <tr>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                </tr>
+                            </div>
+
+                            `
+                        }).join("\n")
+
+                        @@zen
                         
                         </table>
                     </div>
@@ -213,6 +93,11 @@
                             <label for="create_course_parrentCourse">Parrent Course</label>
                             <select id="create_course_parrentCourse" name="parrentCourse" required>
                                 <option value="null">This is a parent course</option>
+                                @@zen
+                                    return wiredObject["parentCourses"].map(course => {
+                                        return `<option value="${course.id}">${course.name}</option>`
+                                    }).join("\n")
+                                @@zen      
                             </select>
                             <label for="create_course_description">Description</label>
                             <input type="text" id="create_course_description" name="description" required>
@@ -235,12 +120,17 @@
             <div class="modal_container long_modal_container" id="edit_course">
                 <div class="modal course_add_edit_modal">
                     <div class="full-form-container">
-                        <form class="pretty_form" id="edit_form" action="/">
+                        <form class="pretty_form" id="edit_form" action="---to-be-dinamicly-replaced---" method="post" enctype="multipart/form-data">
                             <label for="edit_course_name">Name</label>
                             <input type="text" id="edit_course_name" name="name" required>
                             <label for="edit_course_parrentCourse">Parrent Course</label>
                             <select id="edit_course_parrentCourse" name="parrentCourse" required>
                                 <option value="null">This is a parent course</option>
+                                @@zen
+                                    return wiredObject["parentCourses"].map(course => {
+                                        return `<option value="${course.id}">${course.name}</option>`
+                                    }).join("\n")
+                                @@zen      
                             </select>
                             <label for="edit_course_description">Description</label>
                             <input type="text" id="edit_course_description" name="description" required>
@@ -249,13 +139,13 @@
                             <label for="edit_course_duration">Duration</label>
                             <input type="number" min="0" id="edit_course_duration" name="duration" required>
                             <label for="edit_course_image">Course Image</label>
-                            <input type="file" id="edit_course_image" name="image" accept="image/png, image/jpeg" required>
+                            <input type="file" id="edit_course_image" name="image" accept="image/png, image/jpeg">
                             <label for="edit_course_video">Course Video</label>
-                            <input type="file" id="edit_course_video" name="video" accept="video/mp4" required>
+                            <input type="file" id="edit_course_video" name="video" accept="video/mp4">
                         </form>
                     </div>
                     <div class="modal-action-buttons">
-                        <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Edit</button>
+                        <button type="submit" form="edit_form" class="button-filled button-filled-dark-green">Edit</button>
                         <div class="button-box button-box-red" onclick="closeModal('edit_course')">Cancel</div>
                     </div>
                 </div>
@@ -266,22 +156,20 @@
                         <div>
                             Are you sure you want to delete this course?
                         </div>
+                        <form id="delete_form" action="---to-be-dinamicly-replaced---" method="post"></form>
                     </div>
                     <div class="modal-action-buttons">
                         <div class="button-box button-box-red" onclick="closeModal('delete_course')">Cancel</div>
-                        <button type="submit" form="add_plant_form" class="button-filled button-filled-dark-green">Delete</button>
+                        <button type="submit" form="delete_form" class="button-filled button-filled-dark-green">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
 
-
-    
-
-
     <script src="@@host/public/frontend/resources/scripts/navBar.js"></script>
     <script src="@@host/public/frontend/resources/scripts/modal.js"></script>
+    <script src="@@host/public/frontend/resources/connection_scripts/formHandler.js"></script>
+    <script src="@@host/public/frontend/resources/connection_scripts/adminPage.js"></script>
     
-        <script></script> <!-- it should do something-->
     </body>
 </html>
