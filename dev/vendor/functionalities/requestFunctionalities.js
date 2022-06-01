@@ -111,7 +111,7 @@ const parseBody = async (request) => {
 const AddRequestFunctionalities = (request) => {
 
     request.augment = async () => {
-        request.parameters = url.parse(request.url, true).query;
+        request.parameters = url.parse(request.url, true).query;///obiect de tip query
         request.cookies = parseCookies(request);
         request.body = await parseBody(request);
     }

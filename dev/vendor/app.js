@@ -32,16 +32,16 @@ class App {
             let zen = {}
             zen = AddZenFunctionalities(zen);
             response = AddResponseFunctionalities(response);
-            request = AddRequestFunctionalities(request);
+            request = AddRequestFunctionalities(request); //gen responsabilitati noi fata de cele default
 
             console.log(`${request.method} on ${request.url}`) 
             
-            response = this.setResponseHeaders(response);
+            response = this.setResponseHeaders(response); //constructie 
             
             if (this.isStatic(request.url)) {
                 response = await this.handleStatic(request, response);
                 return;
-            }
+            } //pur si simplu il serversc
             
             //AugmentData
 

@@ -18,10 +18,6 @@ const PagesController = {
         await response.sendZenView({}, "views/leaderboard.html")
     },
 
-    myGardenPage: async (zen, request, response) => {
-        await response.sendZenView({}, "views/myGarden.html")
-    },
-
     favicon: async (zen, request, response) => {
         await response.sendFile("public/frontend/resources/favicon.ico")
     }
