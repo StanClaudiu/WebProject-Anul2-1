@@ -1,5 +1,8 @@
 import { Router } from "../../vendor/index.js";
-import { PagesController, AdminPageController, CoursePageController } from "../../controllers/index.js";
+import { PagesController, 
+         AdminPageController, 
+         CoursePageController, 
+         CoursesPageController } from "../../controllers/index.js";
 import { UserMiddleware, AdminMiddleware } from "../../middlewares/index.js"
 
 const mainRoutes = new Router();
@@ -8,7 +11,7 @@ const mainRoutes = new Router();
 
 mainRoutes.get(`/main`, PagesController.landingPage);
 mainRoutes.get(`/course`, CoursePageController.view, UserMiddleware);
-mainRoutes.get(`/courses`, PagesController.coursesPage, UserMiddleware);
+mainRoutes.get(`/courses`, CoursesPageController.view, UserMiddleware);
 mainRoutes.get(`/leaderboard`, PagesController.leaderboardPage, UserMiddleware);
 mainRoutes.get(`/myGarden`, PagesController.myGardenPage, UserMiddleware);
 mainRoutes.get(`/adminPage`, AdminPageController.view, AdminMiddleware);
