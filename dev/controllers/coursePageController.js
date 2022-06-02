@@ -1,14 +1,14 @@
 import { StatusCodes } from "http-status-codes"
 import { Course } from "../models/index.js"
 
-const buildCoursesTree = async (startingCourse) => {
+const buildCoursesTree = async (db, startingCourse) => {
     let rootCourse = {}
 
-    if (startingCourse.parentCourseId == null) {
+    if (startingCourse.parrentCourseId == null) {
         rootCourse = startingCourse
     }
     else {
-        rootCourse = await Course.getById(rootCourse.parentCourseId)
+        rootCourse = await Course.getById(db, startingCourse.parrentCourseId)
     }
 
     rootCourse.childCourses = await rootCourse.getChildCourses()
@@ -20,7 +20,7 @@ const CoursePageController = {
     view: async (zen, request, response) => {
         const course = await Course.getById(zen.db, request.parameters.id)
         await response.sendZenView(
-            {"course": course, "courseTree": await buildCoursesTree(course)}, "views/course.html")
+            {"course": course, "courseTree": await buildCoursesTree(zen.db, course)}, "views/course.html")
     }
 }
 
