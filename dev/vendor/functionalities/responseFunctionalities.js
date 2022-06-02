@@ -16,7 +16,9 @@ const AddResponseFunctionalities = (response) => {
         response.end()
         return response
 
-    }
+    } 
+
+    ///we create the response.status function and response.json function
 
     response.sendFile = async (filePath) => {
 
@@ -39,16 +41,16 @@ const AddResponseFunctionalities = (response) => {
         try {
             const extension = path.parse(filePath).ext;
 
-            const stat = await fs.promises.stat(filePath);
+            const stat = await fs.promises.stat(filePath);//stats about the files
 
             if (!stat.isFile) {
                 return response.status(StatusCodes.BAD_REQUEST).json({
                     error: `bad request. not a file`
                 })
-            } 
+            }  //daca nu avem un file atunci gtfo
             else {
                 const data = await fs.promises.readFile(filePath)
-                response.setHeader('Content-type', extensionToResponse[extension] || 'text/plain');
+                response.setHeader('Content-type', extensionToResponse[extension] || 'text/plain');//u can set multiple headers damn
                 response.setHeader('Content-length', stat.size);
                 response.write(data)
                 response.end()
@@ -73,20 +75,15 @@ const AddResponseFunctionalities = (response) => {
         return response
     }
 
-    response.status = (newStatusCode) => {
-        response.statusCode = newStatusCode
-        return response
-    }
-
     response.sendRaw = (data, responseType) => {
         response.setHeader('Content-type', responseType);
-        response.write(data)
-        response.end()
+        response.write(data) ////pune html-ul
+        response.end() 
         return response
     }
 
     response.sendZenView = async (wiredObject, zenViewPath) => {
-        const data = await ZenViewParser(wiredObject, zenViewPath)
+        const data = await ZenViewParser(wiredObject, zenViewPath) ////take the wiredObject
         return response.sendRaw(data, 'text/html')
     }
 

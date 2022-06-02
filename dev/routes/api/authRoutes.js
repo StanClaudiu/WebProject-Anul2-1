@@ -1,5 +1,5 @@
 import { Router } from "../../vendor/index.js";
-import { AuthController, AdminPageController } from "../../controllers/index.js";
+import { AuthController, AdminPageController, MyGardenPageController } from "../../controllers/index.js";
 
 const authRoutes = new Router();
 
@@ -11,5 +11,10 @@ authRoutes.post(`/api/v1/courses`, AdminPageController.create);
 authRoutes.post(`/api/v1/courses/delete`, AdminPageController.delete);
 authRoutes.get(`/api/v1/courses/read`, AdminPageController.read);
 authRoutes.post(`/api/v1/courses/update`, AdminPageController.update);
+
+///-----AdminPageController
+
+authRoutes.get(`/api/v1/myGarden/read`, MyGardenPageController.read);
+authRoutes.post(`/api/v1/myGarden`,MyGardenPageController.create);
 
 export default authRoutes

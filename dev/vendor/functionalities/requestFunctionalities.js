@@ -28,7 +28,7 @@ const parseMultipart = async (request) => {
     multipartParser.uploadDir = process.env.STORAGE_CACHE;
 
     const parsedBody = await new Promise((resolve, reject) => {
-        multipartParser.parse(request, function (error, fields, files) {
+        multipartParser.parse(request, function (error, fields, files) { ///din multiparser
             if (error) {
                 console.log("Failed to parse multipart request")
                 console.log(error)
@@ -113,7 +113,8 @@ const AddRequestFunctionalities = (request) => {
     request.augment = async () => {
         request.parameters = url.parse(request.url, true).query;///obiect de tip query
         request.cookies = parseCookies(request);
-        request.body = await parseBody(request);
+        request.body = await parseBody(request); //parseaza structura ce vine, gen body.fields->object cu tot
+        console.log(request.body.fields)
     }
 
     return request;

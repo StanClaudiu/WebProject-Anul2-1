@@ -31,6 +31,22 @@ class PlantRepository {
         }
     }
 
+    async create(id_user, id_plant_type, plant_name){
+        try{
+            const result = await db.execute(
+                `SELECT plant_package.add_plant(${id_user},${id_plant_type},'${plant_name}') 
+                FROM DUAL`);
+                console.log("I added a plant and had the following return");
+                console.log(result);
+                return result.rows[0][Object.keys(result.rows[0])[0]];///return the damn id
+        }
+        catch(err){
+            console.log("The error is in create Plant Repo")
+            console.log(err);
+        }
+
+    }
+
 }
 
 export default PlantRepository;

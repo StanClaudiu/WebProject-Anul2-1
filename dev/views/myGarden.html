@@ -69,51 +69,22 @@
                         <div style="color:green"><a class="add_plants" onclick="openModal('add_modal')"><i class="fa-solid fa-circle-plus fa-2xl"></i></a></div>
                    </div>
                    <div class="garden_Component_Container" >
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Vegetables</div>
-                                    <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Vegetables</div>
-                                    <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Vegetables</div>
-                                    <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component">
-                            <div class="plants-summary-image">
-                                <img alt="image of tree" src="@@host/public/frontend/resources/images/logo.png" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Trees</div>
-                                    <div><a class="inspect_trees_reminder" onclick="openModal('inspect_trees_modal')"><i class="fa-solid fa-ellipsis"></a></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of flowers" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                            <div class="my_description">
-                                <div>Flowers</div>
-                            <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
+                        @@zen
+                             let plantTypes = wiredObject["plantTypes"];
+                                return plantTypes.map( pType => 
+                                `<div class="plant_name_Component" >
+                                    <div class="plants-summary-image">
+                                        <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
+                                    </div>
+                                        <div class="my_description">
+                                            <div>${pType.name}</div>
+                                            <div><i class="fa-solid fa-ellipsis"></i></div>
+                                    </div>
+                                </div>`
+                                ).join('\n');
+                               
+                            
+                        @@zen
                    </div>
                    <div class="remainder_title">
                        REMAINDER
@@ -137,9 +108,7 @@
                    </div>
                </div>
             </div>
-            @@zen
-            return wiredObject["mama"];
-            @@zen
+            
 
 
 
@@ -160,16 +129,16 @@
                 <div class="modal_container" id="add_modal">
                     <div class="modal garden_modal">
                         <div class="full-form-container">
-                            <form class="pretty_form" id="add_plant_form" action="/">
+                            <form class="pretty_form" id="add_plant_form" action="@@host/api/v1/myGarden" method="post" enctype="application/x-www-form-urlencoded">
                                 <label for="name_of_plant">Name</label>
                                 <input type="text" id="name_of_plant" name="name_of_plant" required>
                                 <!-- this needs to be a select-->
                                 <label for="type_of_plant">Type</label>
                                 <div class="selector_add_plant pretty_form">
                                     <select id="type_of_plant" name="type_of_plant">
-                                    <option value="Trees">Trees</option>
-                                    <option value="Flowers">Flowers</option>
-                                    <option value="Vegetables">Vegetables</option>
+                                    <option value="Trees" id="1">Trees</option>
+                                    <option value="Flowers" id="2">Flowers</option>
+                                    <option value="Vegetables" id="3">Vegetables</option>
                                     </select>
                                 </div> 
                             </form>
@@ -203,7 +172,7 @@
                                 <div><i class="fa-solid fa-xmark"></i></div>
                             </div>
                             <div class="tree_formated">
-                                <div>Nuc</div>
+                                <div id="element_modal_dot">Nuc</div>
                                 <div><i class="fa-solid fa-xmark"></i></div>
                             </div>
                         </div>
@@ -227,7 +196,7 @@
             <script src="@@host/public/frontend/resources/scripts/navBar.js"></script>
             <script src="@@host/public/frontend/resources/scripts/modal.js"></script>
             <script src="@@host/public/frontend/resources/scripts/countingNumbers.js"></script>
-          
+            <script src="@@host/public/frontend/resources/connection_scripts/myGarden.js"></script>
     </body>
 
 

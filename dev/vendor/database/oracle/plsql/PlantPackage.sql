@@ -100,3 +100,6 @@ CREATE OR REPLACE PACKAGE BODY plant_packege IS
     END delete_plant_by_id;   
     
 END plant_packege;/* STATEMENT */
+
+
+SELECT * FROM plant;

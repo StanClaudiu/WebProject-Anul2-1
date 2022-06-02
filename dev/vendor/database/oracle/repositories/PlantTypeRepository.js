@@ -31,6 +31,21 @@ class PlantTypeRepository {
         }
     }
 
+    async getAllPlantsTypes() {
+        try {
+            const result = await this.db.execute(
+                `SELECT * FROM TABLE (plant_type_packege.get_plant_types())`
+            );
+            console.log(result);
+            return result.rows;
+
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+
 }
 
 export default PlantTypeRepository;

@@ -70,3 +70,9 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
 END plant_type_packege;/* STATEMENT */
 
 
+SELECT plant_type_packege.add_plant_type('Tomato','pozaTomato.png') FROM DUAL ;
+SELECT plant_type_packege.add_plant_type('Cucumber','pozaCucumber.png') FROM DUAL ;
+SELECT plant_type_packege.add_plant_type('Cartof','pozaCartof.png') FROM DUAL ;
+
+
+SELECT * FROM plant_type;

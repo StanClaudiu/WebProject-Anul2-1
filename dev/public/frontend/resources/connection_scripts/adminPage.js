@@ -7,7 +7,7 @@ const openDeleteModal = (deletePath, id) => {
 
 const openEditModal = (readPath, updatePath, id) => {
     const editForm = document.getElementById("edit_form")
-    editForm.action = `${updatePath}?id=${id}`
+    editForm.action = `${updatePath}?id=${id}`///editam ce era in action
 
     const formItems = {
         "name": document.getElementById("edit_course_name"),

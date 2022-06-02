@@ -16,6 +16,7 @@ const addSession = async (zen, request) => {
         try {
             const decodedObject = jwt.verify(authToken, process.env.SECURITY_SECRET_KEY);
             user = await User.getUserByEmail(zen.db, decodedObject["email"])
+            //here we have an object of type user
 
             if (user != null) {
                 isLoggedIn = true
