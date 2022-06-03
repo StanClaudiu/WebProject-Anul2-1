@@ -1,8 +1,8 @@
 const openModal = (modalId) => {
     modalContainer = document.getElementById(modalId)
     bodyRoot = document.getElementById('body_root');
-    modalContainer.classList.add('modal_container_show')
-    bodyRoot.classList.add('modal-hide-body-overflow')
+    modalContainer.classList.add('modal_container_show') //show my container
+    bodyRoot.classList.add('modal-hide-body-overflow') //make everything gray
 }
 
 const closeModal = (modalId) => {

@@ -87,6 +87,8 @@ SELECT plant_type_packege.add_plant_type('Trees','pozaCartof.png') FROM DUAL ;
 
 SELECT plant_packege.add_plant(4,3,'Pinochio') FROM DUAL;
 
+SELECT * FROM plant;
+
 DELETE FROM plant_type;
 COMMIT;
 SELECT * FROM plant_type;

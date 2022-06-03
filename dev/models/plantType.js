@@ -29,8 +29,9 @@ class PlantType {
             new PlantType(db,
                         userPlantType["NAME"],
                         userPlantType["IMAGE_LINK"],
-                        userPlantType["ID"]));
-            return userPlantsType;
+                        userPlantType["ID"])
+            );
+            return userPlantsType
     }
 }
 

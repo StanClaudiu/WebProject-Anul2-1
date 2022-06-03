@@ -16,14 +16,18 @@ const MyGardenPageController = {
 
 
     read: async (zen, request, response) => {
-        response.status(201).json({"salut":"ceFaci"});
-        
+        let id_user = zen.session.user.id;
+        let id_type = request.parameters.id;
+        let userPlantsTyped = await Plant.getAllUserPlantByType(zen.db,id_user,id_type);
+        console.log(userPlantsTyped);
 
+        userPlantsTyped = userPlantsTyped.map (elem => elem.toPOJO());
+
+        await response.status(200).json(userPlantsTyped);
         return response;
     },
 
     create: async (zen, request, response) => {
-         console.log("I came at some point in here-----------------||||||||||----------");
          console.log(request.body.fields.type_of_plant);
          let myPlant = new Plant(zen.db,
                                 parseInt(request.body.fields.type_of_plant),

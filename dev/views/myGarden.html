@@ -78,7 +78,7 @@
                                     </div>
                                         <div class="my_description">
                                             <div>${pType.name}</div>
-                                            <div><i class="fa-solid fa-ellipsis"></i></div>
+                                            <div onclick="openPlantModal('@@host/api/v1/myGarden/read','${pType.id}')"><i class="fa-solid fa-ellipsis"></i></div>
                                     </div>
                                 </div>`
                                 ).join('\n');
@@ -161,27 +161,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal_container" id="inspect_trees_modal">
+
+
+
+                <div class="modal_container" id="inspect_plant_modal">
                     <div class="modal">
-                        <div class="full-form-container plants_made_beatiful">
+                        <div class="full-form-container plants_made_beatiful" id="inject_plants">
                             <div class="tree_formated">
                                 <div>Copacel</div>
                                 <div><i class="fa-solid fa-xmark"></i></div>
                             </div>
-                            <div class="tree_formated">
-                                <div>Bonzai</div>
-                                <div><i class="fa-solid fa-xmark"></i></div>
-                            </div>
-                            <div class="tree_formated">
-                                <div id="element_modal_dot">Nuc</div>
-                                <div><i class="fa-solid fa-xmark"></i></div>
-                            </div>
+                            <!-- here we have our modal -->
                         </div>
                         <div class="modal-action-buttons">
-                            <div class="button-box button-box-red" onclick="closeModal('inspect_trees_modal')">Cancel</div>
+                            <div class="button-box button-box-red" onclick="closeModal('inspect_plant_modal')">Cancel</div>
                         </div>
                     </div>
                 </div>
+                
+                
+
+
                 <div class="modal_container" id="close_reminder_modal">
                     <div class="modal">
                         <div class="full-form-container">

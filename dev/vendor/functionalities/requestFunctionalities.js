@@ -99,7 +99,7 @@ const parseJosnBody = async (request) => {
 
 const parseBody = async (request) => {
     if (!request.headers['content-type']) {
-        return {"fields": {}, "files": {}};
+        return {"fields": {}, "files": {}};//cere o pagina web?, gen main?
     }
     if (request.headers['content-type'].includes("multipart/form-data")) { //means it has video and things etc
         return await parseMultipart(request)

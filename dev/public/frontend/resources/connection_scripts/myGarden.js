@@ -1,10 +1,8 @@
-const openPlantModal = () => {
+const openPlantModal = (readPath,id) => {
 
-    const formItems = {
-        "element_modal_dot": document.getElementById("element_modal_dot")
-    }
+    const injection_point = document.getElementById("inject_plants"); //din modalul edit_plants
 
-    fetch(`/api/v1/myGarden/read`, {
+    fetch(`${readPath}?id=${id}`, {
         method: 'get',
         headers: {
             'Accept': 'application/json'
@@ -15,11 +13,12 @@ const openPlantModal = () => {
         if (response.status === 200) {
             let body = await response.json();
 
-            formItems["element_modal_dot"].innerHTML = body["salut"]
+            injection_point.innerHTML = body["salut"];
+            console.log("----------------------------------");
         }
     }).catch((error) => {
         console.log(error)
     })
 
-    openModal("inspect_trees_modal")
+    openModal("inspect_plant_modal")
 }

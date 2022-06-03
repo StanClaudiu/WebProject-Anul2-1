@@ -47,6 +47,22 @@ class PlantRepository {
 
     }
 
+    async getAllUserPlantsByType(id_user,id_type){
+        try{
+            const result = await this.db.execute(
+                `SELECT * FROM TABLE (plant_packege.get_plants_by_user_and_type_id(${id_user},${id_type}))`
+            );
+            console.log("I want all the plants of the user");
+            console.log(result)
+            return result.rows;
+        }
+       catch(err)
+       {
+           console.log("Am esuat execrabil");
+           console.log(err)
+       } 
+    }
+
 }
 
 export default PlantRepository;

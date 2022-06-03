@@ -42,6 +42,8 @@ CREATE OR REPLACE PACKAGE plant_packege IS
     
     FUNCTION get_plants_by_user_id ( id_user plant.id_user%TYPE) RETURN table_type PIPELINED;
     
+    FUNCTION get_plants_by_user_and_type_id ( p_id_user plant.id_user%TYPE, p_id_type plant_type.id%TYPE ) RETURN table_type PIPELINED;
+
     FUNCTION delete_plant_by_id ( id_plant plant.id%TYPE) RETURN INT;
 END plant_packege;/* STATEMENT */
 
@@ -99,10 +101,20 @@ CREATE OR REPLACE PACKAGE BODY plant_packege IS
         RETURN 1;
     END delete_plant_by_id;   
     
+    FUNCTION get_plants_by_user_and_type_id ( p_id_user plant.id_user%TYPE, p_id_type plant_type.id%TYPE ) RETURN table_type PIPELINED IS
+    BEGIN
+        FOR v_rand IN (SELECT plant.* FROM plant join plant_type on plant.id_type = plant_type.id WHERE plant.id_type = p_id_type AND plant.id_user = p_id_user) LOOP
+            PIPE ROW(v_rand);
+        END LOOP;
+    END;
+
+    
 END plant_packege;/* STATEMENT */
 
 
 SELECT * FROM plant;
+
+SELECT plant_packege.get_plants_by_user_and_type_id(4,3) FROM DUAL;
 
 SELECT plant_packege.add_plant(1,1,"Tomato")FROM DUAL; 
  

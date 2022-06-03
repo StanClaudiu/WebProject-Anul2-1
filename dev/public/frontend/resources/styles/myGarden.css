@@ -136,7 +136,7 @@ a.inspect_trees_reminder > i:hover{
     ->Water your tomatoes
     ->X
 */
-#inspect_trees_modal .modal{
+#inspect_plant_modal .modal{
     max-width: 60%;
     background-color: darkgreen;
     border-radius: 0px;
