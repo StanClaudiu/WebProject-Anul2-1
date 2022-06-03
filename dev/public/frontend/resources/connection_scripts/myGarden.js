@@ -15,8 +15,8 @@ const openPlantModal = (readPath,id) => {
             ///now that we have the data let's make it nice and put in in the page
             console.log(body);
             injection_point.innerHTML = await body.map(elem => 
-            `<div class="plant_formated">
-                <div>${elem.plant_name}</div>
+            `<div id = "plant${elem.id}" class="plant_formated">
+                <div >${elem.plant_name}</div>
                 <div><i class="fa-solid fa-xmark" onclick = "openDeleteModal('${elem.id}')" ></i></div>
              </div>`
             ).join('\n')
@@ -29,5 +29,14 @@ const openPlantModal = (readPath,id) => {
 }
 
 const openDeleteModal = (id) => {
+    document.getElementById("submiter_of_delete").setAttribute("onclick",`delete_plant(${id})`);
     openModal('delete_plant_modal');
+}
+
+const delete_plant = (id) => {
+     document.getElementById(`plant${id}`).style = "display:none";
+     ///I will make the request for deletion
+    closeModal('delete_plant_modal');
+    console.log('I am trying to close the modal');
+
 }
