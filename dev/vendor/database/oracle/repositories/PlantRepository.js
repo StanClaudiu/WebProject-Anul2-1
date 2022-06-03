@@ -63,6 +63,18 @@ class PlantRepository {
        } 
     }
 
+    async deleteById(id_plant){
+        try{
+            const result = await this.db.execute(
+            `SELECT plant_packege.delete_plant_by_id(${id_plant}) FROM DUAL`
+        )
+            }
+        catch(err){
+            console.log(err);
+            }
+
+    }
+
 }
 
 export default PlantRepository;

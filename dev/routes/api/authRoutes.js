@@ -16,5 +16,8 @@ authRoutes.post(`/api/v1/courses/update`, AdminPageController.update);
 
 authRoutes.get(`/api/v1/myGarden/read`, MyGardenPageController.read);
 authRoutes.post(`/api/v1/myGarden`,MyGardenPageController.create);
+authRoutes.get(`/api/v1/myGarden/del`,MyGardenPageController.del);
+
+///--myGardn
 
 export default authRoutes

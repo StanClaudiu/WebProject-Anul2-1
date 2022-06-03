@@ -16,8 +16,8 @@ const MyGardenPageController = {
 
 
     read: async (zen, request, response) => {
-        let id_user = zen.session.user.id;
-        let id_type = request.parameters.id;
+        let id_user =  zen.session.user.id;
+        let id_type =  request.parameters.id;
         let userPlantsTyped = await Plant.getAllUserPlantByType(zen.db,id_user,id_type);
 
         userPlantsTyped = userPlantsTyped.map (elem => elem.toPOJO());
@@ -25,7 +25,7 @@ const MyGardenPageController = {
         console.log(userPlantsTyped);
 
         await response.status(200).json(userPlantsTyped);
-        
+
         return response;
     },
 
@@ -41,6 +41,16 @@ const MyGardenPageController = {
          await response.redirect(`/myGarden`); //move me there...deci faci si request
               
          return response;
+    },
+
+    del: async (zen, request, response) => {
+        let id_plant = await request.parameters.id;
+        await Plant.deleteById(zen.db,id_plant);
+
+        response.status(200).end();
+
+        console.log('I am deleting a plant' + id_plant)
+        
     }
 
 

@@ -36,6 +36,21 @@ const openDeleteModal = (id) => {
 const delete_plant = (id) => {
      document.getElementById(`plant${id}`).style = "display:none";
      ///I will make the request for deletion
+        fetch(`/api/v1/myGarden/del?id=${id}`, {
+        method: 'get',
+        headers: {
+             //il transforma node.js in content-type
+        }
+    }).then((response) => {
+        return response
+    }).then(async (response) => {
+        if (response.status === 200) {
+            ///now that we have the data let's make it nice and put in in the page
+            console.log("It was deleted succesfully"); 
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
     closeModal('delete_plant_modal');
     console.log('I am trying to close the modal');
 

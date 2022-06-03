@@ -35,6 +35,10 @@ class Plant  {
             return result;
     }
 
+    static async deleteById(db,id) {
+        await db.plantRepository.deleteById(id);
+    }
+
     toPOJO(){
         return {
             "id" : this.id,
