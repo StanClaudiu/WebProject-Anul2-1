@@ -23,7 +23,6 @@ const showSlides = (n) => {
 }
 
 const plusSlides = (n) => {
-  console.log("Da")
   showSlides(slideIndex += n);
 }
 
