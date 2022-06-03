@@ -60,7 +60,7 @@ class StartedCourseRepository {
     async update(id, progress) {
         try {
             const result = await this.db.execute(
-                `SELECT started_courses_package.update_course(${id}, ${progress}) FROM DUAL`);
+                `SELECT started_courses_package.update_started_course(${id}, ${progress}) FROM DUAL`);
             
             console.log(result);
             return result.rows[0][Object.keys(result.rows[0])[0]]; //the id

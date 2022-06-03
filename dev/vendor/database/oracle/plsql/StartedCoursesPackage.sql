@@ -35,7 +35,7 @@ CREATE OR REPLACE PACKAGE started_courses_package IS
     
     FUNCTION create_started_course (p_id_user started_courses.id_user%TYPE,
                                     p_id_curs started_courses.id_curs%TYPE) RETURN INT ;
-    FUNCTION update_started_course (id_stat started_courses.id_curs%TYPE,
+    FUNCTION update_started_course (id_stat started_courses.id_statistics%TYPE,
                                     p_progress started_courses.id_curs%TYPE) RETURN INT;
     FUNCTION getAllStartedCourses(p_id_user started_courses.id_user%TYPE) 
                                                                     RETURN preview_courses_table PIPELINED;          
@@ -65,11 +65,11 @@ CREATE OR REPLACE PACKAGE BODY started_courses_package IS
             RETURN -1;
      END create_started_course;
      
-     FUNCTION update_started_course (id_stat started_courses.id_curs%TYPE,
+     FUNCTION update_started_course (id_stat started_courses.id_statistics%TYPE,
                                     p_progress started_courses.id_curs%TYPE) RETURN INT IS
         PRAGMA AUTONOMOUS_TRANSACTION;
     BEGIN
-        IF(p_progress>=0 AND p_progress<=1)THEN
+        IF(p_progress>=0 AND p_progress<=100)THEN
         UPDATE started_courses  SET progress=p_progress WHERE started_courses.id_statistics = id_stat; 
         COMMIT;
         RETURN 1;
