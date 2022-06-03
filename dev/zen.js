@@ -1,7 +1,7 @@
 import { OracleDatabase } from "./vendor/database/index.js";
 import { SeedAdmins } from "./seder/index.js"
 import { App } from "./vendor/index.js";
-import { SendMail } from "./vendor/mailer/mailer.js"
+import { SendMail } from "./vendor/mailer/index.js"
 import { FileManager } from "./vendor/fileManager/index.js"
 import { mainRoutes } from "./routes/web/index.js";
 import { authRoutes } from "./routes/api/index.js";
