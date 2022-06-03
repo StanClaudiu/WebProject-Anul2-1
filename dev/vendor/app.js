@@ -12,11 +12,13 @@ class App {
     router
     db
     fileManager
+    sendMail
 
-    constructor(port, db, fileManager) {
+    constructor(port, db, fileManager, sendMail) {
         this.port = port
         this.db = db
         this.fileManager = fileManager
+        this.sendMail = sendMail
         this.router = new Router()
     }
 
@@ -47,7 +49,7 @@ class App {
 
             await request.augment()
             await response.augment()
-            await zen.augment(this.db, this.fileManager, request)
+            await zen.augment(this.db, this.fileManager, this.sendMail, request)
             
             if (this.hasValidHeaders(request.headers)) {
                 response = await this.router.handleRoute(zen, request, response)

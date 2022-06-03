@@ -35,9 +35,10 @@ const addSession = async (zen, request) => {
 }
 
 const AddZenFunctionalities = (zen) => {
-    zen.augment = async (db, fileManager, request) => {
+    zen.augment = async (db, fileManager, sendMail, request) => {
         zen.db = db;
         zen.fileManager = fileManager
+        zen.sendMail = sendMail
         zen = await addSession(zen, request)
     }
     return zen

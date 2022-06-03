@@ -1,6 +1,7 @@
 import { OracleDatabase } from "./vendor/database/index.js";
 import { SeedAdmins } from "./seder/index.js"
 import { App } from "./vendor/index.js";
+import { SendMail } from "./vendor/mailer/mailer.js"
 import { FileManager } from "./vendor/fileManager/index.js"
 import { mainRoutes } from "./routes/web/index.js";
 import { authRoutes } from "./routes/api/index.js";
@@ -17,7 +18,7 @@ if (parseInt(process.env.DB_SEED) == 1) {
     await SeedAdmins(db)
 }
 
-const app = new App(process.env.PORT || 4000, db, FileManager)
+const app = new App(process.env.PORT || 4000, db, FileManager, SendMail)
 app.useRoute(mainRoutes)
 app.useRoute(authRoutes)
 
