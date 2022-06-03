@@ -10,10 +10,6 @@ const PagesController = {
         await response.sendZenView({}, "views/courses.html")
     },
 
-    leaderboardPage: async (zen, request, response) => {
-        await response.sendZenView({}, "views/leaderboard.html")
-    },
-
     myGardenPage: async (zen, request, response) => {
         await response.sendZenView({}, "views/myGarden.html")
     },

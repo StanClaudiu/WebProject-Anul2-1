@@ -101,7 +101,7 @@
             return `
                 <script>
                     const courseSupervisor = new CourseCompletionSupervisor()
-                    courseSupervisor.setup(` + progress + `, "@@host/api/v1/courses/course/updateProgress?id=${wiredObject['course'].id}")
+                    courseSupervisor.setup(` + progress + `, "@@host/api/v1/course/updateProgress?id=${wiredObject['course'].id}")
                 </script>
             `
         @@zen

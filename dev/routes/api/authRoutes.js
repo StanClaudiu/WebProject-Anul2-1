@@ -12,6 +12,6 @@ authRoutes.post(`/api/v1/courses/delete`, AdminPageController.delete);
 authRoutes.get(`/api/v1/courses/read`, AdminPageController.read);
 authRoutes.post(`/api/v1/courses/update`, AdminPageController.update);
 
-authRoutes.post(`/api/v1/courses/course/updateProgress`, CoursePageController.updateProgress);
+authRoutes.post(`/api/v1/course/updateProgress`, CoursePageController.updateProgress);
 
 export default authRoutes

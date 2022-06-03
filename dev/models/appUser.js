@@ -27,6 +27,11 @@ class AppUser extends User {
 
         return new AppUser(user.db, user.name, user.email, user.password, user.id);
     }
+    
+    static async getAppUsers(db) {
+        const users = await User.getUsers(db);
+        return users.filter(user => user.role == "user");
+    }
 
     async create() {
         await super.create()
