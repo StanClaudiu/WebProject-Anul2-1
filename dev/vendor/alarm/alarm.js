@@ -19,8 +19,7 @@ class Alarm {
     }
 
     async callAlarms(alarmListeners) {
-        console.log(this.alarms)
-        console.log(alarmListeners)
+
         for (let it = 0; it < this.alarms.length; it++) {
 
             let alarm = this.alarms[it]
