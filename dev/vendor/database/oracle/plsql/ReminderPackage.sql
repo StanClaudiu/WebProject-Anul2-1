@@ -59,9 +59,8 @@ CREATE OR REPLACE PACKAGE BODY reminder_packege IS
     
     
     FUNCTION get_all_user_reminders (user_id base_user.id %type) RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM reminder WHERE id = user_id; 
     BEGIN
-        FOR current_record IN table_cursor LOOP
+        FOR current_record IN (SELECT reminder.* FROM reminder join plant on reminder.id_plant = plant.id WHERE plant.id_user = user_id) LOOP
             PIPE ROW(current_record);
         END LOOP;
     END get_all_user_reminders ; 
@@ -87,3 +86,12 @@ CREATE OR REPLACE PACKAGE BODY reminder_packege IS
 
     
 END reminder_packege;/* STATEMENT */
+
+
+
+SELECT * FROM plant;
+
+SELECT reminder_packege.add_reminder(3,'Uda leguma boss') FROM DUAL;
+SELECT reminder_packege.add_reminder(11,'Uda cireasa sa se faca dulceataaa') FROM DUAL;
+
+SELECT reminder_packege.get_all_user_reminderS(4) FROM DUAL;

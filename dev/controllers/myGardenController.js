@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes"
-import { Plant, PlantType } from "../models/index.js"
+import { Plant, PlantType, Reminder } from "../models/index.js"
 
 const MyGardenPageController = {
 
@@ -8,7 +8,15 @@ const MyGardenPageController = {
         let userPlantTypes = await PlantType.getUserPlantTypes(zen.db,zen.session.user.id);
         let plantTypes = await PlantType.getPlantTypes(zen.db);
         console.log(plantTypes);
-        response.sendZenView({"plantTypes": plantTypes , "userPlantTypes" : userPlantTypes},"views/myGarden.html");///because Content-Type text/html browserul stie ce sa faca cu ea
+        ///the garden
+
+        let reminders = await Reminder.getByUserId(zen.db,zen.session.user.id);
+        console.log(reminders);
+        
+        /////the reminders
+
+        response.sendZenView({"plantTypes": plantTypes , "userPlantTypes" : userPlantTypes,"reminders":reminders},"views/myGarden.html");
+        ///because Content-Type text/html browserul stie ce sa faca cu ea
         ////aici imi formateaza frumos response-ul si actioneaza pe @@zen
         
         return response;

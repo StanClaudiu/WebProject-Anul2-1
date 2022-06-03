@@ -95,7 +95,16 @@
                             <div class="options_remainder"><a class="inspect_reminder" onclick="openModal('inspect_reminder_modal')"><i class="fa-solid fa-ellipsis"></i></a></div>
                             <div class="close_remainder"><a class="close_reminder"onclick="openModal('close_reminder_modal')"><i class="fa-solid fa-xmark"></i></a></div>
                         </div>
-                        
+                        @@zen
+                        let reminders = wiredObject['reminders'];
+                        return reminders.map(elem=>
+                        `<div class="remainder_element" >
+                            <div>${elem.content}</div>
+                            <div class="options_remainder"><a class="inspect_reminder" onclick="openModal('inspect_reminder_modal')"><i class="fa-solid fa-ellipsis"></i></a></div>
+                            <div class="close_remainder"><a class="close_reminder"onclick="openModal('close_reminder_modal')"><i class="fa-solid fa-xmark"></i></a></div>
+                        </div>`
+                        ).join('\n');
+                        @@zen
                    </div>
                </div>
             </div>
