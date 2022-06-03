@@ -26,72 +26,64 @@ CREATE SEQUENCE reminder_seq START WITH 1 /* STATEMENT */;
 
 
 CREATE OR REPLACE PACKAGE reminder_packege IS
-    TYPE table_type is table of base_user%ROWTYPE;
+    TYPE table_type is table of reminder%ROWTYPE;
     
-    FUNCTION add_user ( user_role base_user.role%TYPE, 
-                        user_name base_user.name%TYPE,
-                        user_email base_user.email%TYPE,
-                        user_password base_user.password%TYPE) RETURN INT;
-                        
-    FUNCTION get_users RETURN table_type PIPELINED;          
+    FUNCTION add_reminder (id_plant reminder.id_plant %type, content reminder.content %type ) RETURN INT;       
     
-    FUNCTION get_user_by_id ( user_id base_user.id%type) RETURN table_type PIPELINED;
+    FUNCTION get_all_user_reminders (user_id base_user.id %type) RETURN table_type PIPELINED;
+        
+    FUNCTION delete_reminder_by_id (id_reminder reminder.id %type) RETURN INT; 
     
-    FUNCTION get_user_by_email ( user_email base_user.email%type) RETURN table_type PIPELINED;
-END reminder_packege;/* STATEMENT */
+    FUNCTION get_reminder_by_id ( id_reminder reminder.id%TYPE) RETURN table_type PIPELINED;
+    
+    END reminder_packege;/* STATEMENT */
 
 
 
 
 CREATE OR REPLACE PACKAGE BODY reminder_packege IS
 
-    FUNCTION add_user ( user_role base_user.role%type, 
-                        user_name base_user.name%type,
-                        user_email base_user.email%type,
-                        user_password base_user.password%type) RETURN INT AS
-         
-        CURSOR same_email_users IS SELECT email FROM base_user WHERE email = user_email;
-        v_aux base_user.email%type;
-        v_current_user_id INT; 
+    FUNCTION add_reminder (id_plant reminder.id_plant %type, content reminder.content %type ) RETURN INT AS
+    
+
+        v_current_reminder_id INT; 
         PRAGMA AUTONOMOUS_TRANSACTION;
+        
     BEGIN
-        OPEN same_email_users;
-        FETCH same_email_users INTO v_aux;      
-        
-        IF (same_email_users%NOTFOUND = FALSE)
-        THEN
-            raise_application_error(-20001, 'Already used email');
-        END IF;
-        
-        INSERT INTO base_user (id, role, name, email, password) VALUES (base_user_seq.NEXTVAL, user_role, user_name, user_email, user_password); 
+        INSERT INTO reminder (id, id_plant, content) VALUES (reminder_seq.NEXTVAL, id_plant, content); 
         COMMIT;
         
-        SELECT base_user_seq.CURRVAL INTO v_current_user_id FROM DUAL;
-        RETURN v_current_user_id;
-    END add_user;         
+        SELECT reminder_seq.CURRVAL INTO v_current_reminder_id FROM DUAL;
+        RETURN v_current_reminder_id;
+    END add_reminder; 
     
-    FUNCTION get_users RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM base_user;
+    
+    FUNCTION get_all_user_reminders (user_id base_user.id %type) RETURN table_type PIPELINED AS
+        CURSOR table_cursor IS SELECT * FROM reminder WHERE id = user_id; 
     BEGIN
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
         END LOOP;
-    END get_users;          
+    END get_all_user_reminders ; 
     
-    FUNCTION get_user_by_id ( user_id base_user.id%TYPE) RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM base_user WHERE id = user_id; 
+    
+      FUNCTION delete_reminder_by_id ( id_reminder reminder.id%TYPE) RETURN INT AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
+    BEGIN
+        
+        DELETE FROM reminder WHERE id = id_reminder;
+        COMMIT;
+        RETURN 1;
+    END delete_reminder_by_id; 
+    
+      FUNCTION get_reminder_by_id ( id_reminder reminder.id%TYPE) RETURN table_type PIPELINED AS
+        CURSOR table_cursor IS SELECT * FROM reminder WHERE id = id_reminder; 
     BEGIN
         FOR current_record IN table_cursor LOOP
             PIPE ROW(current_record);
         END LOOP;
-    END get_user_by_id;   
+    END get_reminder_by_id;   
     
-    FUNCTION get_user_by_email ( user_email base_user.email%TYPE) RETURN table_type PIPELINED AS
-        CURSOR table_cursor IS SELECT * FROM base_user WHERE email = user_email;
-    BEGIN
-        FOR current_record IN table_cursor LOOP
-            PIPE ROW(current_record);
-        END LOOP;
-    END get_user_by_email;  
+
     
 END reminder_packege;/* STATEMENT */
