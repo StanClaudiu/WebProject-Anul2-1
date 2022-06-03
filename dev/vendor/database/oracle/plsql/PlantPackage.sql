@@ -103,3 +103,6 @@ END plant_packege;/* STATEMENT */
 
 
 SELECT * FROM plant;
+
+SELECT plant_packege.add_plant(1,1,"Tomato")FROM DUAL; 
+ 

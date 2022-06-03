@@ -70,8 +70,8 @@
                    </div>
                    <div class="garden_Component_Container" >
                         @@zen
-                             let plantTypes = wiredObject["plantTypes"];
-                                return plantTypes.map( pType => 
+                             let userPlantTypes = wiredObject["userPlantTypes"];
+                                return userPlantTypes.map( pType => 
                                 `<div class="plant_name_Component" >
                                     <div class="plants-summary-image">
                                         <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
@@ -136,9 +136,10 @@
                                 <label for="type_of_plant">Type</label>
                                 <div class="selector_add_plant pretty_form">
                                     <select id="type_of_plant" name="type_of_plant">
-                                    <option value="Trees" id="1">Trees</option>
-                                    <option value="Flowers" id="2">Flowers</option>
-                                    <option value="Vegetables" id="3">Vegetables</option>
+                                    @@zen
+                                        let pTypes = wiredObject["plantTypes"];
+                                        return pTypes.map(type =>`<option value="${type.id}">${type.name}</option>`).join('\n');
+                                    @@zen
                                     </select>
                                 </div> 
                             </form>

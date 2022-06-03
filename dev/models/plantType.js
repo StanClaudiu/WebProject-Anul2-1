@@ -22,6 +22,16 @@ class PlantType {
                         ));
             return plantsType;
     }
+
+    static async getUserPlantTypes(db,id_user) {
+        const plantsTypesData = await db.plantTypeRepository.getAllUserPlantTypes(id_user); //obiect cu plantele mele
+        const userPlantsType = plantsTypesData.map(userPlantType =>
+            new PlantType(db,
+                        userPlantType["NAME"],
+                        userPlantType["IMAGE_LINK"],
+                        userPlantType["ID"]));
+            return userPlantsType;
+    }
 }
 
 export default  PlantType

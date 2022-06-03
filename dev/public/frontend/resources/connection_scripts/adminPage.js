@@ -7,7 +7,8 @@ const openDeleteModal = (deletePath, id) => {
 
 const openEditModal = (readPath, updatePath, id) => {
     const editForm = document.getElementById("edit_form")
-    editForm.action = `${updatePath}?id=${id}`///editam ce era in action
+    editForm.action = `${updatePath}?id=${id}`///editam ce era in action, ca atunci cand apasam 
+    // submit sa se duca la update, si request-ul sa fie formatat ca lumea
 
     const formItems = {
         "name": document.getElementById("edit_course_name"),

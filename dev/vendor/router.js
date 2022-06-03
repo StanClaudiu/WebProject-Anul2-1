@@ -49,7 +49,7 @@ class Router {
             });
         }
 
-        const requestUrl = request.url.split(`?`)[0];
+        const requestUrl = request.url.split(`?`)[0];///in parameters avem decat query-ul!
 
         try {
             switch (request.method) {

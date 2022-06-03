@@ -46,6 +46,19 @@ class PlantTypeRepository {
         }
     }
 
+    async getAllUserPlantTypes(id_user) {
+        try {
+            const result = await this.db.execute(
+                `SELECT * FROM TABLE  (plant_type_packege.get_plant_type_by_id_user(${id_user}))`);
+            console.log("Uite ce am primit aici!")
+            console.log(result);
+            return result.rows;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
 }
 
 export default PlantTypeRepository;
