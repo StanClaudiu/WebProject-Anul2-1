@@ -59,6 +59,7 @@
                         @@zen
 
                         return wiredObject["courses"].map(course => {
+                            const progressStyle = `style="width: ${course.computedProgress == null ? 0 : course.computedProgress}%;"`
                             return `
                                 <div class="course-summary" onclick="location.href='@@host/course?id=${course.id}'">
                                     <div class="course-summary-row course-summary-image-and-text-container">
@@ -72,7 +73,7 @@
                                     <div class="course-summary-row course-summary-progress-container">
                                         <div>Progress</div>
                                         <div class="progress-bar">
-                                            <div style="width: 75%;"></div>
+                                            <div ${progressStyle}></div>
                                         </div>
                                     </div>
                                 </div>

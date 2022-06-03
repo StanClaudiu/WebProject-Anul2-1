@@ -3,9 +3,12 @@ import { Course } from "../models/index.js"
 
 const CoursesPageController = {
     view: async (zen, request, response) => {
-        await Course.getUserCourses(zen.db, zen.session["user"].id)
-        const courses = await Course.getCourses(zen.db)
-        console.log(courses.length)
+        let courses = await Course.getUserCourses(zen.db, zen.session["user"].id)
+        
+        for (let it = 0; it < courses.length; it++) {
+            courses[it].computedProgress = await courses[it].getProgressForUser(zen.session["user"].id);
+        }
+
         await response.sendZenView(
             {"courses": courses}, "views/courses.html")
     }

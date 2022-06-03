@@ -28,7 +28,7 @@ CREATE SEQUENCE started_courses_seq START WITH 1/* STATEMENT */;
 
 CREATE OR REPLACE PACKAGE started_courses_package IS
     
-    CURSOR table_for_return_allCourses IS SELECT sc.id_statistics , sc.id_curs, sc.progress,c.course_name,c.description_course   FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs; 
+    CURSOR table_for_return_allCourses IS SELECT c.*, sc.id_statistics , sc.id_user , sc.progress FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs; 
     ----this is just for the type
     
     TYPE preview_courses_table IS TABLE OF table_for_return_allCourses%ROWTYPE;
@@ -55,7 +55,7 @@ CREATE OR REPLACE PACKAGE BODY started_courses_package IS
         PRAGMA AUTONOMOUS_TRANSACTION;
         id_val_stat INT;    
      BEGIN
-        INSERT INTO started_courses VALUES(started_courses_seq.NEXTVAL,p_id_user,p_id_curs,0);
+        INSERT INTO started_courses VALUES(started_courses_seq.NEXTVAL,p_id_user,p_id_curs,5);
         COMMIT;
         SELECT started_courses_seq.CURRVAL INTO id_val_stat FROM DUAL;
         RETURN id_val_stat;
@@ -84,7 +84,7 @@ CREATE OR REPLACE PACKAGE BODY started_courses_package IS
     END update_started_course;
     
     FUNCTION getAllStartedCourses(p_id_user started_courses.id_user%TYPE) RETURN preview_courses_table PIPELINED IS
-        CURSOR table_started_courses IS SELECT sc.id_statistics , c.id_curs, sc.progress,c.course_name,c.description_course  
+        CURSOR table_started_courses IS SELECT c.*, sc.id_statistics , sc.id_user , sc.progress 
         FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs where id_user=p_id_user OR (NVL(id_user,-1)=-1 AND NVL(c.parent_id,-1)=-1);
     BEGIN
         FOR current_course IN table_started_courses LOOP
@@ -95,8 +95,8 @@ CREATE OR REPLACE PACKAGE BODY started_courses_package IS
     FUNCTION getByUserAndCourse(p_id_user started_courses.id_user%TYPE,
                                 p_id_course started_courses.id_curs%TYPE) RETURN preview_courses_table PIPELINED IS
                                 
-        CURSOR table_cursor IS SELECT sc.id_statistics , c.id_curs, sc.progress,c.course_name,c.description_course  
-        FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs where id_user=p_id_user AND id_curs=p_id_course;
+        CURSOR table_cursor IS SELECT c.*, sc.id_statistics , sc.id_user,  sc.progress
+        FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs where id_user=p_id_user AND sc.id_curs=p_id_course;
     BEGIN
         FOR current_course IN table_cursor LOOP
             PIPE ROW(current_course);
