@@ -58,6 +58,40 @@ class Course {
         await db.courseRepository.delete_course_by_id(id)
     }
 
+    static async getUserCourses(db, course_id) {
+        const userCoursesData = await db.startedCourseRepository.getAllStartedCourses(course_id)
+
+        const userCourses = userCoursesData.map(userCourseData => 
+            new Course(db, 
+                userCourseData["COURSE_CONTENT"],
+                userCourseData["DESCRIPTION_COURSE"],
+                userCourseData["COURSE_NAME"],
+                userCourseData["COURSE_DURATION"],
+                userCourseData["IMAGE_PATH_DOWNLOAD"],
+                userCourseData["COURSE_VIDEO_PATH"],
+                userCourseData["PARENT_ID"],
+                userCourseData["ID_CURS"]
+            )
+        );
+        return userCourses;
+    }
+
+    static async getStartedByUserAndCourse(db, user_id, course_id) {
+        const startedCoursesData = await db.startedCourseRepository.getByUserAndCourse(user_id, course_id)
+
+        return startedCoursesData == null ? null : 
+            new Course(db, 
+                startedCoursesData["COURSE_CONTENT"],
+                startedCoursesData["DESCRIPTION_COURSE"],
+                startedCoursesData["COURSE_NAME"],
+                startedCoursesData["COURSE_DURATION"],
+                startedCoursesData["IMAGE_PATH_DOWNLOAD"],
+                startedCoursesData["COURSE_VIDEO_PATH"],
+                startedCoursesData["PARENT_ID"],
+                startedCoursesData["ID_CURS"]
+            )
+    }
+
     async create() {
         this.id = await this.db.courseRepository.create(
             this.parrentCourseId != null ?  this.parrentCourseId : "null", 

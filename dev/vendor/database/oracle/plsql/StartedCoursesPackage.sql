@@ -40,7 +40,7 @@ CREATE OR REPLACE PACKAGE started_courses_package IS
     FUNCTION getAllStartedCourses(p_id_user started_courses.id_user%TYPE) 
                                                                     RETURN preview_courses_table PIPELINED;          
     FUNCTION getByUserAndCourse(p_id_user started_courses.id_user%TYPE,
-                                p_id_course started_course.id_curs%TYPE) 
+                                p_id_course started_courses.id_curs%TYPE) 
                                                                     RETURN preview_courses_table PIPELINED;
     
 END started_courses_package;/* STATEMENT */
@@ -93,12 +93,12 @@ CREATE OR REPLACE PACKAGE BODY started_courses_package IS
     END;
     
     FUNCTION getByUserAndCourse(p_id_user started_courses.id_user%TYPE,
-                                p_id_course started_course.id_curs%TYPE) RETURN preview_courses_table PIPELINED IS
+                                p_id_course started_courses.id_curs%TYPE) RETURN preview_courses_table PIPELINED IS
                                 
-        CURSOR table_cursor IS SELECT sc.id_statistics , c.id_curs, sc.progress  
+        CURSOR table_cursor IS SELECT sc.id_statistics , c.id_curs, sc.progress,c.course_name,c.description_course  
         FROM started_courses sc RIGHT JOIN courses c on sc.id_curs=c.id_curs where id_user=p_id_user AND id_curs=p_id_course;
     BEGIN
-        FOR current_course IN table_started_courses LOOP
+        FOR current_course IN table_cursor LOOP
             PIPE ROW(current_course);
         END LOOP;
     END;

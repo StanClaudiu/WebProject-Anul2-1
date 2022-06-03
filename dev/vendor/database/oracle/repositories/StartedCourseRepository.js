@@ -1,6 +1,6 @@
 import fs from "fs"
 
-class StartedCourseUserRepository {
+class StartedCourseRepository {
     db
 
     constructor(db) {
@@ -31,7 +31,7 @@ class StartedCourseUserRepository {
         }
     }
 
-    async getAllStratedCourses (userId) {
+    async getAllStartedCourses (userId) {
         try {
             const result = await this.db.execute(
                 `SELECT * from TABLE( started_courses_package.getAllStartedCourses('${userId}'))`);
@@ -84,4 +84,4 @@ class StartedCourseUserRepository {
     }
 }
 
-export default StartedCourseUserRepository;
+export default StartedCourseRepository;
