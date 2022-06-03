@@ -73,7 +73,7 @@ class StartedCourseRepository {
     async getByUserAndCourse(userId, courseId) {
         try {
             const result = await this.db.execute(
-                `SELECT started_courses_package.getByUserAndCourse(${userId}, ${courseId}) FROM DUAL`);
+                `SELECT * FROM TABLE( started_courses_package.getByUserAndCourse(${userId}, ${courseId}) )`);
             
             console.log(result);
             return result.rows.length == 0 ? null : result.rows[0]; //the id

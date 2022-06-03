@@ -20,7 +20,7 @@ const CoursePageController = {
     view: async (zen, request, response) => {
         const course = await Course.getById(zen.db, request.parameters.id)
         
-        if (await course.getProgressForUser(zen.session["user"].id) == null) {
+        if ((await course.getProgressForUser(zen.session["user"].id)) == null) {
             course.startProgressForUser(zen.session["user"].id)
         }
 
