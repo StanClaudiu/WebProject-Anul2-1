@@ -36,13 +36,13 @@ const getRssData = (userStatistics) => {
         description: "This feed provides statistics about the most active users on the Gardening Web Tutor application",
         author: "automated"
     });
-    
+
     userStatistics.forEach(userStatistic => {
 
         feed.item({
             title: `Statistic for user : ${userStatistic.name}`,
             description: 'Absolute and relative score on user',
-            date: (new Date()).getDate(),
+            date: (new Date()).toJSON().slice(0,10).replace(/-/g,'/'),
             custom_elements: [
                 {'absolutePerformanceScore': userStatistic.absolutePerformanceScore},
                 {'relativePerformanceScore': userStatistic.relativePerformanceScore}
