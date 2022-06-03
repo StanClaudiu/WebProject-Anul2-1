@@ -5,20 +5,29 @@ const openPlantModal = (readPath,id) => {
     fetch(`${readPath}?id=${id}`, {
         method: 'get',
         headers: {
-            'Accept': 'application/json'
+            'Accept': 'application/json' //il transforma node.js in content-type
         }
     }).then((response) => {
         return response
     }).then(async (response) => {
         if (response.status === 200) {
             let body = await response.json();
-
-            injection_point.innerHTML = body["salut"];
-            console.log("----------------------------------");
+            ///now that we have the data let's make it nice and put in in the page
+            console.log(body);
+            injection_point.innerHTML = await body.map(elem => 
+            `<div class="plant_formated">
+                <div>${elem.plant_name}</div>
+                <div><i class="fa-solid fa-xmark" onclick = "openDeleteModal('${elem.id}')" ></i></div>
+             </div>`
+            ).join('\n')
         }
     }).catch((error) => {
         console.log(error)
     })
 
     openModal("inspect_plant_modal")
+}
+
+const openDeleteModal = (id) => {
+    openModal('delete_plant_modal');
 }

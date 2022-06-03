@@ -78,7 +78,7 @@
                                     </div>
                                         <div class="my_description">
                                             <div>${pType.name}</div>
-                                            <div onclick="openPlantModal('@@host/api/v1/myGarden/read','${pType.id}')"><i class="fa-solid fa-ellipsis"></i></div>
+                                            <div class ="dotdotdotButton" onclick="openPlantModal('@@host/api/v1/myGarden/read','${pType.id}')"><i class="fa-solid fa-ellipsis"></i></div>
                                     </div>
                                 </div>`
                                 ).join('\n');
@@ -95,16 +95,7 @@
                             <div class="options_remainder"><a class="inspect_reminder" onclick="openModal('inspect_reminder_modal')"><i class="fa-solid fa-ellipsis"></i></a></div>
                             <div class="close_remainder"><a class="close_reminder"onclick="openModal('close_reminder_modal')"><i class="fa-solid fa-xmark"></i></a></div>
                         </div>
-                        <div class="remainder_element" >
-                            <div>Harvest your flowers</div>
-                            <div class="options_remainder"><i class="fa-solid fa-ellipsis"></i></div>
-                            <div class="close_remainder"><i class="fa-solid fa-xmark"></i></div>
-                        </div>
-                        <div class="remainder_element" >
-                            <div>Graft your grown</div>
-                            <div class="options_remainder"><i class="fa-solid fa-ellipsis"></i></div>
-                            <div class="close_remainder"><i class="fa-solid fa-xmark"></i></div>
-                        </div>
+                        
                    </div>
                </div>
             </div>
@@ -167,7 +158,7 @@
                 <div class="modal_container" id="inspect_plant_modal">
                     <div class="modal">
                         <div class="full-form-container plants_made_beatiful" id="inject_plants">
-                            <div class="tree_formated">
+                            <div class="plant_formated">
                                 <div>Copacel</div>
                                 <div><i class="fa-solid fa-xmark"></i></div>
                             </div>
@@ -180,7 +171,17 @@
                 </div>
                 
                 
-
+                <div class="modal_container" id="delete_plant_modal">
+                    <div class="modal">
+                        <div class="full-form-container" style="text-align: center">
+                           Are you sure you want to delete this plant permanently?
+                        </div>
+                        <div class="modal-action-buttons">
+                            <div class="button-box button-box-red" onclick="closeModal('delete_plant_modal')">Yes</div>
+                            <div class="button-filled button-filled-dark-green" onclick="closeModal('delete_plant_modal')">No</div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="modal_container" id="close_reminder_modal">
                     <div class="modal">

@@ -19,11 +19,13 @@ const MyGardenPageController = {
         let id_user = zen.session.user.id;
         let id_type = request.parameters.id;
         let userPlantsTyped = await Plant.getAllUserPlantByType(zen.db,id_user,id_type);
-        console.log(userPlantsTyped);
 
         userPlantsTyped = userPlantsTyped.map (elem => elem.toPOJO());
 
+        console.log(userPlantsTyped);
+
         await response.status(200).json(userPlantsTyped);
+        
         return response;
     },
 
