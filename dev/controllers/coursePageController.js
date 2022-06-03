@@ -24,8 +24,18 @@ const CoursePageController = {
             course.startProgressForUser(zen.session["user"].id)
         }
 
+        course.computedProgress = await course.getProgressForUser(zen.session["user"].id)
+
         await response.sendZenView(
             {"course": course, "courseTree": await buildCoursesTree(zen.db, course)}, "views/course.html")
+    },
+
+    updateProgress: async (zen, request, response) => {
+        const course = await Course.getById(zen.db, request.parameters.id)
+
+        await course.updateProgressForUser(zen.session["user"].id, request.body.fields["progress"])
+
+        await response.status(200).json({"success": true})
     }
 }
 
