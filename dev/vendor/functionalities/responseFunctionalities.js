@@ -16,7 +16,7 @@ const AddResponseFunctionalities = (response) => {
         response.end()
         return response
 
-    }
+    } 
 
     response.sendFile = async (filePath) => {
 
@@ -45,7 +45,7 @@ const AddResponseFunctionalities = (response) => {
                 return response.status(StatusCodes.BAD_REQUEST).json({
                     error: `bad request. not a file`
                 })
-            } 
+            }
             else {
                 const data = await fs.promises.readFile(filePath)
                 response.setHeader('Content-type', extensionToResponse[extension] || 'text/plain');
@@ -73,15 +73,10 @@ const AddResponseFunctionalities = (response) => {
         return response
     }
 
-    response.status = (newStatusCode) => {
-        response.statusCode = newStatusCode
-        return response
-    }
-
     response.sendRaw = (data, responseType) => {
         response.setHeader('Content-type', responseType);
         response.write(data)
-        response.end()
+        response.end() 
         return response
     }
 

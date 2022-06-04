@@ -48,7 +48,9 @@ const parseUrlencoded = async (request) => {
         let buffer = '';
     
         request.on('data', (chunk) => {
+            console.log(chunk);
             buffer += decodeURIComponent(decoder.write(chunk));
+           
         });
 
         request.on('end', () => {
@@ -114,6 +116,7 @@ const AddRequestFunctionalities = (request) => {
         request.parameters = url.parse(request.url, true).query;
         request.cookies = parseCookies(request);
         request.body = await parseBody(request);
+        console.log(request.body.fields)
     }
 
     return request;
