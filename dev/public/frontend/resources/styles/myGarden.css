@@ -39,7 +39,7 @@
 }
 .upload_icon:hover{
     transition-duration: 0.5s;
-    color: green;
+    color: rgb(240, 6, 6);
     cursor: pointer;
 }
 
