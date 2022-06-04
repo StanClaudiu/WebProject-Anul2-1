@@ -31,6 +31,19 @@ class PlantTypeRepository {
         }
     }
 
+    async create(plantTypeName, imageLink) {
+        try {
+            const result = await this.db.execute(
+                `SELECT plant_type_packege.add_plant_type('${plantTypeName}', '${imageLink}') FROM DUAL`);
+                           
+            console.log(result);
+            return result.rows[0][Object.keys(result.rows[0])[0]]; 
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     async getAllPlantsTypes() {
         try {
             const result = await this.db.execute(

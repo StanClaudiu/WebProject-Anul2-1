@@ -1,8 +1,8 @@
-import { AppAdmin } from "./../models/index.js" 
+import { AppAdmin } from "../models/index.js" 
 import { hashSync, genSaltSync, compareSync } from "bcrypt"
 
 
-const SeedAdmins = async (db) => {
+const SeedAdmins = async (db, fileManager) => {
     const salt = genSaltSync(10)
     
     const delia = new AppAdmin (db, "Delia", "deliagrigorita@yahoo.com", hashSync("123456789", salt))

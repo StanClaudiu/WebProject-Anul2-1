@@ -1,5 +1,6 @@
 
 import fs from "fs"
+import path from "path"
 
 const FileManager = {
     upload: async (file) => {
@@ -27,6 +28,16 @@ const FileManager = {
         console.log(`File uploaded at ${downloadLink}`)
         return downloadLink
     },
+
+    populate: async (filePath) => {
+        const newFilePath = `public/uploadedFiles/${(new Date()).getTime()}${path.extname(filePath)}`
+        fs.renameSync(filePath, newFilePath)
+
+        const downloadLink = process.env.APP_URI + "/" + newFilePath
+
+        console.log(`File populated at ${downloadLink}`)
+        return downloadLink
+    }
 }
 
 export default FileManager

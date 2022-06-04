@@ -4,7 +4,7 @@ class PlantType {
     name
     pathImage
     
-    constructor(db,name,pathImage,id)
+    constructor(db, name, pathImage, id=0)
     {
         this.db = db;
         this.name = name;
@@ -33,6 +33,10 @@ class PlantType {
             );
             return userPlantsType
     }
+
+    async create() {
+        this.id = await this.db.plantTypeRepository.create(this.name, this.pathImage)
+    }
 }
 
-export default  PlantType
+export default PlantType

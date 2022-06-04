@@ -1,5 +1,5 @@
 import { OracleDatabase } from "./vendor/database/index.js";
-import { SeedAdmins } from "./seder/index.js"
+import { SeedAdmins, SeedPlantTypes } from "./seeder/index.js"
 import { App } from "./vendor/index.js";
 import { Alarm } from "./vendor/alarm/index.js"
 import { PlantAlarms } from "./alarms/index.js"
@@ -17,7 +17,8 @@ if (parseInt(process.env.DB_INIT_ENVIRONMENT) == 1) {
 }
 
 if (parseInt(process.env.DB_SEED) == 1) {
-    await SeedAdmins(db)
+    await SeedAdmins(db, FileManager)
+    await SeedPlantTypes(db, FileManager)
 }
 
 const alarm = new Alarm(parseInt(process.env.ALARM_PLAYBACK_SPEED))
