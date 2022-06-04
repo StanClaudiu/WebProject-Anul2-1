@@ -1,0 +1,301 @@
+openapi: 3.0.0
+info:
+  version: '1'
+  title: GardeningWebTutor
+  description: GardeningWebTutor
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/FIIStudent/GardeningWebTutor/1
+tags:
+  - name: /api/v1
+    description: Everything about
+    externalDocs:
+      description: Find out more
+      url: ''
+paths:
+
+  /api/v1/register:
+    post:
+      tags:
+        - /api/v1
+      summary: Register
+      operationId: registerAp
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        $ref: '#/components/requestBodies/UserArray'
+  /api/v1/login:
+    post:
+      tags:
+        - /api/v1
+      summary: Logs user into the system
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '400':
+          description: Invalid username/password supplied
+  /api/v1/logout:
+    get:
+      tags:
+        - /api/v1
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        default:
+          description: successful operation
+  /api/v1/courses:
+    post:
+      tags:
+        - /api/v1
+      summary: Creates list of courses
+      operationId: createCourses
+      responses:
+        default:
+          description: create course
+      requestBody:
+        $ref: '#/components/requestBodies/CourseArray'
+  /api/v1/courses/delete:
+    post:
+      tags:
+        - /api/v1
+      summary: Deletes course
+      operationId: deleteCourses
+      responses:
+        default:
+          description: delete course
+      requestBody:
+        $ref: '#/components/requestBodies/CourseArray'
+  /api/v1/courses/read:
+    get:
+      tags:
+        - /api/v1
+      summary: Reads course
+      operationId: readCourses
+      responses:
+        default:
+          description: successful operation
+  /api/v1/courses/update:
+    post:
+      tags:
+        - /api/v1
+      summary: Updates course
+      operationId: updateCourses
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        $ref: '#/components/requestBodies/CourseArray'
+  /api/v1/myGarden/read:
+    get:
+      tags:
+        - /api/v1
+      summary: Reads plant form my garden
+      operationId: readMyGarden
+      responses:
+        default:
+          description: successful operation
+
+  /api/v1/myGarden:
+    post:
+      tags:
+        - /api/v1
+      summary: Creates plant in my garden
+      operationId: myGarden
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        $ref: '#/components/requestBodies/PlantArray'
+  /api/v1/myGarden/del:
+    post:
+      tags:
+        - /api/v1
+      summary: Delete plant from garden
+      operationId: myGardenDel
+      responses:
+        default:
+          description: delete plant from garden
+          
+  /api/v1/courses/search:
+    post:
+      tags:
+        - /api/v1
+      summary: Searches for Course
+      operationId: coursesSearch
+      responses:
+        default:
+          description: Searches for Course
+          
+  /api/v1/giveFeedback:
+    post:
+      tags:
+        - /api/v1
+      summary: Gives feedback
+      operationId: give feedback 
+      responses:
+        default:
+          description: Gives feedback
+      requestBody:
+        $ref: '#/components/requestBodies/FeedbackArray'
+
+    
+
+
+components:
+  schemas:
+
+    User:
+      type: object
+      properties:
+        Name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPssword:
+          type: string
+
+      xml:
+        name: User
+        
+    Feedback:
+      type: object
+      properties:
+        Email:
+          type: string
+        body:
+          type: string
+
+      xml:
+        name: Feedback
+        
+    Course:
+      type: object
+      properties:
+        Name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+        duration:
+          type: number
+        parentCourse:
+          type: number
+        videoFile:
+          type: string
+        imageFile:
+          type: string
+
+      xml:
+        name: Course
+        
+      
+    Plant:
+      type: object
+      properties:
+        Name:
+          type: string
+        Plant_type:
+          type: number
+        user_id:
+          type: number
+
+      xml:
+        name: Plant
+        
+              
+    Reminder:
+      type: object
+      properties:
+        content:
+          type: string
+        plant_id:
+          type: number
+
+      xml:
+        name: reminder
+
+  requestBodies:
+    UserArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+      description: List of user object
+      required: true
+    
+    FeedbackArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Feedback'
+      description: List of feedback object
+      required: true
+    
+    CourseArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Course'
+      description: List of user object
+      required: true
+    PlantArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Plant'
+      description: List of user object
+      required: true
+  securitySchemes:
+    gardening_page_auth:
+      type: http
+      scheme: "cookie: jwt"
+      
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
