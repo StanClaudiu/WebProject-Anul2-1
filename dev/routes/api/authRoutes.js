@@ -3,7 +3,8 @@ import { AuthController,
          AdminPageController, 
          CoursePageController,
          LeaderboardPageController,
-         FeedbackController } from "../../controllers/index.js";
+         FeedbackController,
+         SearchController } from "../../controllers/index.js";
 
 const authRoutes = new Router();
 
@@ -21,5 +22,6 @@ authRoutes.post(`/api/v1/course/updateProgress`, CoursePageController.updateProg
 authRoutes.get(`/api/v1/rssfeed`, LeaderboardPageController.rssFeed)
 
 authRoutes.post(`/api/v1/giveFeedback`, FeedbackController.giveFeedback);
+authRoutes.post(`/api/v1/courses/search`, SearchController.search);
 
 export default authRoutes

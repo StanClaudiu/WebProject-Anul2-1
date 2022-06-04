@@ -52,10 +52,10 @@
                 </div>
                 <div class="courses-display">
                     <div class="search-box">
-                        <input type="text" placeholder="Search for" />
-                        <div><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <input id="serach_box_input" type="text" placeholder="Search for" />
+                        <div onclick="searchCourses('@@host', '@@host/api/v1/courses/search')"><i class="fa-solid fa-magnifying-glass"></i></div>
                     </div>
-                    <div class="available-courses">
+                    <div class="available-courses" id="list_of_available_courses">
                         @@zen
 
                         return wiredObject["courses"].map(course => {
@@ -84,6 +84,7 @@
                     </div>
                 </div>
             </div>
+            <script src="@@host/public/frontend/resources/connection_scripts/searchCourses.js"></script>
         </main>
     </body>
 </html>
