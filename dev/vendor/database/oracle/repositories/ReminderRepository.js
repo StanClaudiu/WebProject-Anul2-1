@@ -72,6 +72,19 @@ class ReminderRepository {
             console.log(err);
         }
     }
+
+    async deleteById(id){
+        try{
+            const result = await this.db.execute(
+                `SELECT  (reminder_packege.delete_reminder_by_id(${id})) FROM DUAL`
+            );  
+            return result.rows[0][Object.keys(result.rows[0])[0]]; 
+        }
+        catch(err){
+            console.log('Am esuat din nou lamentabil');
+            console.log(err);
+        }
+    }
 }
 
 export  default  ReminderRepository;

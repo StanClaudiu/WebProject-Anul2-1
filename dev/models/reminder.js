@@ -14,12 +14,12 @@ class Reminder  {
     }
 
     async create() {
-            const result = await this.db.plantRepository.create(id_plant,content);               
+            const result = await this.db.reminderRepository.create(id_plant,content);               
             return result;
         }
 
     static async getById(db,id){
-       const reminder = await db.plantRepository.getById(id);
+       const reminder = await db.reminderRepository.getById(id);
        
        return reminder==null? null: new Reminder(
            db,
@@ -42,7 +42,7 @@ class Reminder  {
     }
 
     static async deleteById(db,id) {
-        await db.plantRepository.deleteById(id);
+        await db.reminderRepository.deleteById(id);
     }
 
     toPOJO(){

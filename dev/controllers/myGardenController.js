@@ -59,6 +59,15 @@ const MyGardenPageController = {
 
         console.log('I am deleting a plant' + id_plant)
         
+    },
+
+    delReminder : async (zen, request, response) => {
+        let id_reminder = await request.parameters.id;
+        await Reminder.deleteById(zen.db,id_reminder);
+        
+        response.status(200).end();
+        console.log('I am deleting a reminder' +id_reminder);
+
     }
 
 

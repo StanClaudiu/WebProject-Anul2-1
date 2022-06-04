@@ -63,3 +63,29 @@ const see_reminder = (id) => {
     location.innerHTML = content;
     openModal("inspect_reminder_modal");
 }
+
+const editDeleteModal = (id) =>{
+    openModal('close_reminder_modal')
+    document.getElementById("delete_the_reminder").setAttribute("onclick",`delete_handler(${id})`);
+}
+
+const delete_handler = (id) =>{
+    document.getElementById(`reminder${id}`).parentElement.style = "display:none";
+    console.log("Se va sterge sa stii");
+    //let's make the request
+    fetch(`/api/v1/myGarden/delReminder?id=${id}`, {
+        method: 'get',
+        headers: {
+        }
+    }).then((response) => {
+        return response
+    }).then(async (response) => {
+        if (response.status === 200) {
+            console.log("It was deleted succesfully"); 
+        }
+    }).catch((error) => {
+        console.log(error)
+    })
+
+    closeModal('close_reminder_modal')
+}

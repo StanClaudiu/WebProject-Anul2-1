@@ -80,10 +80,11 @@ main {
     flex:row;
     padding: 20px;
     transition: 0.25s;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 .remainder_element:hover{
     transition: 0.5s;
+    border-radius: 5px;
     background-color: rgba(250, 233, 3, 0.562);
     border-color: brown;
 }
@@ -175,7 +176,12 @@ a.inspect_trees_reminder > i:hover{
     margin-top: 25px;
     background-color: white;
     border-radius: 10px;
+    transition-duration:0.25s;
     padding: 8px;
+}
+.plant_formated:hover{
+    background-color: rgba(252, 45, 45, 0.486);
+    transition-duration: 0.5s;
 }
 .plant_formated > *:first-child{
     margin-left: 10px;
@@ -185,8 +191,8 @@ a.inspect_trees_reminder > i:hover{
 }
 #inspect_reminder_modal .modal{
     max-width: 60%;
-    background-color: darkgreen;
-    border-radius: 0px;
+    background-color: rgb(10, 182, 10);
+    border-radius: 20px;
 }
 .remainder_container{
     display: flex;
@@ -201,13 +207,20 @@ a.inspect_trees_reminder > i:hover{
 }
 .remainder_container > *:not(:first-child)
 {
-    color: blue;
+    transition-duration: 0.25s;
+    color: black;
+    background-color: white;
     border-color: white;
     border-width: 2px;
     border-style: solid;
-    border-radius: 2px;
-    border-radius: 4px;
+    border-radius: 10px;
     padding: 8px;
+}
+.remainder_container > *:not(:first-child):hover
+{
+    transition-duration: 0.5s;
+    border-radius: 0px;
+    background-color:rgba(227, 252, 0, 0.562);
 }
 
 /*Let's make everything responsive*/
