@@ -8,3 +8,4 @@ export { default as LeaderboardPageController } from './leaderboardPageControlle
 export { default as FeedbackController } from './feedbackController.js';
 export { default as MainPageController } from './mainPageController.js';
 export { default as SearchController } from './searchController.js';
+export { default as MyGardenDataController } from './myGardenDataController.js';

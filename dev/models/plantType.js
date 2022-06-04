@@ -37,6 +37,14 @@ class PlantType {
     async create() {
         this.id = await this.db.plantTypeRepository.create(this.name, this.pathImage)
     }
+
+    toPOJO() {
+        return {
+            "id": this.id,
+            "name": this.name,
+            "pathImage": this.pathImage
+        }
+    }
 }
 
 export default PlantType
