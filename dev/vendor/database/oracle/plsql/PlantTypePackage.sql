@@ -9,7 +9,7 @@ CREATE TABLE plant_type
 (
     id INT NOT NULL PRIMARY KEY,
     name VARCHAR2(40) NOT NULL,
-    image_link VARCHAR2(40) NOT NULL
+    image_link VARCHAR2(100) NOT NULL
 ) /* STATEMENT */;
 
 

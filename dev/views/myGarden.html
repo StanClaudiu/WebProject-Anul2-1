@@ -74,7 +74,7 @@
                                 return userPlantTypes.map( pType => 
                                 `<div class="plant_name_Component" >
                                     <div class="plants-summary-image">
-                                        <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
+                                        <img alt="image of gardening tools" src="${pType.pathImage}" />
                                     </div>
                                         <div class="my_description">
                                             <div>${pType.name}</div>
@@ -105,21 +105,6 @@
                </div>
             </div>
             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="modals_heap"> <!-- De ce asta aici?,de unde vine?-->
                 <div class="modal_container" id="add_modal">

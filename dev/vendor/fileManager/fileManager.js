@@ -31,7 +31,7 @@ const FileManager = {
 
     populate: async (filePath) => {
         const newFilePath = `public/uploadedFiles/${(new Date()).getTime()}${path.extname(filePath)}`
-        fs.renameSync(filePath, newFilePath)
+        fs.copyFileSync(filePath, newFilePath)
 
         const downloadLink = process.env.APP_URI + "/" + newFilePath
 

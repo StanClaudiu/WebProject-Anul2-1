@@ -10,11 +10,13 @@ const MyGardenDataController = {
 
         userPlantTypes.forEach(userPlantType => {
             userPlantTypePOJO = userPlantType.toPOJO()
-            userPlantTypePOJO.plantsOfType = 
-                (await Plant.getAllUserPlantByType(zen.db,id_user,id_type)).map(plant => plant.toPOJO())
-
             data.push(userPlantTypePOJO)
         });
+
+        for (it = 0; it < data.length; it++) {
+            data[it].plantsOfType = 
+                (await Plant.getAllUserPlantByType(zen.db, id_user, id_type)).map(plant => plant.toPOJO())
+        }
 
         response.status(200).json(data)
     },
