@@ -53,7 +53,7 @@
                 </div>
                 <div class="course-content-head-container">
                     <div class="course-content-head-video">
-                        <video controls>
+                        <video controls id="course_content_video">
                             <source src="@@zen return wiredObject['course'].videoPath @@zen" type="video/mp4">
                         </video>
                     </div>
@@ -61,19 +61,30 @@
                         
                         <nav class="tree-nav">
                             <details class="tree-nav__item is-expandable">
-                                <summary class="tree-nav__item-title">Safety first</summary>
+                                @@zen return `<summary class="tree-nav__item-title">${wiredObject["courseTree"].name}</summary>` @@zen
                                 <div class="tree-nav__item">
-                                    <a class="tree-nav__item-title"><i class="fa-solid fa-seedling"></i> General safety</a>
+                                    @@zen 
+                                        return `
+                                            <a href="@@host/course?id=${wiredObject['courseTree'].id}" 
+                                            class="tree-nav__item-title ${wiredObject['courseTree'].id == wiredObject['course'].id ? 'tree-nav__item-title_selected' : ''}">
+                                            
+                                            <i class="fa-brands fa-leanpub"></i> 
+                                            </a>
+                                        `
+                                    @@zen
+
+                                    @@zen
+                                        return wiredObject["courseTree"].childCourses.map(course => `
+                                            <a href="@@host/course?id=${course.id}" 
+                                               class="tree-nav__item-title ${wiredObject['course'].id == course.id ? 'tree-nav__item-title_selected' : ''}">
+                                                
+                                                <i class="fa-solid fa-seedling"></i> 
+                                                ${course.name}
+                                            </a>
+                                        `).join("\n")
+                                    @@zen
                                 </div>
-                            </details> 
-                            <details class="tree-nav__item is-expandable">
-                                <summary class="tree-nav__item-title">Gardeding tools</summary>
-                                <div class="tree-nav__item">
-                                    <a class="tree-nav__item-title"><i class="fa-solid fa-seedling"></i> Use shoverl</a>
-                                    <a class="tree-nav__item-title"><i class="fa-solid fa-seedling"></i> Use scisors</a>
-                                    <a class="tree-nav__item-title"><i class="fa-solid fa-seedling"></i> Use hoe</a>
-                                </div>
-                            </details> 
+                            </details>
                           </nav>
 
                     </div>
@@ -84,6 +95,15 @@
                 </div>
             </div>
         </main>
-        <script></script>
+        <script src="@@host/public/frontend/resources/connection_scripts/coursePage.js"></script>
+        @@zen
+            const progress = wiredObject["course"].computedProgress
+            return `
+                <script>
+                    const courseSupervisor = new CourseCompletionSupervisor()
+                    courseSupervisor.setup(` + progress + `, "@@host/api/v1/course/updateProgress?id=${wiredObject['course'].id}")
+                </script>
+            `
+        @@zen
     </body>
 </html>

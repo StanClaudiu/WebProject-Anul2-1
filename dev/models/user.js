@@ -27,6 +27,21 @@ class User {
             new User(db, userDetails["ROLE"], userDetails["NAME"], userDetails["EMAIL"], userDetails["PASSWORD"], userDetails["ID"])
     }
 
+    static async getUsers(db) {
+        const usersData = await db.userRepository.get()
+
+        const users = usersData.map(userData => 
+            new User(db, 
+                userData["ROLE"], 
+                userData["NAME"], 
+                userData["EMAIL"], 
+                userData["PASSWORD"], 
+                userData["ID"]
+            )
+        );
+        return users;
+    }
+
     async create() {
         this.id = await this.db.userRepository.create(this.role, this.name, this.email, this.password);
     }

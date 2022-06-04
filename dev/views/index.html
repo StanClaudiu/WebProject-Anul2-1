@@ -22,7 +22,7 @@
                 </div>
                 <div class="nav-bar-field nav-bar-buttons" id="nav-bar-hamburger-element">
                     @@zen
-                        if (!wiredObject['isLoggedIn']) {
+                        if (!wiredObject['session']['isLoggedIn']) {
                             return `
                                 <a class="button-plain button-plain-wheat nav-bar-button" onclick="openModal('signup_modal')">Sign up</a>
                                 <a class="button-box button-box-wheat nav-bar-button" onclick="openModal('login_modal')">Login</a>
@@ -30,10 +30,10 @@
                         }
                         else {
                             return `
-                                <a class="button-plain button-plain-wheat nav-bar-button" href="${wiredObject['user']['role'] == 'user' ? '/courses' : '/adminPage'}">Dashboard</a>
+                                <a class="button-plain button-plain-wheat nav-bar-button" href="${wiredObject['session']['user']['role'] == 'user' ? '/courses' : '/adminPage'}">Dashboard</a>
                             `
                         }
-                        return wiredObject["email"]
+                        return wiredObject['session']["email"]
                     @@zen
 
                     <div class="nav-bar-close-hamburger" onclick="closeHamburgerNavbar()"><i class="fa-solid fa-circle-xmark"></i></div>
@@ -196,7 +196,7 @@
                             Courses
                         </div>
                         <div class="platform-stats-value" id="courses-stats">
-                            100
+                            @@zen return `${wiredObject["courses"].length}` @@zen
                         </div>
                     </div>
                     <div class="platform-stats">
@@ -204,7 +204,7 @@
                             Videos
                         </div>
                         <div class="platform-stats-value" id="videos-stats">
-                            70
+                            @@zen return `${wiredObject["courses"].length}` @@zen
                         </div>
                     </div>
                     <div class="platform-stats">
@@ -212,102 +212,37 @@
                             Users
                         </div>
                         <div class="platform-stats-value" id="users-stats">
-                            20
+                            @@zen return `${wiredObject["nrOfUsers"]}` @@zen
                         </div>
                     </div>
                 </div>
             </div>
             <div class="courses-preview-component" id="about-courses">
                 <div class="courses-preview-component-container">
-                    <div class="courses-preview-row">
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Garden tools
+                    <div class="courses-preview-list">
+                        @@zen
+                            return wiredObject["courses"].map(course => `
+                                <div class="card course-preview">
+                                    <div class="course-preview-text">
+                                        <div class="course-preview-title">
+                                            ${course.name}
+                                        </div>
+                                        <div class="course-preview-description">
+                                            ${course.description}
+                                        </div>
+                                    </div>
+                                    <div class="course-preview-image">
+                                        <img alt="image relevant to course" src="${course.imgPath}" />
+                                    </div>
                                 </div>
-                                <div class="course-preview-description">
-                                    Learn all about garden tools
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                        </div>
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Growing flowers
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn about how to grow beautiful flowers
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-preview-row">
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Garden tools
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn all about garden tools
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                        </div>
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Growing flowers
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn about how to grow beautiful flowers
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-preview-row">
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Garden tools
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn all about garden tools
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                        </div>
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Growing flowers
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn about how to grow beautiful flowers
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                        </div>
+                            `).join("\n")
+                        @@zen
                     </div>
                 </div>
             </div>
             <div class="feedback-component">
                 <div class="feedback-component-container">
-                    <form class="feedback_form" id="feedback_form" action="/">
+                    <form class="feedback_form" id="feedback_form" action="@@host/api/v1/giveFeedback" method="post" enctype="multipart/form-data">
                         <label for="feedback_email">Email</label>
                         <input type="email" id="feedback_email" name="email" pattern=".+@.+\..+" required>
                         <label for="feedback_body">Feedback</label>
@@ -364,9 +299,9 @@
         <script src="@@host/public/frontend/resources/connection_scripts/formHandler.js"></script>
         <script src="@@host/public/frontend/resources/connection_scripts/auth.js"></script>
         <script>
-            addWhatchedNumberCounter('courses-stats', 0, 100, 5000)
-            addWhatchedNumberCounter('videos-stats', 0, 70, 5000)
-            addWhatchedNumberCounter('users-stats', 0, 20, 5000)
+            addWhatchedNumberCounter('courses-stats', 0, @@zen return `${wiredObject["courses"].length}` @@zen, 500)
+            addWhatchedNumberCounter('videos-stats', 0, @@zen return `${wiredObject["courses"].length}` @@zen, 500)
+            addWhatchedNumberCounter('users-stats', 0, @@zen return `${wiredObject["nrOfUsers"]}` @@zen, 500)
 
             addCustomRegisterHandle('signup_form')
             addCustomLoginHandle('login_form')

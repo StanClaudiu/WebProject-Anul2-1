@@ -13,7 +13,7 @@ class Router {
         this.patchRoutes = {}
     }
 
-    post(url, controller, middleware = (_1, _2, _3) => true) {//perversa schema
+    post(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.postRoutes[url])
             console.error(`route ${url} was already added as POST route`)
         this.postRoutes[url] = {"controller": controller, "middleware":  middleware}
@@ -31,7 +31,7 @@ class Router {
     put(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.putRoutes[url])
             console.error(`route ${url} was already added as PUT route`)
-        this.putRoutes[url] = {"controller": controller, "middleware": middleware} ///aici era controleer sper ca nu am stricat schimband
+        this.putRoutes[url] = {"controller": controller, "middleware": middleware}
     }
 
     patch(url, controller, middleware = (_1, _2, _3) => true) {
@@ -49,13 +49,13 @@ class Router {
             });
         }
 
-        const requestUrl = request.url.split(`?`)[0];///in parameters avem decat query-ul!
+        const requestUrl = request.url.split(`?`)[0];
 
         try {
             switch (request.method) {
                 case "POST":
-                    if (await this.postRoutes[requestUrl]["middleware"](zen, request, response)) { //if you have or not a cookie
-                        return await this.postRoutes[requestUrl]["controller"](zen, request, response) /////aici se aplica functia din controller!!!...ce vrem sa faca acel controller
+                    if (await this.postRoutes[requestUrl]["middleware"](zen, request, response)) {
+                        return await this.postRoutes[requestUrl]["controller"](zen, request, response)
                     }
                     break
                 case "GET":

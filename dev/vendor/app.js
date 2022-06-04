@@ -12,11 +12,15 @@ class App {
     router
     db
     fileManager
+    sendMail
+    alarm
 
-    constructor(port, db, fileManager) {
+    constructor(port, db, fileManager, sendMail, alarm) {
         this.port = port
         this.db = db
         this.fileManager = fileManager
+        this.sendMail = sendMail
+        this.alarm = alarm
         this.router = new Router()
     }
 
@@ -30,31 +34,29 @@ class App {
     listen() {
         http.createServer(async function (request, response) {
             
-            console.log("In momentul asta am primit un request : ");
-            ///requestul are deja in el ceva custom facut, si imi pot da seama ce imi cere!
             let zen = {}
             zen = AddZenFunctionalities(zen);
             response = AddResponseFunctionalities(response);
-            request = AddRequestFunctionalities(request); //gen responsabilitati noi fata de cele default
+            request = AddRequestFunctionalities(request);
 
             console.log(`${request.method} on ${request.url}`) 
             
-            response = this.setResponseHeaders(response); //constructie ceva ce trebuie facut bla bla 
+            response = this.setResponseHeaders(response);
             
             if (this.isStatic(request.url)) {
                 response = await this.handleStatic(request, response);
                 return;
-            } //pur si simplu il serversc
+            }
             
             //AugmentData
 
             await request.augment()
             await response.augment()
-            await zen.augment(this.db, this.fileManager, request) //pune userul in zen..cam atat
+            await zen.augment(this.db, this.fileManager, this.sendMail, this.alarm, request)
             
             if (this.hasValidHeaders(request.headers)) {
-                response = await this.router.handleRoute(zen, request, response) //asculta si serveste ruta asta
-                return;///here we don't actually return something, nope it means SEND THE MESSAGE DAMN IT
+                response = await this.router.handleRoute(zen, request, response)
+                return;
             } 
             else {
                 response.status(415).json({

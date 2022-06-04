@@ -15,9 +15,9 @@ const ZenViewParser = async (wiredObject, zenViewPath) => {
 
     for (let it = 0; it < tokenizedData.length; it++) {
         if (it % 2 == 1) {
-            const zenStatement = new Function('wiredObject', tokenizedData[it]) ///executa ce era in pagina
+            const zenStatement = new Function('wiredObject', tokenizedData[it])
             parsedView = parsedView + zenStatement(wiredObject)
-        } //here I am workshipping the view
+        }
         else {
             parsedView = parsedView + tokenizedData[it]
         }

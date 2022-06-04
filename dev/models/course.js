@@ -1,3 +1,5 @@
+import { CourseProgress } from "./index.js"
+
 class Course {
     db
     id
@@ -8,6 +10,7 @@ class Course {
     duration
     imgPath
     videoPath
+    courseProgress
 
     constructor(db, content, description, name, duration, imgPath, videoPath= "null", parrentCourseId = null,  id = 0) {
         this.db = db
@@ -19,6 +22,7 @@ class Course {
         this.duration = duration
         this.imgPath = imgPath
         this.videoPath = videoPath
+        this.courseProgress = null
     }
 
     static async getCourses(db) {
@@ -58,6 +62,39 @@ class Course {
         await db.courseRepository.delete_course_by_id(id)
     }
 
+    static async getUserCourses(db, course_id) {
+        const userCoursesData = await db.startedCourseRepository.getAllStartedCourses(course_id)
+
+        const userCourses = userCoursesData.map(userCourseData => {
+                let courseProgress = null
+
+                if (userCourseData["ID_STATISTICS"] != null) {
+                    courseProgress = new CourseProgress(db, 
+                        userCourseData["ID_USER"],
+                        userCourseData["ID_CURS"],
+                        userCourseData["PROGRESS"],
+                        userCourseData["ID_STATISTICS"])
+                }
+
+                let course = new Course(db, 
+                    userCourseData["COURSE_CONTENT"],
+                    userCourseData["DESCRIPTION_COURSE"],
+                    userCourseData["COURSE_NAME"],
+                    userCourseData["COURSE_DURATION"],
+                    userCourseData["IMAGE_PATH_DOWNLOAD"],
+                    userCourseData["COURSE_VIDEO_PATH"],
+                    userCourseData["PARENT_ID"],
+                    userCourseData["ID_CURS"]
+                );
+                
+                course.courseProgress = courseProgress;
+
+                return course
+            }
+        );
+        return userCourses;
+    }
+
     async create() {
         this.id = await this.db.courseRepository.create(
             this.parrentCourseId != null ?  this.parrentCourseId : "null", 
@@ -85,6 +122,30 @@ class Course {
             )
         );
         return courses
+    }
+
+    async getProgressForUser(userId) {
+        if (!this.courseProgress) {
+            this.courseProgress = await CourseProgress.getByUserAndCourse(this.db, userId, this.id)
+        }
+
+        return this.courseProgress == null ? null : this.courseProgress.progress;
+    }
+
+    async updateProgressForUser(userId, progress) {
+        if (!this.courseProgress) {
+            this.courseProgress = await CourseProgress.getByUserAndCourse(this.db, userId, this.id)
+        }
+
+        if (this.courseProgress) {
+            this.courseProgress.progress = progress; 
+            this.courseProgress.update()
+        }
+    }
+
+    async startProgressForUser(userId) {
+        this.courseProgress = new CourseProgress(this.db, userId, this.id)
+        await this.courseProgress.create()
     }
 
     toPOJO() {

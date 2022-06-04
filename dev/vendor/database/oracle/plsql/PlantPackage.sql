@@ -110,11 +110,4 @@ CREATE OR REPLACE PACKAGE BODY plant_packege IS
 
     
 END plant_packege;/* STATEMENT */
-
-
-SELECT * FROM plant;
-
-SELECT plant_packege.get_plants_by_user_and_type_id(4,3) FROM DUAL;
-
-SELECT plant_packege.add_plant(1,1,"Tomato")FROM DUAL; 
  

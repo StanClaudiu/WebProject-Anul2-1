@@ -86,12 +86,3 @@ CREATE OR REPLACE PACKAGE BODY reminder_packege IS
 
     
 END reminder_packege;/* STATEMENT */
-
-
-
-SELECT * FROM plant;
-
-SELECT reminder_packege.add_reminder(3,'Uda leguma boss') FROM DUAL;
-SELECT reminder_packege.add_reminder(11,'Uda cireasa sa se faca dulceataaa') FROM DUAL;
-
-SELECT reminder_packege.get_all_user_reminderS(4) FROM DUAL;

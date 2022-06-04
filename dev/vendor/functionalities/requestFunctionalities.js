@@ -28,20 +28,20 @@ const parseMultipart = async (request) => {
     multipartParser.uploadDir = process.env.STORAGE_CACHE;
 
     const parsedBody = await new Promise((resolve, reject) => {
-        multipartParser.parse(request, function (error, fields, files) { ///din multiparser
+        multipartParser.parse(request, function (error, fields, files) {
             if (error) {
                 console.log("Failed to parse multipart request")
                 console.log(error)
                 resolve({"fields": {}, "files": {}})
             }
-            resolve({"fields": fields, "files": files}) ///transmite sub forma name : value
-        });////he knows how to put them well damn
+            resolve({"fields": fields, "files": files})
+        });
     });
 
     return parsedBody
 }
 
-const parseUrlencoded = async (request) => { ///aici imi vine application cu informatia URLEncoded 
+const parseUrlencoded = async (request) => {
     return new Promise ((resolve, reject) => {
             
         const decoder = new StringDecoder('utf-8');
@@ -56,16 +56,16 @@ const parseUrlencoded = async (request) => { ///aici imi vine application cu inf
         request.on('end', () => {
             let fields = {}
 
-            buffer += decodeURIComponent(decoder.end());// ce a mai ramas,dupa URL cred
+            buffer += decodeURIComponent(decoder.end());
 
             const decodedValues = buffer.split("&")
 
             decodedValues.forEach((decodedValue) => {
                 const keyValue = decodedValue.split("=")
-                fields[keyValue[0]] = keyValue[1] ///// test = ce? asta!!>>???
+                fields[keyValue[0]] = keyValue[1]
             })
             console.log(fields)
-            resolve({"fields": fields, "files": {}})//cumva de unde se fac cererile?
+            resolve({"fields": fields, "files": {}})
         });
 
     });
@@ -78,14 +78,12 @@ const parseJosnBody = async (request) => {
         request.on('data', chunk => {
             buffer += chunk
         })
-
-        ///give me buffer
     
         request.on('end', () => {
             let fields = {}
             try {
                 fields = JSON.parse(buffer)
-                resolve({"fields": fields, "files": {}}) //citim jsonul primit de la request
+                resolve({"fields": fields, "files": {}})
             } 
             catch (error) {
                 console.log(error)
@@ -99,25 +97,25 @@ const parseJosnBody = async (request) => {
 
 const parseBody = async (request) => {
     if (!request.headers['content-type']) {
-        return {"fields": {}, "files": {}};//cere o pagina web?, gen main?
+        return {"fields": {}, "files": {}};
     }
-    if (request.headers['content-type'].includes("multipart/form-data")) { //means it has video and things etc
+    if (request.headers['content-type'].includes("multipart/form-data")) {
         return await parseMultipart(request)
     }
-    if (request.headers['content-type'] == "application/x-www-form-urlencoded") { //from the form of submit
+    if (request.headers['content-type'] == "application/x-www-form-urlencoded") {
         return await parseUrlencoded(request)
     }
-    if (request.headers['content-type'] == "application/json") { //cerere normala de la server?, gen da-mi o pagina noua boss
+    if (request.headers['content-type'] == "application/json") {
         return await parseJosnBody(request)
-    } //more light
+    }
 }
 
 const AddRequestFunctionalities = (request) => {
 
     request.augment = async () => {
-        request.parameters = url.parse(request.url, true).query;//il facem obiect, pathname
+        request.parameters = url.parse(request.url, true).query;
         request.cookies = parseCookies(request);
-        request.body = await parseBody(request); //parseaza structura ce vine, gen body.fields->object cu tot
+        request.body = await parseBody(request);
         console.log(request.body.fields)
     }
 
