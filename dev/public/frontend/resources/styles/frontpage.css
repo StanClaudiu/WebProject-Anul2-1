@@ -272,11 +272,12 @@
     max-width: 1000px;
 }
 
-.courses-preview-row {
+.courses-preview-list {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
 }
 
@@ -289,6 +290,7 @@
     flex-direction: row;
     max-width: 500px;
     height: 200px;
+    min-width: 48%;
 }
 
 .course-preview-text {
@@ -328,8 +330,8 @@
 }
 
 @media only screen and (max-width: 900px) {
-    .courses-preview-row {
-        flex-direction: column;
+    .course-preview {
+        min-width: 100%;
     } 
 }
 

@@ -3,14 +3,15 @@ import { PagesController,
          AdminPageController, 
          CoursePageController, 
          CoursesPageController,
-         LeaderboardPageController } from "../../controllers/index.js";
+         LeaderboardPageController,
+         MainPageController } from "../../controllers/index.js";
 import { UserMiddleware, AdminMiddleware } from "../../middlewares/index.js"
 
 const mainRoutes = new Router();
 
 //pages routes
 
-mainRoutes.get(`/main`, PagesController.landingPage);
+mainRoutes.get(`/main`, MainPageController.view);
 mainRoutes.get(`/course`, CoursePageController.view, UserMiddleware);
 mainRoutes.get(`/courses`, CoursesPageController.view, UserMiddleware);
 mainRoutes.get(`/leaderboard`, LeaderboardPageController.view, UserMiddleware);

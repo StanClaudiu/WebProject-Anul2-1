@@ -2,12 +2,6 @@ import { StatusCodes } from "http-status-codes"
 import { Course } from "../models/index.js"
 
 const PagesController = {
-    landingPage: async (zen, request, response) => {
-        zen.alarm.addAlarm("plantId", {informatie: " Merge bre merge"}, 5, 3)
-
-        await response.sendZenView(zen.session, "views/index.html")
-    },
-
     coursesPage: async (zen, request, response) => {
         await response.sendZenView({}, "views/courses.html")
     },
