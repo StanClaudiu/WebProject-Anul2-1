@@ -69,7 +69,7 @@
                         <div style="color:green"><a class="add_plants" onclick="openModal('add_modal')"><i class="fa-solid fa-circle-plus fa-2xl"></i></a></div>
                    </div>
                    <div class="upload_download_container">
-                        <i class="fa-solid fa-download download_icon fa-3x"></i>
+                        <a href="@@host/api/v1/myGarden/data/download" download="statistics.json"><i class="fa-solid fa-download download_icon fa-3x"></i></a>
                         <i class="fa-solid fa-upload upload_icon fa-3x" onclick = "openModal('upload_file')"></i>
                    </div>
 
@@ -151,8 +151,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="modal_container" id="inspect_plant_modal">
                     <div class="modal">
                         <div class="full-form-container plants_made_beatiful" id="inject_plants">
@@ -200,7 +198,7 @@
                 <div class="modal_container long_modal_container" id="upload_file">
                     <div class="modal course_add_edit_modal">
                         <div class="full-form-container">
-                            <form class="pretty_form" id="edit_form" action="" method="post" enctype="multipart/form-data">
+                            <form class="pretty_form" id="edit_form" action="@@host/api/v1/myGarden/data/upload" method="post" enctype="multipart/form-data">
                                 <label for="upload_the_file">File to be uploaded</label>
                                 <input type="file" id="upload_the_file" name="file_app" accept="application/json">
                             </form>
@@ -219,9 +217,5 @@
             <script src="@@host/public/frontend/resources/scripts/countingNumbers.js"></script>
             <script src="@@host/public/frontend/resources/connection_scripts/myGarden.js"></script>
     </body>
-
-
-
-       
         
 </html>
