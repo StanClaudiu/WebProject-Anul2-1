@@ -90,17 +90,13 @@
                        REMAINDER
                    </div>
                    <div class="remainders_Component" >
-                        <div class="remainder_element" >
-                            <div>Water your tomatoes</div>
-                            <div class="options_remainder"><a class="inspect_reminder" onclick="openModal('inspect_reminder_modal')"><i class="fa-solid fa-ellipsis"></i></a></div>
-                            <div class="close_remainder"><a class="close_reminder"onclick="openModal('close_reminder_modal')"><i class="fa-solid fa-xmark"></i></a></div>
-                        </div>
+                        
                         @@zen
                         let reminders = wiredObject['reminders'];
                         return reminders.map(elem=>
                         `<div class="remainder_element" >
-                            <div>${elem.content}</div>
-                            <div class="options_remainder"><a class="inspect_reminder" onclick="openModal('inspect_reminder_modal')"><i class="fa-solid fa-ellipsis"></i></a></div>
+                            <div id="reminder${elem.id}">${elem.content}</div>
+                            <div class="options_remainder"><a class="inspect_reminder" onclick="see_reminder('${elem.id}')"><i class="fa-solid fa-ellipsis"></i></a></div>
                             <div class="close_remainder"><a class="close_reminder"onclick="openModal('close_reminder_modal')"><i class="fa-solid fa-xmark"></i></a></div>
                         </div>`
                         ).join('\n');
@@ -150,11 +146,14 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- here we have the modal for the reminder-->
+
                 <div class="modal_container" id="inspect_reminder_modal">
                     <div class="modal">
                         <div class="full-form-container remainder_container">
-                           <div>Remainder</div>
-                           <div>Water your tomatoes</div>
+                           <div>Reminder</div>
+                           <div id="content_reminder">Water your tomatoes</div>
                         </div>
                         <div class="modal-action-buttons">
                             <div class="button-box button-box-red" onclick="closeModal('inspect_reminder_modal')">Cancel</div>
@@ -192,16 +191,21 @@
                     </div>
                 </div>
 
+                <!-- Here we have the close modal for the reminder -->
+
                 <div class="modal_container" id="close_reminder_modal">
                     <div class="modal">
-                        <div class="full-form-container">
-                           Are you sure you want to delete this reminder?
+                        <div class="full-form-container" style="text-align:center">
+                           Are you sure you want to dismiss this reminder?
                         </div>
                         <div class="modal-action-buttons">
-                            <div class="button-box button-box-red" onclick="closeModal('close_reminder_modal')">Cancel</div>
+                            <div class="button-filled button-filled-dark-green" onclick="closeModal('close_reminder_modal')">Yes</div>
+                            <div class="button-box button-box-red" onclick="closeModal('close_reminder_modal')">No</div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </main>
             <script src="@@host/public/frontend/resources/scripts/navBar.js"></script>

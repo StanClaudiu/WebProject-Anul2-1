@@ -55,3 +55,11 @@ const delete_plant = (id) => {
     console.log('I am trying to close the modal');
 
 }
+
+const see_reminder = (id) => {
+    let content =  document.getElementById(`reminder${id}`).innerHTML;
+    console.log(content);
+    let location = document.getElementById("content_reminder");
+    location.innerHTML = content;
+    openModal("inspect_reminder_modal");
+}
