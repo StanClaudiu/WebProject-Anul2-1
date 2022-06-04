@@ -184,7 +184,7 @@
     z-index: 10;
     width: 160px;
     height: 160px;
-    background-image: url(/public/frontend/resources/images/decorations/leafcircle.png);
+    background-image: url(/public/frontend/resources/images/decorations/leafcircle.webp);
     background-size: 160px 160px;
     transform: translate(-50%, -50%);
     opacity: 0.8;

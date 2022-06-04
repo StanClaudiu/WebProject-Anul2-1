@@ -11,12 +11,45 @@
     display: flex;
     flex-direction: column;
 }
+.upload_download_container{
+    margin-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.upload_download_container>i{
+    margin-right: 40px;
+
+}
+
+.download_icon{
+    transition-duration: 0.5s;
+}
+.download_icon:hover{
+
+    transition-duration: 0.5s;
+    color: green;
+    cursor: pointer;
+
+}
+
+.upload_icon{
+
+    transition-duration: 0.5s;
+}
+.upload_icon:hover{
+    transition-duration: 0.5s;
+    color: rgb(240, 6, 6);
+    cursor: pointer;
+}
+
+
 .header_Container{
     
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: max(50px,10vh);
+    margin-bottom: max(50px,5vh);
 }
 .garden_Component_Container{
     display: flex;
@@ -230,6 +263,9 @@ a.inspect_trees_reminder > i:hover{
     }
     .plants-summary-image > * {
         width: 70vw;
+    }
+    .header_Container{
+        margin-bottom: min(20px,5vh);
     }
     
 }

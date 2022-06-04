@@ -68,6 +68,11 @@
                        <div class="page-name">My Garden</div>
                         <div style="color:green"><a class="add_plants" onclick="openModal('add_modal')"><i class="fa-solid fa-circle-plus fa-2xl"></i></a></div>
                    </div>
+                   <div class="upload_download_container">
+                        <i class="fa-solid fa-download download_icon fa-3x"></i>
+                        <i class="fa-solid fa-upload upload_icon fa-3x" onclick = "openModal('upload_file')"></i>
+                   </div>
+
                    <div class="garden_Component_Container" >
                         @@zen
                              let userPlantTypes = wiredObject["userPlantTypes"];
@@ -87,7 +92,7 @@
                         @@zen
                    </div>
                    <div class="remainder_title">
-                       REMAINDER
+                       REMINDERS
                    </div>
                    <div class="remainders_Component" >
                         
@@ -190,6 +195,22 @@
                     </div>
                 </div>
 
+                <!-- the modal for the upload -->
+
+                <div class="modal_container long_modal_container" id="upload_file">
+                    <div class="modal course_add_edit_modal">
+                        <div class="full-form-container">
+                            <form class="pretty_form" id="edit_form" action="" method="post" enctype="multipart/form-data">
+                                <label for="upload_the_file">File to be uploaded</label>
+                                <input type="file" id="upload_the_file" name="file_app" accept="application/json">
+                            </form>
+                        </div>
+                        <div class="modal-action-buttons">
+                            <button type="submit" form="edit_form" class="button-filled button-filled-dark-green">Upload</button>
+                            <div class="button-box button-box-red" onclick="closeModal('upload_file')">Cancel</div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </main>
