@@ -4,12 +4,14 @@
         <title>Gardening tutor</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Free Web tutorials">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="John Doe">
         <link rel="stylesheet" href="@@host/public/frontend/resources/styles/main.css">
         <link rel="stylesheet" href="@@host/public/frontend/resources/styles/components.css">
         <link rel="stylesheet" href="@@host/public/frontend/resources/styles/frontpage.css">
         <link rel="stylesheet" href="@@host/public/frontend/resources/styles/nav-bar.css">
         <link rel="stylesheet" href="@@host/public/frontend/resources/styles/image-carousel.css">
-        <link rel="stylesheet" href="@@host/public/frontend/resources/font_awesome/css/all.min.css">
     </head>
     <body id="body_root">
         <div class="nav-bar">
@@ -22,24 +24,24 @@
                 </div>
                 <div class="nav-bar-field nav-bar-buttons" id="nav-bar-hamburger-element">
                     @@zen
-                        if (!wiredObject['isLoggedIn']) {
+                        if (!wiredObject['session']['isLoggedIn']) {
                             return `
-                                <a class="button-plain button-plain-wheat nav-bar-button" onclick="openModal('signup_modal')">Sign up</a>
-                                <a class="button-box button-box-wheat nav-bar-button" onclick="openModal('login_modal')">Login</a>
+                                <a class="button-plain button-plain-wheat nav-bar-button" href="#" onclick="openModal('signup_modal')">Sign up</a>
+                                <a class="button-box button-box-wheat nav-bar-button" href="#" onclick="openModal('login_modal')">Login</a>
                             `
                         }
                         else {
                             return `
-                                <a class="button-plain button-plain-wheat nav-bar-button" href="${wiredObject['user']['role'] == 'user' ? '/courses' : '/adminPage'}">Dashboard</a>
+                                <a class="button-plain button-plain-wheat nav-bar-button" href="${wiredObject['session']['user']['role'] == 'user' ? '/courses' : '/adminPage'}">Dashboard</a>
                             `
                         }
-                        return wiredObject["email"]
+                        return wiredObject['session']["email"]
                     @@zen
 
-                    <div class="nav-bar-close-hamburger" onclick="closeHamburgerNavbar()"><i class="fa-solid fa-circle-xmark"></i></div>
+                    <div class="nav-bar-close-hamburger" onclick="closeHamburgerNavbar()"><i>x</i></div>
                 </div>
                 <div class="nav-bar-field nav-bar-toggle-hamburger" onclick="openHamburgerNavbar()">
-                    <i class="fa-solid fa-bars"></i>
+                    <i>+</i>
                 </div>
             </div>
         </div>
@@ -62,7 +64,7 @@
                         
                     </div>
                     <div class="head-component-image">
-                        <img alt="image of tree" src="@@host/public/frontend/resources/images/logo.png" />
+                        <img alt="image of tree" src="@@host/public/frontend/resources/images/logo.webp" />
                     </div>
                 </div>
             </div>
@@ -71,11 +73,11 @@
 
                     <div class="image-slider-panel">
             
-                        <div class="image-slider-arrow" onclick="plusSlides(-1)"><a>&#10094;</a></div>
+                        <div class="image-slider-arrow" onclick="plusSlides(-1)"><i>&#10094;</i></div>
             
                         <div class="image-slider-slide image-slider-active-slide card">
                             <div class="image-slider-img">
-                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
+                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.webp" />
                             </div>
                             <div class="image-slider-text">
                                 <p class="image-slider-title">Garden tools</p>
@@ -85,7 +87,7 @@
             
                         <div class="image-slider-slide card">
                             <div class="image-slider-img">
-                                <img alt="image of flowers" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
+                                <img alt="image of flowers" src="@@host/public/frontend/resources/images/carousel/carousel2.webp" />
                             </div>
                             <div class="image-slider-text">
                                 <p class="image-slider-title">Beautiful flowers</p>
@@ -95,7 +97,7 @@
             
                         <div class="image-slider-slide card">
                             <div class="image-slider-img">
-                                <img alt="image of vegetables" src="@@host/public/frontend/resources/images/carousel/carousel3.jpg" />
+                                <img alt="image of vegetables" src="@@host/public/frontend/resources/images/carousel/carousel3.webp" />
                             </div>
                             <div class="image-slider-text">
                                 <p class="image-slider-title">Eat healthy</p>
@@ -103,7 +105,7 @@
                             </div>
                         </div>
             
-                        <div class="image-slider-arrow" onclick="plusSlides(1)"><a>&#10095;</a></div>
+                        <div class="image-slider-arrow" onclick="plusSlides(1)"><i>&#10095;</i></div>
             
                     </div>
             
@@ -122,32 +124,33 @@
                 <div class="description-component-container">
                     <div class="description-bloks-row" id="description-bloks-first-row">
                         <div class="card description-block" id="description-block-first">
-                            <div class="description-block-title">
-                                Text block 1
+                            <div class="description-block-title"> 
+                                WHY US?
                             </div>
                             <div class="description-block-text">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type 
-                                specimen book. It has survived not only five centuries, but also the leap into 
-                                electronic typesetting, remaining essentially unchanged. It was popularised in the
-                                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                                recently with desktop publishing software like Aldus PageMaker including versions 
-                                of Lorem Ipsum.
+                                It's great hand-eye coordination. This definitely needs to be in sync
+                                when gardening so those important messages can be sent can to the brain.
+                                It's a way to commune with nature. Birds, bees & butterflies still delight.
+                                It's so satisfying to see something grow.  Whether it's ornamental or food,
+                                it's so satisfying to watch what you planted take off.It's can be downright
+                                meditative. Gardening is food for the soul.It's an escape. If something's 
+                                bugging you, simply grab the pruners.Researchers found that bacteria found
+                                in the soil actually helped activate brain cells that could produce serotonin.
                             </div>
                         </div>
                         <div class="card description-block" id="description-block-second">
                             <div class="description-block-title">
-                                Text block 2
+                                CHOOSE A HEALTHY LIFE
                             </div>
                             <div class="description-block-text">
-                                It is a long established fact that a reader will be distracted by the readable content of a page
-                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                                distribution of letters, as opposed to using 'Content here, content here', making it look like 
-                                readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
-                                their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
-                                infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose 
-                                (injected humour and the like).
+                                A diet rich in vegetables and fruits can lower blood pressure, reduce the
+                                risk of heart disease and stroke, prevent some types of cancer, lower risk
+                                of eye and digestive problems, and have a positive effect upon blood sugar, 
+                                which can help keep appetite in check. Eating non-starchy vegetables and 
+                                fruits like apples, pears, and green leafy vegetables may even promote weight
+                                loss.Their low glycemic loads prevent blood sugar spikes that can increase
+                                hunger.At least nine different families of fruits and vegetables exist, each
+                                with potentially hundreds of different plant compounds.
                             </div>
                         </div>
                     </div>
@@ -159,31 +162,33 @@
                     <div class="description-bloks-row" id="description-bloks-second-row">
                         <div class="card description-block" id="description-block-third">
                             <div class="description-block-title">
-                                Text block 3
+                                YOU CAN LOVE GARDENING
                             </div>
                             <div class="description-block-text">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type 
-                                specimen book. It has survived not only five centuries, but also the leap into 
-                                electronic typesetting, remaining essentially unchanged. It was popularised in the
-                                1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                                recently with desktop publishing software like Aldus PageMaker including versions 
-                                of Lorem Ipsum.
+                                This is a place for gardeners, plant lovers, explorers, cooks and eaters, 
+                                readers and writers, walkers, lookers, wonderers and wanderers, collectors, 
+                                creators, tinkerers, savers, builders, and those born curiousThe main reason
+                                we garden is to enjoy the fruits of our labor in the kitchen! 
+                                Since the beginning of agriculture, families have reserved a piece of land 
+                                specifically for growing food for their own family. These kitchen gardens have 
+                                always been close to where the food is prepared, the produce and herbs gathered
+                                at the peak of freshness to be eaten immediately or canned and preserved for winter.
                             </div>
                         </div>
                         <div class="card description-block" id="description-block-forth">
                             <div class="description-block-title">
-                                Text block 4
+                                SNEAK PEEK
                             </div>
                             <div class="description-block-text">
-                                It is a long established fact that a reader will be distracted by the readable content of a page
-                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                                distribution of letters, as opposed to using 'Content here, content here', making it look like 
-                                readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
-                                their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
-                                infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose 
-                                (injected humour and the like).
+                                The application offers courses that are managed by admins. Admins can add,
+                                edit or remove courses. The application implements a rich text editor for 
+                                making courses. Users need to authenticate in order to use the application.
+                                Adimns are already seeded in the database and they just need to login. 
+                                Courses are structured into subcourses in an tree manner. Users can manage
+                                their own garden by adding and harvesting plants on the application.
+                                Gardening web tutor is an application that teaches users how to plant and
+                                 harvest various vegetables and fruits and lets them manage their own 
+                                 garden as well as giving them reminders.
                             </div>
                         </div>
                     </div>
@@ -196,7 +201,7 @@
                             Courses
                         </div>
                         <div class="platform-stats-value" id="courses-stats">
-                            100
+                            @@zen return `${wiredObject["courses"].length}` @@zen
                         </div>
                     </div>
                     <div class="platform-stats">
@@ -204,7 +209,7 @@
                             Videos
                         </div>
                         <div class="platform-stats-value" id="videos-stats">
-                            70
+                            @@zen return `${wiredObject["courses"].length}` @@zen
                         </div>
                     </div>
                     <div class="platform-stats">
@@ -212,102 +217,37 @@
                             Users
                         </div>
                         <div class="platform-stats-value" id="users-stats">
-                            20
+                            @@zen return `${wiredObject["nrOfUsers"]}` @@zen
                         </div>
                     </div>
                 </div>
             </div>
             <div class="courses-preview-component" id="about-courses">
                 <div class="courses-preview-component-container">
-                    <div class="courses-preview-row">
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Garden tools
+                    <div class="courses-preview-list">
+                        @@zen
+                            return wiredObject["courses"].map(course => `
+                                <div class="card course-preview">
+                                    <div class="course-preview-text">
+                                        <div class="course-preview-title">
+                                            ${course.name}
+                                        </div>
+                                        <div class="course-preview-description">
+                                            ${course.description}
+                                        </div>
+                                    </div>
+                                    <div class="course-preview-image">
+                                        <img alt="image relevant to course" src="${course.imgPath}" />
+                                    </div>
                                 </div>
-                                <div class="course-preview-description">
-                                    Learn all about garden tools
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                        </div>
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Growing flowers
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn about how to grow beautiful flowers
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-preview-row">
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Garden tools
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn all about garden tools
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                        </div>
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Growing flowers
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn about how to grow beautiful flowers
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="courses-preview-row">
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Garden tools
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn all about garden tools
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                        </div>
-                        <div class="card course-preview">
-                            <div class="course-preview-text">
-                                <div class="course-preview-title">
-                                    Growing flowers
-                                </div>
-                                <div class="course-preview-description">
-                                    Learn about how to grow beautiful flowers
-                                </div>
-                            </div>
-                            <div class="course-preview-image">
-                                <img alt="image relevant to course" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                        </div>
+                            `).join("\n")
+                        @@zen
                     </div>
                 </div>
             </div>
             <div class="feedback-component">
                 <div class="feedback-component-container">
-                    <form class="feedback_form" id="feedback_form" action="/">
+                    <form class="feedback_form" id="feedback_form" action="@@host/api/v1/giveFeedback" method="post" enctype="multipart/form-data">
                         <label for="feedback_email">Email</label>
                         <input type="email" id="feedback_email" name="email" pattern=".+@.+\..+" required>
                         <label for="feedback_body">Feedback</label>
@@ -361,11 +301,12 @@
         <script src="@@host/public/frontend/resources/scripts/imageCarousel.js"></script>
         <script src="@@host/public/frontend/resources/scripts/modal.js"></script>
         <script src="@@host/public/frontend/resources/scripts/countingNumbers.js"></script>
+        <script src="@@host/public/frontend/resources/connection_scripts/formHandler.js"></script>
         <script src="@@host/public/frontend/resources/connection_scripts/auth.js"></script>
         <script>
-            addWhatchedNumberCounter('courses-stats', 0, 100, 5000)
-            addWhatchedNumberCounter('videos-stats', 0, 70, 5000)
-            addWhatchedNumberCounter('users-stats', 0, 20, 5000)
+            addWhatchedNumberCounter('courses-stats', 0, @@zen return `${wiredObject["courses"].length}` @@zen, 500)
+            addWhatchedNumberCounter('videos-stats', 0, @@zen return `${wiredObject["courses"].length}` @@zen, 500)
+            addWhatchedNumberCounter('users-stats', 0, @@zen return `${wiredObject["nrOfUsers"]}` @@zen, 500)
 
             addCustomRegisterHandle('signup_form')
             addCustomLoginHandle('login_form')

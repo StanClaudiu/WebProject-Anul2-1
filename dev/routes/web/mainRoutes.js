@@ -1,16 +1,22 @@
 import { Router } from "../../vendor/index.js";
-import { PagesController, AdminPageController } from "../../controllers/index.js";
+import { PagesController, 
+         AdminPageController, 
+         CoursePageController, 
+         CoursesPageController,
+         LeaderboardPageController,
+         MainPageController,
+         MyGardenPageController } from "../../controllers/index.js";
 import { UserMiddleware, AdminMiddleware } from "../../middlewares/index.js"
 
 const mainRoutes = new Router();
 
 //pages routes
 
-mainRoutes.get(`/main`, PagesController.landingPage);
-mainRoutes.get(`/course`, PagesController.coursePage, UserMiddleware);
-mainRoutes.get(`/courses`, PagesController.coursesPage, UserMiddleware);
-mainRoutes.get(`/leaderboard`, PagesController.leaderboardPage, UserMiddleware);
-mainRoutes.get(`/myGarden`, PagesController.myGardenPage, UserMiddleware);
+mainRoutes.get(`/main`, MainPageController.view);
+mainRoutes.get(`/course`, CoursePageController.view, UserMiddleware);
+mainRoutes.get(`/myGarden`, MyGardenPageController.view, UserMiddleware);
+mainRoutes.get(`/courses`, CoursesPageController.view, UserMiddleware);
+mainRoutes.get(`/leaderboard`, LeaderboardPageController.view, UserMiddleware);
 mainRoutes.get(`/adminPage`, AdminPageController.view, AdminMiddleware);
 
 mainRoutes.get(`/favicon.ico`, PagesController.favicon);

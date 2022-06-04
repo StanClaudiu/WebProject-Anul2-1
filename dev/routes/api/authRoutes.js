@@ -1,5 +1,12 @@
 import { Router } from "../../vendor/index.js";
-import { AuthController, AdminPageController } from "../../controllers/index.js";
+import { AuthController, 
+         AdminPageController, 
+         CoursePageController,
+         LeaderboardPageController,
+         FeedbackController,
+         SearchController,
+         MyGardenPageController,
+         MyGardenDataController } from "../../controllers/index.js";
 
 const authRoutes = new Router();
 
@@ -8,5 +15,23 @@ authRoutes.post(`/api/v1/login`, AuthController.login);
 authRoutes.get(`/api/v1/logout`, AuthController.logout);
 
 authRoutes.post(`/api/v1/courses`, AdminPageController.create);
+authRoutes.post(`/api/v1/courses/delete`, AdminPageController.delete);
+authRoutes.get(`/api/v1/courses/read`, AdminPageController.read);
+authRoutes.post(`/api/v1/courses/update`, AdminPageController.update);
+
+authRoutes.get(`/api/v1/myGarden/read`, MyGardenPageController.read);
+authRoutes.post(`/api/v1/myGarden`,MyGardenPageController.create);
+authRoutes.get(`/api/v1/myGarden/del`,MyGardenPageController.del);
+authRoutes.get(`/api/v1/myGarden/delReminder`,MyGardenPageController.delReminder);
+
+authRoutes.get(`/api/v1/myGarden/data/download`, MyGardenDataController.download);
+authRoutes.post(`/api/v1/myGarden/data/upload`, MyGardenDataController.upload);
+
+authRoutes.post(`/api/v1/course/updateProgress`, CoursePageController.updateProgress);
+
+authRoutes.get(`/api/v1/rssfeed`, LeaderboardPageController.rssFeed)
+
+authRoutes.post(`/api/v1/giveFeedback`, FeedbackController.giveFeedback);
+authRoutes.post(`/api/v1/courses/search`, SearchController.search);
 
 export default authRoutes

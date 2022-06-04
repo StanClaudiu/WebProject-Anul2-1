@@ -73,3 +73,7 @@ summary::-webkit-details-marker {
 .tree-nav__item-title::-webkit-details-marker {
     display: none;
 }
+
+.tree-nav__item-title_selected {
+    color: rgb(152, 182, 0);
+}

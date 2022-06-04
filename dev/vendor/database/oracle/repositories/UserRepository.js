@@ -69,6 +69,19 @@ class UserRepository {
             console.log(err);
         }
     }
+
+    async get() {
+        try {
+            const result = await this.db.execute(
+                `SELECT * from TABLE( user_packege.get_users())`);
+            
+            console.log(result);
+            return result.rows;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 export default UserRepository;

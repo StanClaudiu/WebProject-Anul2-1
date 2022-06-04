@@ -11,12 +11,45 @@
     display: flex;
     flex-direction: column;
 }
+.upload_download_container{
+    margin-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.upload_download_container>i{
+    margin-right: 40px;
+
+}
+
+.download_icon{
+    transition-duration: 0.5s;
+}
+.download_icon:hover{
+
+    transition-duration: 0.5s;
+    color: green;
+    cursor: pointer;
+
+}
+
+.upload_icon{
+
+    transition-duration: 0.5s;
+}
+.upload_icon:hover{
+    transition-duration: 0.5s;
+    color: rgb(240, 6, 6);
+    cursor: pointer;
+}
+
+
 .header_Container{
     
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: max(50px,10vh);
+    margin-bottom: max(50px,5vh);
 }
 .garden_Component_Container{
     display: flex;
@@ -65,6 +98,10 @@ main {
     border-style:solid;
     margin-top:max(20px,5vh);
 }
+.plant_formated div>i:hover{
+    color:red;
+    cursor:pointer;
+}
 .my_description{
     display: flex;
     padding: 2% 10% 2% 10%;
@@ -75,7 +112,14 @@ main {
     display: flex;
     flex:row;
     padding: 20px;
-    border-radius: 10px;
+    transition: 0.25s;
+    border-radius: 20px;
+}
+.remainder_element:hover{
+    transition: 0.5s;
+    border-radius: 5px;
+    background-color: rgba(250, 233, 3, 0.562);
+    border-color: brown;
 }
 .remainder_element > *:first-child{
     margin-left: min(20px,4vw);
@@ -130,13 +174,18 @@ a.inspect_trees_reminder > i:hover{
     cursor: pointer;
     color:white;
 }
+.dotdotdotButton > i:hover{
+    cursor:pointer;
+    color:blue;
+}
 
 /*Am sa ma joc cu structura modalului pentru clasele mele
     ->Trees
     ->Water your tomatoes
     ->X
 */
-#inspect_trees_modal .modal{
+
+#inspect_plant_modal .modal{
     max-width: 60%;
     background-color: darkgreen;
     border-radius: 0px;
@@ -145,13 +194,13 @@ a.inspect_trees_reminder > i:hover{
     display: flex;
     flex-direction: column;
 }
-.plants_made_beatiful .tree_formated:first{
+.plants_made_beatiful .plant_formated:first{
     margin-top: 50px;
     background-color: white;
     border-radius: 10px;
     padding: 8px;
 }
-.tree_formated{
+.plant_formated{
     margin-left: 10px;
     margin-right: 10px;
     display: flex;
@@ -160,18 +209,23 @@ a.inspect_trees_reminder > i:hover{
     margin-top: 25px;
     background-color: white;
     border-radius: 10px;
+    transition-duration:0.25s;
     padding: 8px;
 }
-.tree_formated > *:first-child{
+.plant_formated:hover{
+    background-color: rgba(252, 45, 45, 0.486);
+    transition-duration: 0.5s;
+}
+.plant_formated > *:first-child{
     margin-left: 10px;
 }
-.tree_formated >*:last-child{
+.plant_formated >*:last-child{
     margin-right: 10px;
 }
 #inspect_reminder_modal .modal{
     max-width: 60%;
-    background-color: darkgreen;
-    border-radius: 0px;
+    background-color: rgb(10, 182, 10);
+    border-radius: 20px;
 }
 .remainder_container{
     display: flex;
@@ -186,13 +240,20 @@ a.inspect_trees_reminder > i:hover{
 }
 .remainder_container > *:not(:first-child)
 {
-    color: blue;
+    transition-duration: 0.25s;
+    color: black;
+    background-color: white;
     border-color: white;
     border-width: 2px;
     border-style: solid;
-    border-radius: 2px;
-    border-radius: 4px;
+    border-radius: 10px;
     padding: 8px;
+}
+.remainder_container > *:not(:first-child):hover
+{
+    transition-duration: 0.5s;
+    border-radius: 0px;
+    background-color:rgba(227, 252, 0, 0.562);
 }
 
 /*Let's make everything responsive*/
@@ -202,6 +263,9 @@ a.inspect_trees_reminder > i:hover{
     }
     .plants-summary-image > * {
         width: 70vw;
+    }
+    .header_Container{
+        margin-bottom: min(20px,5vh);
     }
     
 }

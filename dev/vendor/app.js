@@ -12,15 +12,20 @@ class App {
     router
     db
     fileManager
+    sendMail
+    alarm
 
-    constructor(port, db, fileManager) {
+    constructor(port, db, fileManager, sendMail, alarm) {
         this.port = port
         this.db = db
         this.fileManager = fileManager
+        this.sendMail = sendMail
+        this.alarm = alarm
         this.router = new Router()
     }
 
     isStatic = (url) => String(url).startsWith(`/public`)
+
     hasValidHeaders = (headers) => !headers['content-type'] || 
                                     headers['content-type'].includes("multipart/form-data") ||
                                     headers['content-type'] == "application/x-www-form-urlencoded" ||
@@ -47,7 +52,7 @@ class App {
 
             await request.augment()
             await response.augment()
-            await zen.augment(this.db, this.fileManager, request)
+            await zen.augment(this.db, this.fileManager, this.sendMail, this.alarm, request)
             
             if (this.hasValidHeaders(request.headers)) {
                 response = await this.router.handleRoute(zen, request, response)

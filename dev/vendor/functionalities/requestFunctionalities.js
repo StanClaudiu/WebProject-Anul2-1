@@ -23,6 +23,10 @@ const parseCookies = (request) => {
 const parseMultipart = async (request) => {
     const multipartParser = formidable({ multiples: true });
 
+    multipartParser.multiples = true;
+    multipartParser.maxFileSize = parseInt(process.env.STORAGE_MAX_UPLOAD_SIZE);
+    multipartParser.uploadDir = process.env.STORAGE_CACHE;
+
     const parsedBody = await new Promise((resolve, reject) => {
         multipartParser.parse(request, function (error, fields, files) {
             if (error) {
@@ -44,7 +48,9 @@ const parseUrlencoded = async (request) => {
         let buffer = '';
     
         request.on('data', (chunk) => {
+            console.log(chunk);
             buffer += decodeURIComponent(decoder.write(chunk));
+           
         });
 
         request.on('end', () => {
@@ -110,6 +116,7 @@ const AddRequestFunctionalities = (request) => {
         request.parameters = url.parse(request.url, true).query;
         request.cookies = parseCookies(request);
         request.body = await parseBody(request);
+        console.log(request.body.fields)
     }
 
     return request;

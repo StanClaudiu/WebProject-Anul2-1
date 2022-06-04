@@ -31,7 +31,7 @@ class Router {
     put(url, controller, middleware = (_1, _2, _3) => true) {
         if (this.putRoutes[url])
             console.error(`route ${url} was already added as PUT route`)
-        this.putRoutes[url] = {"controleer": controller, "middleware": middleware}
+        this.putRoutes[url] = {"controller": controller, "middleware": middleware}
     }
 
     patch(url, controller, middleware = (_1, _2, _3) => true) {

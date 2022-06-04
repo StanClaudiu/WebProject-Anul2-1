@@ -68,106 +68,64 @@
                        <div class="page-name">My Garden</div>
                         <div style="color:green"><a class="add_plants" onclick="openModal('add_modal')"><i class="fa-solid fa-circle-plus fa-2xl"></i></a></div>
                    </div>
+                   <div class="upload_download_container">
+                        <a href="@@host/api/v1/myGarden/data/download" download="statistics.json"><i class="fa-solid fa-download download_icon fa-3x"></i></a>
+                        <i class="fa-solid fa-upload upload_icon fa-3x" onclick = "openModal('upload_file')"></i>
+                   </div>
+
                    <div class="garden_Component_Container" >
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Vegetables</div>
-                                    <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Vegetables</div>
-                                    <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of gardening tools" src="@@host/public/frontend/resources/images/carousel/carousel1.jpg" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Vegetables</div>
-                                    <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component">
-                            <div class="plants-summary-image">
-                                <img alt="image of tree" src="@@host/public/frontend/resources/images/logo.png" />
-                            </div>
-                                <div class="my_description">
-                                    <div>Trees</div>
-                                    <div><a class="inspect_trees_reminder" onclick="openModal('inspect_trees_modal')"><i class="fa-solid fa-ellipsis"></a></i></div>
-                            </div>
-                        </div>
-                        <div class="plant_name_Component" >
-                            <div class="plants-summary-image">
-                                <img alt="image of flowers" src="@@host/public/frontend/resources/images/carousel/carousel2.jpg" />
-                            </div>
-                            <div class="my_description">
-                                <div>Flowers</div>
-                            <div><i class="fa-solid fa-ellipsis"></i></div>
-                            </div>
-                        </div>
+                        @@zen
+                             let userPlantTypes = wiredObject["userPlantTypes"];
+                                return userPlantTypes.map( pType => 
+                                `<div class="plant_name_Component" >
+                                    <div class="plants-summary-image">
+                                        <img alt="image of gardening tools" src="${pType.pathImage}" />
+                                    </div>
+                                        <div class="my_description">
+                                            <div>${pType.name}</div>
+                                            <div class ="dotdotdotButton" onclick="openPlantModal('@@host/api/v1/myGarden/read','${pType.id}')"><i class="fa-solid fa-ellipsis"></i></div>
+                                    </div>
+                                </div>`
+                                ).join('\n');
+                               
+                            
+                        @@zen
                    </div>
                    <div class="remainder_title">
-                       REMAINDER
+                       REMINDERS
                    </div>
                    <div class="remainders_Component" >
-                        <div class="remainder_element" >
-                            <div>Water your tomatoes</div>
-                            <div class="options_remainder"><a class="inspect_reminder" onclick="openModal('inspect_reminder_modal')"><i class="fa-solid fa-ellipsis"></i></a></div>
-                            <div class="close_remainder"><a class="close_reminder"onclick="openModal('close_reminder_modal')"><i class="fa-solid fa-xmark"></i></a></div>
-                        </div>
-                        <div class="remainder_element" >
-                            <div>Harvest your flowers</div>
-                            <div class="options_remainder"><i class="fa-solid fa-ellipsis"></i></div>
-                            <div class="close_remainder"><i class="fa-solid fa-xmark"></i></div>
-                        </div>
-                        <div class="remainder_element" >
-                            <div>Graft your grown</div>
-                            <div class="options_remainder"><i class="fa-solid fa-ellipsis"></i></div>
-                            <div class="close_remainder"><i class="fa-solid fa-xmark"></i></div>
-                        </div>
+                        
+                        @@zen
+                        let reminders = wiredObject['reminders'];
+                        return reminders.map(elem=>
+                        `<div class="remainder_element" >
+                            <div id="reminder${elem.id}">${elem.content}</div>
+                            <div class="options_remainder"><a class="inspect_reminder" onclick="see_reminder('${elem.id}')"><i class="fa-solid fa-ellipsis"></i></a></div>
+                            <div class="close_remainder"><a class="close_reminder"onclick="editDeleteModal('${elem.id}')"><i class="fa-solid fa-xmark"></i></a></div>
+                        </div>`
+                        ).join('\n');
+                        @@zen
                    </div>
                </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
             <div class="modals_heap"> <!-- De ce asta aici?,de unde vine?-->
                 <div class="modal_container" id="add_modal">
                     <div class="modal garden_modal">
                         <div class="full-form-container">
-                            <form class="pretty_form" id="add_plant_form" action="/">
+                            <form class="pretty_form" id="add_plant_form" action="@@host/api/v1/myGarden" method="post" enctype="multipart/form-data">
                                 <label for="name_of_plant">Name</label>
                                 <input type="text" id="name_of_plant" name="name_of_plant" required>
                                 <!-- this needs to be a select-->
                                 <label for="type_of_plant">Type</label>
                                 <div class="selector_add_plant pretty_form">
                                     <select id="type_of_plant" name="type_of_plant">
-                                    <option value="Trees">Trees</option>
-                                    <option value="Flowers">Flowers</option>
-                                    <option value="Vegetables">Vegetables</option>
+                                    @@zen
+                                        let pTypes = wiredObject["plantTypes"];
+                                        return pTypes.map(type =>`<option value="${type.id}">${type.name}</option>`).join('\n');
+                                    @@zen
                                     </select>
                                 </div> 
                             </form>
@@ -178,58 +136,86 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- here we have the modal for the reminder-->
+
                 <div class="modal_container" id="inspect_reminder_modal">
                     <div class="modal">
                         <div class="full-form-container remainder_container">
-                           <div>Remainder</div>
-                           <div>Water your tomatoes</div>
+                           <div>Reminder</div>
+                           <div id="content_reminder"></div>
                         </div>
                         <div class="modal-action-buttons">
                             <div class="button-box button-box-red" onclick="closeModal('inspect_reminder_modal')">Cancel</div>
                         </div>
                     </div>
                 </div>
-                <div class="modal_container" id="inspect_trees_modal">
+
+                <div class="modal_container" id="inspect_plant_modal">
                     <div class="modal">
-                        <div class="full-form-container plants_made_beatiful">
-                            <div class="tree_formated">
+                        <div class="full-form-container plants_made_beatiful" id="inject_plants">
+                            <div class="plant_formated">
                                 <div>Copacel</div>
                                 <div><i class="fa-solid fa-xmark"></i></div>
                             </div>
-                            <div class="tree_formated">
-                                <div>Bonzai</div>
-                                <div><i class="fa-solid fa-xmark"></i></div>
-                            </div>
-                            <div class="tree_formated">
-                                <div>Nuc</div>
-                                <div><i class="fa-solid fa-xmark"></i></div>
-                            </div>
+                            <!-- here we have our modal -->
                         </div>
                         <div class="modal-action-buttons">
-                            <div class="button-box button-box-red" onclick="closeModal('inspect_trees_modal')">Cancel</div>
+                            <div class="button-box button-box-red" onclick="closeModal('inspect_plant_modal')">Cancel</div>
                         </div>
                     </div>
                 </div>
-                <div class="modal_container" id="close_reminder_modal">
+                
+                
+                <div class="modal_container" id="delete_plant_modal">
                     <div class="modal">
-                        <div class="full-form-container">
-                           Are you sure you want to delete this reminder?
+                        <div class="full-form-container" style="text-align: center">
+                           Are you sure you want to delete this plant permanently?
                         </div>
                         <div class="modal-action-buttons">
-                            <div class="button-box button-box-red" onclick="closeModal('close_reminder_modal')">Cancel</div>
+                            <div id ="submiter_of_delete" class="button-box button-box-red" >Yes</div>
+                            <div class="button-filled button-filled-dark-green" onclick="closeModal('delete_plant_modal')">No</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Here we have the close modal for the reminder -->
+
+                <div class="modal_container" id="close_reminder_modal">
+                    <div class="modal" style="background-color:rgba(33, 212, 33, 0.89)">
+                        <div class="full-form-container" style="text-align:center">
+                           Are you sure you want to dismiss this reminder?
+                        </div>
+                        <div class="modal-action-buttons">
+                            <div id="delete_the_reminder" class="button-filled button-filled-dark-green">Yes</div> <!-- send delete request -->
+                            <div class="button-box button-box-red" onclick="closeModal('close_reminder_modal')">No</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- the modal for the upload -->
+
+                <div class="modal_container long_modal_container" id="upload_file">
+                    <div class="modal course_add_edit_modal">
+                        <div class="full-form-container">
+                            <form class="pretty_form" id="edit_form" action="@@host/api/v1/myGarden/data/upload" method="post" enctype="multipart/form-data">
+                                <label for="upload_the_file">File to be uploaded</label>
+                                <input type="file" id="upload_the_file" name="file_app" accept="application/json">
+                            </form>
+                        </div>
+                        <div class="modal-action-buttons">
+                            <button type="submit" form="edit_form" class="button-filled button-filled-dark-green">Upload</button>
+                            <div class="button-box button-box-red" onclick="closeModal('upload_file')">Cancel</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </main>
             <script src="@@host/public/frontend/resources/scripts/navBar.js"></script>
             <script src="@@host/public/frontend/resources/scripts/modal.js"></script>
             <script src="@@host/public/frontend/resources/scripts/countingNumbers.js"></script>
-          
+            <script src="@@host/public/frontend/resources/connection_scripts/myGarden.js"></script>
     </body>
-
-
-
-       
         
 </html>

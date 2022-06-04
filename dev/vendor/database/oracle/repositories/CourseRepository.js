@@ -65,7 +65,45 @@ class CourseUserRepository {
                 `SELECT * from TABLE( courses_package.getAllCourses())`);
             
             console.log(result);
+            return result.rows;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    async getById(id) {
+        try {
+            const result = await this.db.execute(
+                `SELECT * from TABLE( courses_package.getById('${id}'))`);
+            
+            console.log(result);
             return result.rows.length == 0 ? null : result.rows[0]; //the id
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    async getByParentId(parentId) {
+        try {
+            const result = await this.db.execute(
+                `SELECT * from TABLE( courses_package.get_courses_by_parent_id('${parentId}'))`);
+            
+            console.log(result);
+            return result.rows; //the id
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    async delete_course_by_id(id) {
+        try {
+            const result = await this.db.execute(
+                `SELECT courses_package.delete_course_by_id('${id}') FROM DUAL`);
+            
+            console.log(result);
         }
         catch (err) {
             console.log(err);
