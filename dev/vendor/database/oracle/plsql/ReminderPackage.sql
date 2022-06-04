@@ -14,7 +14,7 @@ CREATE TABLE reminder
         REFERENCES plant(id)
         ON DELETE CASCADE,
         
-    content VARCHAR2(40) NOT NULL
+    content VARCHAR2(200) NOT NULL
 ) /* STATEMENT */;
 
 

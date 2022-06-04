@@ -14,7 +14,7 @@ class Reminder  {
     }
 
     async create() {
-            const result = await this.db.reminderRepository.create(id_plant,content);               
+            const result = await this.db.reminderRepository.create(this.id_plant, this.content);               
             return result;
         }
 

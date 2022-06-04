@@ -46,6 +46,8 @@ const MyGardenPageController = {
          console.log(myPlant);
          await myPlant.create();
 
+         zen.alarm.addAlarm(myPlant.id_plant_type, myPlant.toPOJO(), 10, 10)
+
          await response.redirect(`/myGarden`); //move me there...deci faci si request
               
          return response;
@@ -69,10 +71,6 @@ const MyGardenPageController = {
         console.log('I am deleting a reminder' +id_reminder);
 
     }
-
-
-    
-
    
 }
 

@@ -23,7 +23,7 @@ if (parseInt(process.env.DB_SEED) == 1) {
 
 const alarm = new Alarm(parseInt(process.env.ALARM_PLAYBACK_SPEED))
 
-setInterval(() => { alarm.callAlarms([...PlantAlarms]) }, 
+setInterval(() => { alarm.callAlarms(db, SendMail, [...PlantAlarms]) }, 
     parseInt(process.env.ALARM_CHECK_ONCE_IN))
 
 const app = new App(process.env.PORT || 4000, db, FileManager, SendMail, alarm)

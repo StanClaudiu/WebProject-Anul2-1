@@ -18,7 +18,7 @@ class Alarm {
         })
     }
 
-    async callAlarms(alarmListeners) {
+    async callAlarms(db, sendMail, alarmListeners) {
 
         for (let it = 0; it < this.alarms.length; it++) {
 
@@ -29,7 +29,7 @@ class Alarm {
             for (let jt = 0; jt < alarmListeners.length; jt++) 
             {
                 let alarmListener = alarmListeners[jt]
-                await alarmListener(alarm.alarmId, alarm.object, alarm.ramainingAlarms - 1)
+                await alarmListener(alarm.alarmId, db, sendMail, alarm.object, alarm.ramainingAlarms - 1)
             }
 
             if (alarm.ramainingAlarms - 1 < 1) 
