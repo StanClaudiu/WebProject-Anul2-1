@@ -77,3 +77,9 @@ CREATE OR REPLACE PACKAGE BODY plant_type_packege IS
     END;
 
 END plant_type_packege;/* STATEMENT */
+
+SELECT plant_type_packege.add_plant_type('Arbori mici','poza') FROM DUAL;
+SELECT plant_type_packege.add_plant_type('Arbori mari','poza') FROM DUAL;
+SELECT plant_type_packege.add_plant_type('Legume','poza') FROM DUAL;
+SELECT plant_type_packege.add_plant_type('Fructe tropicale','poza') FROM DUAL;
+SELECT plant_type_packege.add_plant_type('Fructe meditarene','poza') FROM DUAL;
