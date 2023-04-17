@@ -10,7 +10,7 @@ We have developed and a Model View Controller framework in NodeJS that we called
 * It uses JWT tokens to enable user authentication.
 * It secures passwords with hash and salt.
 * It provides its own html templating language called ZEN view.
-* It does boath API and Web routing.
+* It does both API and Web routing.
 * It provides a seeding module to seed the database.
 * It provides an alarm system to register "alarms" that wil trigger certent actions on specific intervals.
 
