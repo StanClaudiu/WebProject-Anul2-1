@@ -17,10 +17,10 @@ We have developed and a Model View Controller framework in NodeJS that we called
 
 We used this web framework to develop the gardening app which has the following features:
 
-* It empowers users to create teir own gardens.
+* It empowers users to create their own gardens.
 * It offers courses related to gardening and it tracks the user's progress.
-* It rewords active users by displaying them on a leaderbord.
-* It provides admins the posibility to add, edit and delete courses in order to keep the app up to date.
+* It rewards active users by displaying them on a leaderbord.
+* It provides admins the possibility of CRUD actions on courses in order to keep the app up to date.
 * It is fully compatible with many modern browsers, it is responsive and can be use effectively on mobile apps.
 
 
